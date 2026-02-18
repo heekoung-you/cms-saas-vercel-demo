@@ -21,13 +21,122 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
-export type ArticleListElement = IData & _IComponent & _IContent & {
+export type ArticleGroupPage = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'ArticleGroupPage';
+  LandingPageSeoSettings?: Maybe<PageSeoSettingsProperty>;
+  MainContent?: Maybe<Array<Maybe<_IContent>>>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  articleGroupIntro?: Maybe<RichText>;
+  articleGroupTitle?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ArticleGroupPage_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ArticleGroupPage_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ArticleGroupPageAutocomplete = {
+  __typename?: 'ArticleGroupPageAutocomplete';
+  LandingPageSeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  MainContent?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  articleGroupIntro?: Maybe<RichTextAutocomplete>;
+  articleGroupTitle?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type ArticleGroupPageAutocompletearticleGroupTitleArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type ArticleGroupPageFacet = {
+  __typename?: 'ArticleGroupPageFacet';
+  LandingPageSeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
+  MainContent?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  articleGroupIntro?: Maybe<RichTextFacet>;
+  articleGroupTitle?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type ArticleGroupPageFacetarticleGroupTitleArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type ArticleGroupPageOrderByInput = {
+  LandingPageSeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
+  MainContent?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  articleGroupIntro?: InputMaybe<RichTextOrderByInput>;
+  articleGroupTitle?: InputMaybe<OrderBy>;
+};
+
+export type ArticleGroupPageOutput = {
+  __typename?: 'ArticleGroupPageOutput';
+  autocomplete?: Maybe<ArticleGroupPageAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ArticleGroupPageFacet>;
+  item?: Maybe<ArticleGroupPage>;
+  items?: Maybe<Array<Maybe<ArticleGroupPage>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ArticleGroupPageOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ArticleGroupPageWhereInput = {
+  LandingPageSeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
+  MainContent?: InputMaybe<_IContentWhereInput>;
+  _and?: InputMaybe<Array<InputMaybe<ArticleGroupPageWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ArticleGroupPageWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ArticleGroupPageWhereInput>>>;
+  articleGroupIntro?: InputMaybe<RichTextWhereInput>;
+  articleGroupTitle?: InputMaybe<StringFilterInput>;
+};
+
+export type ArticleListElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ArticleListElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -49,15 +158,18 @@ export type ArticleListElement_linkArgs = {
 
 export type ArticleListElementAutocomplete = {
   __typename?: 'ArticleListElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ArticleListElementFacet = {
   __typename?: 'ArticleListElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ArticleListElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -84,20 +196,268 @@ export type ArticleListElementOutputtotalArgs = {
 export type ArticleListElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ArticleListElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ArticleListElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ArticleListElementWhereInput>>>;
 };
 
-export type BlankExperience = IData & _IContent & _IExperience & _IPage & {
-  __typename?: 'BlankExperience';
-  BlankExperienceSeoSettings?: Maybe<PageSeoSettingsProperty>;
+export type ArticlePage = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'ArticlePage';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  articleAuthors?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  articleBody?: Maybe<RichText>;
+  articleHeroImage?: Maybe<ContentReference>;
+  articleSeoSettings?: Maybe<PageSeoSettingsProperty>;
+  articleSummary?: Maybe<RichText>;
+  articleTitle?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ArticlePage_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ArticlePage_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ArticlePageAutocomplete = {
+  __typename?: 'ArticlePageAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  articleBody?: Maybe<RichTextAutocomplete>;
+  articleHeroImage?: Maybe<ContentReferenceAutocomplete>;
+  articleSeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  articleSummary?: Maybe<RichTextAutocomplete>;
+};
+
+export type ArticlePageFacet = {
+  __typename?: 'ArticlePageFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  articleBody?: Maybe<RichTextFacet>;
+  articleHeroImage?: Maybe<ContentReferenceFacet>;
+  articleSeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
+  articleSummary?: Maybe<RichTextFacet>;
+};
+
+export type ArticlePageOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  articleBody?: InputMaybe<RichTextOrderByInput>;
+  articleHeroImage?: InputMaybe<ContentReferenceOrderByInput>;
+  articleSeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
+  articleSummary?: InputMaybe<RichTextOrderByInput>;
+};
+
+export type ArticlePageOutput = {
+  __typename?: 'ArticlePageOutput';
+  autocomplete?: Maybe<ArticlePageAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ArticlePageFacet>;
+  item?: Maybe<ArticlePage>;
+  items?: Maybe<Array<Maybe<ArticlePage>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ArticlePageOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ArticlePageWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ArticlePageWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ArticlePageWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ArticlePageWhereInput>>>;
+  articleBody?: InputMaybe<RichTextWhereInput>;
+  articleHeroImage?: InputMaybe<ContentReferenceWhereInput>;
+  articleSeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
+  articleSummary?: InputMaybe<RichTextWhereInput>;
+};
+
+export type AvailabilityBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'AvailabilityBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  availability?: Maybe<Scalars['String']['output']>;
+  projectTypes?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type AvailabilityBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type AvailabilityBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type AvailabilityBlockAutocomplete = {
+  __typename?: 'AvailabilityBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type AvailabilityBlockFacet = {
+  __typename?: 'AvailabilityBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type AvailabilityBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type AvailabilityBlockOutput = {
+  __typename?: 'AvailabilityBlockOutput';
+  autocomplete?: Maybe<AvailabilityBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<AvailabilityBlockFacet>;
+  item?: Maybe<AvailabilityBlock>;
+  items?: Maybe<Array<Maybe<AvailabilityBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type AvailabilityBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type AvailabilityBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<AvailabilityBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<AvailabilityBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<AvailabilityBlockWhereInput>>>;
+};
+
+export type BannerBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'BannerBlock';
+  Title?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type BannerBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type BannerBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type BannerBlockAutocomplete = {
+  __typename?: 'BannerBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type BannerBlockFacet = {
+  __typename?: 'BannerBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type BannerBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type BannerBlockOutput = {
+  __typename?: 'BannerBlockOutput';
+  autocomplete?: Maybe<BannerBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<BannerBlockFacet>;
+  item?: Maybe<BannerBlock>;
+  items?: Maybe<Array<Maybe<BannerBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type BannerBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type BannerBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<BannerBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<BannerBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<BannerBlockWhereInput>>>;
+};
+
+export type BlankExperience = IData & _IContent & _IExperience & _IItem & _IPage & {
+  __typename?: 'BlankExperience';
+  BlankExperienceSeoSettings?: Maybe<PageSeoSettingsProperty>;
+  SeoSettings?: Maybe<PageSeoSettingsProperty>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -119,6 +479,8 @@ export type BlankExperience_linkArgs = {
 export type BlankExperienceAutocomplete = {
   __typename?: 'BlankExperienceAutocomplete';
   BlankExperienceSeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
@@ -126,12 +488,16 @@ export type BlankExperienceAutocomplete = {
 export type BlankExperienceFacet = {
   __typename?: 'BlankExperienceFacet';
   BlankExperienceSeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
+  SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type BlankExperienceOrderByInput = {
   BlankExperienceSeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
+  SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -158,8 +524,10 @@ export type BlankExperienceOutputtotalArgs = {
 
 export type BlankExperienceWhereInput = {
   BlankExperienceSeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
+  SeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<BlankExperienceWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlankExperienceWhereInput>>>;
@@ -167,13 +535,15 @@ export type BlankExperienceWhereInput = {
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type BlankSection = IData & _IComponent & _IContent & _ISection & {
+export type BlankSection = IData & _IComponent & _IContent & _IItem & _ISection & {
   __typename?: 'BlankSection';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -194,17 +564,20 @@ export type BlankSection_linkArgs = {
 
 export type BlankSectionAutocomplete = {
   __typename?: 'BlankSectionAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type BlankSectionFacet = {
   __typename?: 'BlankSectionFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type BlankSectionOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -232,6 +605,7 @@ export type BlankSectionOutputtotalArgs = {
 export type BlankSectionWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<BlankSectionWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlankSectionWhereInput>>>;
@@ -239,76 +613,7 @@ export type BlankSectionWhereInput = {
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type BlogListingBlock = IData & _IComponent & _IContent & {
-  __typename?: 'BlogListingBlock';
-  BlogListingItemCount?: Maybe<Scalars['Int']['output']>;
-  BlogListingShowFilters?: Maybe<Scalars['Boolean']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type BlogListingBlock_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type BlogListingBlock_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type BlogListingBlockAutocomplete = {
-  __typename?: 'BlogListingBlockAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type BlogListingBlockFacet = {
-  __typename?: 'BlogListingBlockFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type BlogListingBlockOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type BlogListingBlockOutput = {
-  __typename?: 'BlogListingBlockOutput';
-  autocomplete?: Maybe<BlogListingBlockAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<BlogListingBlockFacet>;
-  item?: Maybe<BlogListingBlock>;
-  items?: Maybe<Array<Maybe<BlogListingBlock>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type BlogListingBlockOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type BlogListingBlockWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<BlogListingBlockWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<BlogListingBlockWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<BlogListingBlockWhereInput>>>;
-};
-
-export type BlogPostPage = IData & _IContent & _IPage & {
+export type BlogPostPage = IData & _IContent & _IItem & _IPage & {
   __typename?: 'BlogPostPage';
   ArticleAuthor?: Maybe<Scalars['String']['output']>;
   ArticleSubHeading?: Maybe<Scalars['String']['output']>;
@@ -322,6 +627,8 @@ export type BlogPostPage = IData & _IContent & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -364,6 +671,7 @@ export type BlogPostPageAutocomplete = {
   __typename?: 'BlogPostPageAutocomplete';
   BlogPostPromoImage?: Maybe<ContentReferenceAutocomplete>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   continueReading?: Maybe<_IContentAutocomplete>;
 };
@@ -377,6 +685,7 @@ export type BlogPostPageFacet = {
   Heading?: Maybe<Array<Maybe<StringFacet>>>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
   Topic?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   continueReading?: Maybe<_IContentFacet>;
 };
@@ -421,6 +730,7 @@ export type BlogPostPageOrderByInput = {
   Heading?: InputMaybe<OrderBy>;
   SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
   Topic?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -455,6 +765,7 @@ export type BlogPostPageWhereInput = {
   Topic?: InputMaybe<SearchableStringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<BlogPostPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlogPostPageWhereInput>>>;
@@ -462,13 +773,15 @@ export type BlogPostPageWhereInput = {
   continueReading?: InputMaybe<_IContentWhereInput>;
 };
 
-export type BlogSectionExperience = IData & _IContent & _IExperience & _IPage & {
+export type BlogSectionExperience = IData & _IContent & _IExperience & _IItem & _IPage & {
   __typename?: 'BlogSectionExperience';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -490,6 +803,7 @@ export type BlogSectionExperience_linkArgs = {
 
 export type BlogSectionExperienceAutocomplete = {
   __typename?: 'BlogSectionExperienceAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
   seo_data?: Maybe<PageSeoSettingsPropertyAutocomplete>;
@@ -497,12 +811,14 @@ export type BlogSectionExperienceAutocomplete = {
 
 export type BlogSectionExperienceFacet = {
   __typename?: 'BlogSectionExperienceFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
   seo_data?: Maybe<PageSeoSettingsPropertyFacet>;
 };
 
 export type BlogSectionExperienceOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -531,6 +847,7 @@ export type BlogSectionExperienceOutputtotalArgs = {
 export type BlogSectionExperienceWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<BlogSectionExperienceWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlogSectionExperienceWhereInput>>>;
@@ -550,7 +867,7 @@ export type BoolFilterInput = {
   notEq?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type ButtonBlock = IData & _IComponent & _IContent & {
+export type ButtonBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ButtonBlock';
   ButtonClass?: Maybe<Scalars['String']['output']>;
   ButtonText?: Maybe<Scalars['String']['output']>;
@@ -562,11 +879,17 @@ export type ButtonBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
+  className?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<ContentUrl>;
+  text?: Maybe<Scalars['String']['output']>;
+  variant?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -582,23 +905,29 @@ export type ButtonBlock_linkArgs = {
 export type ButtonBlockAutocomplete = {
   __typename?: 'ButtonBlockAutocomplete';
   ButtonUrl?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
+  link?: Maybe<ContentUrlAutocomplete>;
 };
 
 export type ButtonBlockFacet = {
   __typename?: 'ButtonBlockFacet';
   ButtonUrl?: Maybe<ContentUrlFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
+  link?: Maybe<ContentUrlFacet>;
 };
 
 export type ButtonBlockOrderByInput = {
   ButtonUrl?: InputMaybe<ContentUrlOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
   _ranking?: InputMaybe<Ranking>;
   /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
   _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  link?: InputMaybe<ContentUrlOrderByInput>;
 };
 
 export type ButtonBlockOutput = {
@@ -623,37 +952,128 @@ export type ButtonBlockProperty = {
   ButtonType?: Maybe<Scalars['String']['output']>;
   ButtonUrl?: Maybe<ContentUrl>;
   ButtonVariant?: Maybe<Scalars['String']['output']>;
+  className?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<ContentUrl>;
+  text?: Maybe<Scalars['String']['output']>;
+  variant?: Maybe<Scalars['String']['output']>;
 };
 
 export type ButtonBlockPropertyAutocomplete = {
   __typename?: 'ButtonBlockPropertyAutocomplete';
   ButtonUrl?: Maybe<ContentUrlAutocomplete>;
+  link?: Maybe<ContentUrlAutocomplete>;
 };
 
 export type ButtonBlockPropertyFacet = {
   __typename?: 'ButtonBlockPropertyFacet';
   ButtonUrl?: Maybe<ContentUrlFacet>;
+  link?: Maybe<ContentUrlFacet>;
 };
 
 export type ButtonBlockPropertyOrderByInput = {
   ButtonUrl?: InputMaybe<ContentUrlOrderByInput>;
+  link?: InputMaybe<ContentUrlOrderByInput>;
 };
 
 export type ButtonBlockPropertyWhereInput = {
   ButtonUrl?: InputMaybe<ContentUrlWhereInput>;
+  link?: InputMaybe<ContentUrlWhereInput>;
 };
 
 export type ButtonBlockWhereInput = {
   ButtonUrl?: InputMaybe<ContentUrlWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
+  link?: InputMaybe<ContentUrlWhereInput>;
 };
 
-export type CTAElement = IData & _IComponent & _IContent & {
+export type CMSPage = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'CMSPage';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  blocks?: Maybe<Array<Maybe<_IContent>>>;
+  keywords?: Maybe<Scalars['String']['output']>;
+  shortDescription?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type CMSPage_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CMSPage_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type CMSPageAutocomplete = {
+  __typename?: 'CMSPageAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  blocks?: Maybe<_IContentAutocomplete>;
+};
+
+export type CMSPageFacet = {
+  __typename?: 'CMSPageFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  blocks?: Maybe<_IContentFacet>;
+};
+
+export type CMSPageOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  blocks?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type CMSPageOutput = {
+  __typename?: 'CMSPageOutput';
+  autocomplete?: Maybe<CMSPageAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<CMSPageFacet>;
+  item?: Maybe<CMSPage>;
+  items?: Maybe<Array<Maybe<CMSPage>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type CMSPageOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type CMSPageWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<CMSPageWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<CMSPageWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<CMSPageWhereInput>>>;
+  blocks?: InputMaybe<_IContentWhereInput>;
+};
+
+export type CTAElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'CTAElement';
   Link?: Maybe<ContentUrl>;
   Text?: Maybe<Scalars['String']['output']>;
@@ -662,6 +1082,8 @@ export type CTAElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -687,6 +1109,7 @@ export type CTAElement_linkArgs = {
 export type CTAElementAutocomplete = {
   __typename?: 'CTAElementAutocomplete';
   Link?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -694,6 +1117,7 @@ export type CTAElementFacet = {
   __typename?: 'CTAElementFacet';
   Link?: Maybe<ContentUrlFacet>;
   Text?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -708,6 +1132,7 @@ export type CTAElementFacetTextArgs = {
 export type CTAElementOrderByInput = {
   Link?: InputMaybe<ContentUrlOrderByInput>;
   Text?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -736,13 +1161,14 @@ export type CTAElementWhereInput = {
   Text?: InputMaybe<SearchableStringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<CTAElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<CTAElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<CTAElementWhereInput>>>;
 };
 
-export type CardBlock = IData & _IComponent & _IContent & {
+export type CardBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'CardBlock';
   CardButton?: Maybe<ButtonBlockProperty>;
   CardColor?: Maybe<Scalars['String']['output']>;
@@ -750,13 +1176,15 @@ export type CardBlock = IData & _IComponent & _IContent & {
   CardHeading?: Maybe<Scalars['String']['output']>;
   CardIcon?: Maybe<ContentReference>;
   CardImage?: Maybe<ContentReference>;
-  CardSubHeading?: Maybe<Scalars['String']['output']>;
-  ImageLayout?: Maybe<Scalars['String']['output']>;
+  CardImageLayout?: Maybe<Scalars['String']['output']>;
+  CardSubheading?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -780,6 +1208,7 @@ export type CardBlockAutocomplete = {
   CardDescription?: Maybe<RichTextAutocomplete>;
   CardIcon?: Maybe<ContentReferenceAutocomplete>;
   CardImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -789,6 +1218,7 @@ export type CardBlockFacet = {
   CardDescription?: Maybe<RichTextFacet>;
   CardIcon?: Maybe<ContentReferenceFacet>;
   CardImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -797,6 +1227,7 @@ export type CardBlockOrderByInput = {
   CardDescription?: InputMaybe<RichTextOrderByInput>;
   CardIcon?: InputMaybe<ContentReferenceOrderByInput>;
   CardImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -827,13 +1258,14 @@ export type CardBlockWhereInput = {
   CardImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<CardBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<CardBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<CardBlockWhereInput>>>;
 };
 
-export type CarouselBlock = IData & _IComponent & _IContent & {
+export type CarouselBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'CarouselBlock';
   CarouselItemsContentArea?: Maybe<Array<Maybe<_IContent>>>;
   /** @deprecated Use `_link` field instead */
@@ -841,6 +1273,8 @@ export type CarouselBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -861,17 +1295,20 @@ export type CarouselBlock_linkArgs = {
 export type CarouselBlockAutocomplete = {
   __typename?: 'CarouselBlockAutocomplete';
   CarouselItemsContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type CarouselBlockFacet = {
   __typename?: 'CarouselBlockFacet';
   CarouselItemsContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type CarouselBlockOrderByInput = {
   CarouselItemsContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -899,6 +1336,7 @@ export type CarouselBlockWhereInput = {
   CarouselItemsContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<CarouselBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<CarouselBlockWhereInput>>>;
@@ -1130,6 +1568,81 @@ export type CompositionStructureNodeWhereInput = {
   type?: InputMaybe<StringFilterInput>;
 };
 
+export type ContactBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'ContactBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ContactBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContactBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ContactBlockAutocomplete = {
+  __typename?: 'ContactBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type ContactBlockFacet = {
+  __typename?: 'ContactBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type ContactBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ContactBlockOutput = {
+  __typename?: 'ContactBlockOutput';
+  autocomplete?: Maybe<ContactBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ContactBlockFacet>;
+  item?: Maybe<ContactBlock>;
+  items?: Maybe<Array<Maybe<ContactBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ContactBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ContactBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ContactBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ContactBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ContactBlockWhereInput>>>;
+};
+
 export type ContentMetadata = IContentMetadata & {
   __typename?: 'ContentMetadata';
   changeset?: Maybe<Scalars['String']['output']>;
@@ -1153,76 +1666,7 @@ export type ContentMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type ContentRecsBlock = IData & _IComponent & _IContent & {
-  __typename?: 'ContentRecsBlock';
-  BlockDeliveryApiKey?: Maybe<Scalars['String']['output']>;
-  BlockRecommendationCount?: Maybe<Scalars['Int']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type ContentRecsBlock_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type ContentRecsBlock_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type ContentRecsBlockAutocomplete = {
-  __typename?: 'ContentRecsBlockAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type ContentRecsBlockFacet = {
-  __typename?: 'ContentRecsBlockFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type ContentRecsBlockOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type ContentRecsBlockOutput = {
-  __typename?: 'ContentRecsBlockOutput';
-  autocomplete?: Maybe<ContentRecsBlockAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<ContentRecsBlockFacet>;
-  item?: Maybe<ContentRecsBlock>;
-  items?: Maybe<Array<Maybe<ContentRecsBlock>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type ContentRecsBlockOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type ContentRecsBlockWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<ContentRecsBlockWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<ContentRecsBlockWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<ContentRecsBlockWhereInput>>>;
-};
-
-export type ContentRecsElement = IData & _IComponent & _IContent & {
+export type ContentRecsElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ContentRecsElement';
   ElementDeliveryApiKey?: Maybe<Scalars['String']['output']>;
   ElementRecommendationCount?: Maybe<Scalars['Int']['output']>;
@@ -1231,6 +1675,8 @@ export type ContentRecsElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -1250,15 +1696,18 @@ export type ContentRecsElement_linkArgs = {
 
 export type ContentRecsElementAutocomplete = {
   __typename?: 'ContentRecsElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ContentRecsElementFacet = {
   __typename?: 'ContentRecsElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ContentRecsElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1285,6 +1734,7 @@ export type ContentRecsElementOutputtotalArgs = {
 export type ContentRecsElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ContentRecsElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ContentRecsElementWhereInput>>>;
@@ -1474,13 +1924,15 @@ export type ContentUrlWhereInput = {
   type?: InputMaybe<StringFilterInput>;
 };
 
-export type ContinueReadingComponent = IData & _IComponent & _IContent & {
+export type ContinueReadingComponent = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ContinueReadingComponent';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -1504,12 +1956,14 @@ export type ContinueReadingComponent_linkArgs = {
 
 export type ContinueReadingComponentAutocomplete = {
   __typename?: 'ContinueReadingComponentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   content?: Maybe<_IContentAutocomplete>;
 };
 
 export type ContinueReadingComponentFacet = {
   __typename?: 'ContinueReadingComponentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   content?: Maybe<_IContentFacet>;
   shared?: Maybe<Array<Maybe<StringFacet>>>;
@@ -1524,6 +1978,7 @@ export type ContinueReadingComponentFacetsharedArgs = {
 };
 
 export type ContinueReadingComponentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1552,6 +2007,7 @@ export type ContinueReadingComponentOutputtotalArgs = {
 export type ContinueReadingComponentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ContinueReadingComponentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ContinueReadingComponentWhereInput>>>;
@@ -1567,6 +2023,7 @@ export type Data = IData & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
@@ -1655,6 +2112,349 @@ export type Decay = {
   scale?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type DefaultImage = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
+  __typename?: 'DefaultImage';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type DefaultImage_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type DefaultImage_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type DefaultImageAutocomplete = {
+  __typename?: 'DefaultImageAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type DefaultImageFacet = {
+  __typename?: 'DefaultImageFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type DefaultImageOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type DefaultImageOutput = {
+  __typename?: 'DefaultImageOutput';
+  autocomplete?: Maybe<DefaultImageAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<DefaultImageFacet>;
+  item?: Maybe<DefaultImage>;
+  items?: Maybe<Array<Maybe<DefaultImage>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type DefaultImageOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DefaultImageWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<DefaultImageWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<DefaultImageWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<DefaultImageWhereInput>>>;
+};
+
+export type DefaultVideo = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
+  __typename?: 'DefaultVideo';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type DefaultVideo_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type DefaultVideo_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type DefaultVideoAutocomplete = {
+  __typename?: 'DefaultVideoAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type DefaultVideoFacet = {
+  __typename?: 'DefaultVideoFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type DefaultVideoOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type DefaultVideoOutput = {
+  __typename?: 'DefaultVideoOutput';
+  autocomplete?: Maybe<DefaultVideoAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<DefaultVideoFacet>;
+  item?: Maybe<DefaultVideo>;
+  items?: Maybe<Array<Maybe<DefaultVideo>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type DefaultVideoOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DefaultVideoWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<DefaultVideoWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<DefaultVideoWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<DefaultVideoWhereInput>>>;
+};
+
+export type Dictionary = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'Dictionary';
+  DictionaryItems?: Maybe<Array<Maybe<DictionaryItemProperty>>>;
+  DictionaryKey?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type DictionaryDictionaryKeyArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Dictionary_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Dictionary_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type DictionaryAutocomplete = {
+  __typename?: 'DictionaryAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type DictionaryFacet = {
+  __typename?: 'DictionaryFacet';
+  DictionaryItems?: Maybe<Array<Maybe<StringFacet>>>;
+  DictionaryKey?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+
+export type DictionaryFacetDictionaryItemsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type DictionaryFacetDictionaryKeyArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type DictionaryItem = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'DictionaryItem';
+  DictionaryItemKey?: Maybe<Scalars['String']['output']>;
+  DictionaryItemValue?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type DictionaryItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type DictionaryItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type DictionaryItemAutocomplete = {
+  __typename?: 'DictionaryItemAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type DictionaryItemFacet = {
+  __typename?: 'DictionaryItemFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type DictionaryItemOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type DictionaryItemOutput = {
+  __typename?: 'DictionaryItemOutput';
+  autocomplete?: Maybe<DictionaryItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<DictionaryItemFacet>;
+  item?: Maybe<DictionaryItem>;
+  items?: Maybe<Array<Maybe<DictionaryItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type DictionaryItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DictionaryItemProperty = {
+  __typename?: 'DictionaryItemProperty';
+  DictionaryItemKey?: Maybe<Scalars['String']['output']>;
+  DictionaryItemValue?: Maybe<Scalars['String']['output']>;
+};
+
+export type DictionaryItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<DictionaryItemWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<DictionaryItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<DictionaryItemWhereInput>>>;
+};
+
+export type DictionaryOrderByInput = {
+  DictionaryItems?: InputMaybe<OrderBy>;
+  DictionaryKey?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type DictionaryOutput = {
+  __typename?: 'DictionaryOutput';
+  autocomplete?: Maybe<DictionaryAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<DictionaryFacet>;
+  item?: Maybe<Dictionary>;
+  items?: Maybe<Array<Maybe<Dictionary>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type DictionaryOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DictionaryWhereInput = {
+  DictionaryItems?: InputMaybe<StringFilterInput>;
+  DictionaryKey?: InputMaybe<SearchableStringFilterInput>;
+  _and?: InputMaybe<Array<InputMaybe<DictionaryWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<DictionaryWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<DictionaryWhereInput>>>;
+};
+
 export enum FactorModifier {
   /** Add 1 to the field value and take the natural logarithm */
   LOG = 'LOG',
@@ -1668,13 +2468,204 @@ export enum FactorModifier {
   SQUARE = 'SQUARE'
 }
 
-export type GenericMedia = IData & _IContent & _IMedia & {
-  __typename?: 'GenericMedia';
+export type FloatFilterInput = {
+  /** `boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number. */
+  boost?: InputMaybe<Scalars['Float']['input']>;
+  /** `eq` matches on an exact value, but the value is case-insensitive. */
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  /** `exist` matches results that have this field. */
+  exist?: InputMaybe<Scalars['Boolean']['input']>;
+  /** `Factor` allows you to use a number value in a field to influence the `_score` directly. If used on a multi-valued field, then only the lowest value of the field is used in calculations. Default for `value` is `1`. Default for `modifier` is `NONE`. */
+  factor?: InputMaybe<NumberFactor>;
+  /** `gt` retrieves results with matches that have a value which is `greater than` it. */
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  /** `gte` retrieves results with matches that have a value which is `greater than or equal to` it. */
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  /** `in` matches with 1 or more exact values in a list. Example: `in: ["word1", "word2", "this is a phrase"]` */
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  /** `lt` retrieves results with matches that have a value which is `lower than` it. */
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  /** `lte` retrieves results with matches that have a value which is `lower than or equal to` it. */
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  /** `not_eq` retrieves results not matching with an exact (but case-insensitive) value. */
+  notEq?: InputMaybe<Scalars['Float']['input']>;
+  /** `not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: ["word1", "word2", "this is a phrase"]` */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type Footer = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'Footer';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  columns?: Maybe<Array<Maybe<_IContent>>>;
+  copyrightText?: Maybe<Scalars['String']['output']>;
+  socialLinks?: Maybe<Array<Maybe<_IContent>>>;
+};
+
+
+export type Footer_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Footer_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type FooterAutocomplete = {
+  __typename?: 'FooterAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  columns?: Maybe<_IContentAutocomplete>;
+  socialLinks?: Maybe<_IContentAutocomplete>;
+};
+
+export type FooterColumn = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'FooterColumn';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  links?: Maybe<Array<Maybe<_IContent>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type FooterColumn_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type FooterColumn_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type FooterColumnAutocomplete = {
+  __typename?: 'FooterColumnAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  links?: Maybe<_IContentAutocomplete>;
+};
+
+export type FooterColumnFacet = {
+  __typename?: 'FooterColumnFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  links?: Maybe<_IContentFacet>;
+};
+
+export type FooterColumnOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  links?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type FooterColumnOutput = {
+  __typename?: 'FooterColumnOutput';
+  autocomplete?: Maybe<FooterColumnAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<FooterColumnFacet>;
+  item?: Maybe<FooterColumn>;
+  items?: Maybe<Array<Maybe<FooterColumn>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type FooterColumnOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type FooterColumnWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<FooterColumnWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<FooterColumnWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<FooterColumnWhereInput>>>;
+  links?: InputMaybe<_IContentWhereInput>;
+};
+
+export type FooterFacet = {
+  __typename?: 'FooterFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  columns?: Maybe<_IContentFacet>;
+  socialLinks?: Maybe<_IContentFacet>;
+};
+
+export type FooterOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  columns?: InputMaybe<_IContentOrderByInput>;
+  socialLinks?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type FooterOutput = {
+  __typename?: 'FooterOutput';
+  autocomplete?: Maybe<FooterAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<FooterFacet>;
+  item?: Maybe<Footer>;
+  items?: Maybe<Array<Maybe<Footer>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type FooterOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type FooterWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<FooterWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<FooterWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<FooterWhereInput>>>;
+  columns?: InputMaybe<_IContentWhereInput>;
+  socialLinks?: InputMaybe<_IContentWhereInput>;
+};
+
+export type GenericMedia = IData & _IAssetItem & _IContent & _IItem & _IMedia & {
+  __typename?: 'GenericMedia';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -1692,17 +2683,101 @@ export type GenericMedia_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
+export type GenericMedia123 = IData & _IAssetItem & _IContent & _IItem & _IMedia & {
+  __typename?: 'GenericMedia123';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type GenericMedia123_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type GenericMedia123_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type GenericMedia123Autocomplete = {
+  __typename?: 'GenericMedia123Autocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type GenericMedia123Facet = {
+  __typename?: 'GenericMedia123Facet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type GenericMedia123OrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type GenericMedia123Output = {
+  __typename?: 'GenericMedia123Output';
+  autocomplete?: Maybe<GenericMedia123Autocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<GenericMedia123Facet>;
+  item?: Maybe<GenericMedia123>;
+  items?: Maybe<Array<Maybe<GenericMedia123>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type GenericMedia123OutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type GenericMedia123WhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<GenericMedia123WhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<GenericMedia123WhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<GenericMedia123WhereInput>>>;
+};
+
 export type GenericMediaAutocomplete = {
   __typename?: 'GenericMediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type GenericMediaFacet = {
   __typename?: 'GenericMediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type GenericMediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1728,27 +2803,204 @@ export type GenericMediaOutputtotalArgs = {
 
 export type GenericMediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<GenericMediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<GenericMediaWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<GenericMediaWhereInput>>>;
 };
 
-export type HeadingElement = IData & _IComponent & _IContent & {
+export type Header = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'Header';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  ctaHref?: Maybe<Scalars['String']['output']>;
+  ctaText?: Maybe<Scalars['String']['output']>;
+  logo?: Maybe<Scalars['String']['output']>;
+  navItems?: Maybe<Array<Maybe<_IContent>>>;
+};
+
+
+export type Header_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Header_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type HeaderAutocomplete = {
+  __typename?: 'HeaderAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  navItems?: Maybe<_IContentAutocomplete>;
+};
+
+export type HeaderBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'HeaderBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  site_logo?: Maybe<ContentReference>;
+  site_logo_dark?: Maybe<ContentReference>;
+  site_main_navigation?: Maybe<Array<Maybe<_IContent>>>;
+  site_utility_navigation?: Maybe<Array<Maybe<_IContent>>>;
+};
+
+
+export type HeaderBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type HeaderBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type HeaderBlockAutocomplete = {
+  __typename?: 'HeaderBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  site_logo?: Maybe<ContentReferenceAutocomplete>;
+  site_logo_dark?: Maybe<ContentReferenceAutocomplete>;
+  site_main_navigation?: Maybe<_IContentAutocomplete>;
+  site_utility_navigation?: Maybe<_IContentAutocomplete>;
+};
+
+export type HeaderBlockFacet = {
+  __typename?: 'HeaderBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  site_logo?: Maybe<ContentReferenceFacet>;
+  site_logo_dark?: Maybe<ContentReferenceFacet>;
+  site_main_navigation?: Maybe<_IContentFacet>;
+  site_utility_navigation?: Maybe<_IContentFacet>;
+};
+
+export type HeaderBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  site_logo?: InputMaybe<ContentReferenceOrderByInput>;
+  site_logo_dark?: InputMaybe<ContentReferenceOrderByInput>;
+  site_main_navigation?: InputMaybe<_IContentOrderByInput>;
+  site_utility_navigation?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type HeaderBlockOutput = {
+  __typename?: 'HeaderBlockOutput';
+  autocomplete?: Maybe<HeaderBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<HeaderBlockFacet>;
+  item?: Maybe<HeaderBlock>;
+  items?: Maybe<Array<Maybe<HeaderBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type HeaderBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HeaderBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<HeaderBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<HeaderBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<HeaderBlockWhereInput>>>;
+  site_logo?: InputMaybe<ContentReferenceWhereInput>;
+  site_logo_dark?: InputMaybe<ContentReferenceWhereInput>;
+  site_main_navigation?: InputMaybe<_IContentWhereInput>;
+  site_utility_navigation?: InputMaybe<_IContentWhereInput>;
+};
+
+export type HeaderFacet = {
+  __typename?: 'HeaderFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  navItems?: Maybe<_IContentFacet>;
+};
+
+export type HeaderOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  navItems?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type HeaderOutput = {
+  __typename?: 'HeaderOutput';
+  autocomplete?: Maybe<HeaderAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<HeaderFacet>;
+  item?: Maybe<Header>;
+  items?: Maybe<Array<Maybe<Header>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type HeaderOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HeaderWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<HeaderWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<HeaderWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<HeaderWhereInput>>>;
+  navItems?: InputMaybe<_IContentWhereInput>;
+};
+
+export type HeadingElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'HeadingElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   headingText?: Maybe<Scalars['String']['output']>;
-  test?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1768,11 +3020,13 @@ export type HeadingElementheadingTextArgs = {
 
 export type HeadingElementAutocomplete = {
   __typename?: 'HeadingElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type HeadingElementFacet = {
   __typename?: 'HeadingElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   headingText?: Maybe<Array<Maybe<StringFacet>>>;
 };
@@ -1786,6 +3040,7 @@ export type HeadingElementFacetheadingTextArgs = {
 };
 
 export type HeadingElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1813,6 +3068,7 @@ export type HeadingElementOutputtotalArgs = {
 export type HeadingElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<HeadingElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<HeadingElementWhereInput>>>;
@@ -1820,7 +3076,40 @@ export type HeadingElementWhereInput = {
   headingText?: InputMaybe<SearchableStringFilterInput>;
 };
 
-export type HeroBlock = IData & _IComponent & _IContent & {
+export type Hero = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'Hero';
+  Title?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Hero_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Hero_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type HeroAutocomplete = {
+  __typename?: 'HeroAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type HeroBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'HeroBlock';
   Description?: Maybe<RichText>;
   Eyebrow?: Maybe<Scalars['String']['output']>;
@@ -1835,11 +3124,18 @@ export type HeroBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
+  decorationColorsPrimary?: Maybe<Scalars['String']['output']>;
+  decorationColorsSecondary?: Maybe<Scalars['String']['output']>;
+  showDecoration?: Maybe<Scalars['Boolean']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1857,6 +3153,7 @@ export type HeroBlockAutocomplete = {
   Description?: Maybe<RichTextAutocomplete>;
   HeroButton?: Maybe<ButtonBlockPropertyAutocomplete>;
   HeroImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -1865,6 +3162,7 @@ export type HeroBlockFacet = {
   Description?: Maybe<RichTextFacet>;
   HeroButton?: Maybe<ButtonBlockPropertyFacet>;
   HeroImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -1872,6 +3170,7 @@ export type HeroBlockOrderByInput = {
   Description?: InputMaybe<RichTextOrderByInput>;
   HeroButton?: InputMaybe<ButtonBlockPropertyOrderByInput>;
   HeroImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1901,10 +3200,52 @@ export type HeroBlockWhereInput = {
   HeroImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
+};
+
+export type HeroFacet = {
+  __typename?: 'HeroFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type HeroOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type HeroOutput = {
+  __typename?: 'HeroOutput';
+  autocomplete?: Maybe<HeroAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<HeroFacet>;
+  item?: Maybe<Hero>;
+  items?: Maybe<Array<Maybe<Hero>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type HeroOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HeroWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<HeroWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<HeroWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<HeroWhereInput>>>;
 };
 
 /** Options for highlighting */
@@ -1912,163 +3253,6 @@ export type HighlightOptions = {
   enabled?: InputMaybe<Scalars['Boolean']['input']>;
   endToken?: InputMaybe<Scalars['String']['input']>;
   startToken?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomePageHeroBlock = IData & _IComponent & _IContent & {
-  __typename?: 'HomePageHeroBlock';
-  HomeHeroBlockHeading?: Maybe<Scalars['String']['output']>;
-  HomeHeroBlockSubHeading?: Maybe<Scalars['String']['output']>;
-  HomeHeroButtonBlock?: Maybe<ButtonBlockProperty>;
-  HomeHeroLeftImage?: Maybe<ContentReference>;
-  HomeHeroRightImage?: Maybe<ContentReference>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type HomePageHeroBlock_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type HomePageHeroBlock_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type HomePageHeroBlockAutocomplete = {
-  __typename?: 'HomePageHeroBlockAutocomplete';
-  HomeHeroButtonBlock?: Maybe<ButtonBlockPropertyAutocomplete>;
-  HomeHeroLeftImage?: Maybe<ContentReferenceAutocomplete>;
-  HomeHeroRightImage?: Maybe<ContentReferenceAutocomplete>;
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type HomePageHeroBlockFacet = {
-  __typename?: 'HomePageHeroBlockFacet';
-  HomeHeroButtonBlock?: Maybe<ButtonBlockPropertyFacet>;
-  HomeHeroLeftImage?: Maybe<ContentReferenceFacet>;
-  HomeHeroRightImage?: Maybe<ContentReferenceFacet>;
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type HomePageHeroBlockOrderByInput = {
-  HomeHeroButtonBlock?: InputMaybe<ButtonBlockPropertyOrderByInput>;
-  HomeHeroLeftImage?: InputMaybe<ContentReferenceOrderByInput>;
-  HomeHeroRightImage?: InputMaybe<ContentReferenceOrderByInput>;
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type HomePageHeroBlockOutput = {
-  __typename?: 'HomePageHeroBlockOutput';
-  autocomplete?: Maybe<HomePageHeroBlockAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<HomePageHeroBlockFacet>;
-  item?: Maybe<HomePageHeroBlock>;
-  items?: Maybe<Array<Maybe<HomePageHeroBlock>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type HomePageHeroBlockOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type HomePageHeroBlockWhereInput = {
-  HomeHeroButtonBlock?: InputMaybe<ButtonBlockPropertyWhereInput>;
-  HomeHeroLeftImage?: InputMaybe<ContentReferenceWhereInput>;
-  HomeHeroRightImage?: InputMaybe<ContentReferenceWhereInput>;
-  _and?: InputMaybe<Array<InputMaybe<HomePageHeroBlockWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<HomePageHeroBlockWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<HomePageHeroBlockWhereInput>>>;
-};
-
-export type HtmlBlock = IData & _IComponent & _IContent & {
-  __typename?: 'HtmlBlock';
-  HtmlBlockHeading?: Maybe<Scalars['String']['output']>;
-  HtmlContent?: Maybe<RichText>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type HtmlBlock_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type HtmlBlock_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type HtmlBlockAutocomplete = {
-  __typename?: 'HtmlBlockAutocomplete';
-  HtmlContent?: Maybe<RichTextAutocomplete>;
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type HtmlBlockFacet = {
-  __typename?: 'HtmlBlockFacet';
-  HtmlContent?: Maybe<RichTextFacet>;
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type HtmlBlockOrderByInput = {
-  HtmlContent?: InputMaybe<RichTextOrderByInput>;
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type HtmlBlockOutput = {
-  __typename?: 'HtmlBlockOutput';
-  autocomplete?: Maybe<HtmlBlockAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<HtmlBlockFacet>;
-  item?: Maybe<HtmlBlock>;
-  items?: Maybe<Array<Maybe<HtmlBlock>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type HtmlBlockOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type HtmlBlockWhereInput = {
-  HtmlContent?: InputMaybe<RichTextWhereInput>;
-  _and?: InputMaybe<Array<InputMaybe<HtmlBlockWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<HtmlBlockWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<HtmlBlockWhereInput>>>;
 };
 
 export type ICompositionComponentNode = {
@@ -2470,6 +3654,7 @@ export type IData = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
@@ -2577,13 +3762,17 @@ export type IMediaMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type Image = IData & _IContent & _IImage & _IMedia & {
+export type Image = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
   __typename?: 'Image';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -2603,16 +3792,20 @@ export type Image_linkArgs = {
 
 export type ImageAutocomplete = {
   __typename?: 'ImageAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
-export type ImageElement = IData & _IComponent & _IContent & {
+export type ImageElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ImageElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -2634,17 +3827,20 @@ export type ImageElement_linkArgs = {
 
 export type ImageElementAutocomplete = {
   __typename?: 'ImageElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   imageLink?: Maybe<ContentReferenceAutocomplete>;
 };
 
 export type ImageElementFacet = {
   __typename?: 'ImageElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   imageLink?: Maybe<ContentReferenceFacet>;
 };
 
 export type ImageElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2672,6 +3868,7 @@ export type ImageElementOutputtotalArgs = {
 export type ImageElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ImageElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ImageElementWhereInput>>>;
@@ -2681,17 +3878,24 @@ export type ImageElementWhereInput = {
 
 export type ImageFacet = {
   __typename?: 'ImageFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
-export type ImageMedia = IData & _IContent & _IImage & _IMedia & {
+export type ImageMedia = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
   __typename?: 'ImageMedia';
   AltText?: Maybe<Scalars['String']['output']>;
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -2711,15 +3915,23 @@ export type ImageMedia_linkArgs = {
 
 export type ImageMediaAutocomplete = {
   __typename?: 'ImageMediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ImageMediaFacet = {
   __typename?: 'ImageMediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ImageMediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2745,7 +3957,10 @@ export type ImageMediaOutputtotalArgs = {
 
 export type ImageMediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ImageMediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ImageMediaWhereInput>>>;
@@ -2753,6 +3968,9 @@ export type ImageMediaWhereInput = {
 };
 
 export type ImageOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2778,7 +3996,10 @@ export type ImageOutputtotalArgs = {
 
 export type ImageWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ImageWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ImageWhereInput>>>;
@@ -2865,7 +4086,7 @@ export type ItemMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type LandingPage = IData & _IContent & _IPage & {
+export type LandingPage = IData & _IContent & _IItem & _IPage & {
   __typename?: 'LandingPage';
   MainContentArea?: Maybe<Array<Maybe<_IContent>>>;
   SeoSettings?: Maybe<PageSeoSettingsProperty>;
@@ -2875,6 +4096,8 @@ export type LandingPage = IData & _IContent & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -2897,6 +4120,7 @@ export type LandingPageAutocomplete = {
   MainContentArea?: Maybe<_IContentAutocomplete>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
   TopContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -2905,6 +4129,7 @@ export type LandingPageFacet = {
   MainContentArea?: Maybe<_IContentFacet>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
   TopContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -2912,6 +4137,7 @@ export type LandingPageOrderByInput = {
   MainContentArea?: InputMaybe<_IContentOrderByInput>;
   SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
   TopContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2941,103 +4167,22 @@ export type LandingPageWhereInput = {
   TopContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
 };
 
-export type LayoutContainerBlock = IData & _IComponent & _IContent & {
-  __typename?: 'LayoutContainerBlock';
-  ColumnsCount?: Maybe<Scalars['Int']['output']>;
-  ContainerBackgroundColor?: Maybe<Scalars['String']['output']>;
-  ContainerBackgroundImage?: Maybe<ContentReference>;
-  ContainerMarginBottom?: Maybe<Scalars['String']['output']>;
-  ContainerMarginTop?: Maybe<Scalars['String']['output']>;
-  ContainerPaddingBottom?: Maybe<Scalars['String']['output']>;
-  ContainerPaddingTop?: Maybe<Scalars['String']['output']>;
-  GapSize?: Maybe<Scalars['String']['output']>;
-  LayoutContentArea?: Maybe<Array<Maybe<_IContent>>>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type LayoutContainerBlock_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type LayoutContainerBlock_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type LayoutContainerBlockAutocomplete = {
-  __typename?: 'LayoutContainerBlockAutocomplete';
-  ContainerBackgroundImage?: Maybe<ContentReferenceAutocomplete>;
-  LayoutContentArea?: Maybe<_IContentAutocomplete>;
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type LayoutContainerBlockFacet = {
-  __typename?: 'LayoutContainerBlockFacet';
-  ContainerBackgroundImage?: Maybe<ContentReferenceFacet>;
-  LayoutContentArea?: Maybe<_IContentFacet>;
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type LayoutContainerBlockOrderByInput = {
-  ContainerBackgroundImage?: InputMaybe<ContentReferenceOrderByInput>;
-  LayoutContentArea?: InputMaybe<_IContentOrderByInput>;
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type LayoutContainerBlockOutput = {
-  __typename?: 'LayoutContainerBlockOutput';
-  autocomplete?: Maybe<LayoutContainerBlockAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<LayoutContainerBlockFacet>;
-  item?: Maybe<LayoutContainerBlock>;
-  items?: Maybe<Array<Maybe<LayoutContainerBlock>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type LayoutContainerBlockOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type LayoutContainerBlockWhereInput = {
-  ContainerBackgroundImage?: InputMaybe<ContentReferenceWhereInput>;
-  LayoutContentArea?: InputMaybe<_IContentWhereInput>;
-  _and?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
-};
-
-export type LayoutSettingsBlock = IData & _IComponent & _IContent & {
+export type LayoutSettingsBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'LayoutSettingsBlock';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -3065,6 +4210,7 @@ export type LayoutSettingsBlock_linkArgs = {
 
 export type LayoutSettingsBlockAutocomplete = {
   __typename?: 'LayoutSettingsBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   appIdentifiers?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   contactInfo?: Maybe<RichTextAutocomplete>;
@@ -3082,6 +4228,7 @@ export type LayoutSettingsBlockAutocompleteappIdentifiersArgs = {
 
 export type LayoutSettingsBlockFacet = {
   __typename?: 'LayoutSettingsBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   appIdentifiers?: Maybe<Array<Maybe<StringFacet>>>;
   contactInfo?: Maybe<RichTextFacet>;
@@ -3100,6 +4247,7 @@ export type LayoutSettingsBlockFacetappIdentifiersArgs = {
 };
 
 export type LayoutSettingsBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3132,6 +4280,7 @@ export type LayoutSettingsBlockOutputtotalArgs = {
 export type LayoutSettingsBlockWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<LayoutSettingsBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<LayoutSettingsBlockWhereInput>>>;
@@ -3266,9 +4415,162 @@ export enum Locales {
   ALL = 'ALL',
   NEUTRAL = 'NEUTRAL',
   en = 'en',
-  nl = 'nl',
+  pl = 'pl',
   sv = 'sv'
 }
+
+export type LogoItemBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'LogoItemBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  src?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type LogoItemBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type LogoItemBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type LogoItemBlockAutocomplete = {
+  __typename?: 'LogoItemBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type LogoItemBlockFacet = {
+  __typename?: 'LogoItemBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type LogoItemBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type LogoItemBlockOutput = {
+  __typename?: 'LogoItemBlockOutput';
+  autocomplete?: Maybe<LogoItemBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<LogoItemBlockFacet>;
+  item?: Maybe<LogoItemBlock>;
+  items?: Maybe<Array<Maybe<LogoItemBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type LogoItemBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type LogoItemBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<LogoItemBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<LogoItemBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<LogoItemBlockWhereInput>>>;
+};
+
+export type LogosBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'LogosBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  logos?: Maybe<Array<Maybe<_IContent>>>;
+};
+
+
+export type LogosBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type LogosBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type LogosBlockAutocomplete = {
+  __typename?: 'LogosBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  logos?: Maybe<_IContentAutocomplete>;
+};
+
+export type LogosBlockFacet = {
+  __typename?: 'LogosBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  logos?: Maybe<_IContentFacet>;
+};
+
+export type LogosBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  logos?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type LogosBlockOutput = {
+  __typename?: 'LogosBlockOutput';
+  autocomplete?: Maybe<LogosBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<LogosBlockFacet>;
+  item?: Maybe<LogosBlock>;
+  items?: Maybe<Array<Maybe<LogosBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type LogosBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type LogosBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<LogosBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<LogosBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<LogosBlockWhereInput>>>;
+  logos?: InputMaybe<_IContentWhereInput>;
+};
 
 export type MediaMetadata = IContentMetadata & IInstanceMetadata & IMediaMetadata & {
   __typename?: 'MediaMetadata';
@@ -3309,7 +4611,7 @@ export type MediaMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type MegaMenuGroupBlock = IData & _IComponent & _IContent & {
+export type MegaMenuGroupBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'MegaMenuGroupBlock';
   MegaMenuContentArea?: Maybe<Array<Maybe<_IContent>>>;
   MegaMenuUrl?: Maybe<ContentUrl>;
@@ -3319,6 +4621,8 @@ export type MegaMenuGroupBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -3340,6 +4644,7 @@ export type MegaMenuGroupBlockAutocomplete = {
   __typename?: 'MegaMenuGroupBlockAutocomplete';
   MegaMenuContentArea?: Maybe<_IContentAutocomplete>;
   MegaMenuUrl?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -3347,12 +4652,14 @@ export type MegaMenuGroupBlockFacet = {
   __typename?: 'MegaMenuGroupBlockFacet';
   MegaMenuContentArea?: Maybe<_IContentFacet>;
   MegaMenuUrl?: Maybe<ContentUrlFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type MegaMenuGroupBlockOrderByInput = {
   MegaMenuContentArea?: InputMaybe<_IContentOrderByInput>;
   MegaMenuUrl?: InputMaybe<ContentUrlOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3381,13 +4688,14 @@ export type MegaMenuGroupBlockWhereInput = {
   MegaMenuUrl?: InputMaybe<ContentUrlWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<MegaMenuGroupBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<MegaMenuGroupBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<MegaMenuGroupBlockWhereInput>>>;
 };
 
-export type MenuNavigationBlock = IData & _IComponent & _IContent & {
+export type MenuNavigationBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'MenuNavigationBlock';
   MenuNavigationHeading?: Maybe<Scalars['String']['output']>;
   NavigationLinks?: Maybe<Array<Maybe<Link>>>;
@@ -3396,6 +4704,8 @@ export type MenuNavigationBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -3416,17 +4726,20 @@ export type MenuNavigationBlock_linkArgs = {
 export type MenuNavigationBlockAutocomplete = {
   __typename?: 'MenuNavigationBlockAutocomplete';
   NavigationLinks?: Maybe<LinkAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type MenuNavigationBlockFacet = {
   __typename?: 'MenuNavigationBlockFacet';
   NavigationLinks?: Maybe<LinkFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type MenuNavigationBlockOrderByInput = {
   NavigationLinks?: InputMaybe<LinkOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3454,10 +4767,184 @@ export type MenuNavigationBlockWhereInput = {
   NavigationLinks?: InputMaybe<LinkWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<MenuNavigationBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<MenuNavigationBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<MenuNavigationBlockWhereInput>>>;
+};
+
+export type NavItem = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'NavItem';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type NavItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type NavItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type NavItemAutocomplete = {
+  __typename?: 'NavItemAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type NavItemFacet = {
+  __typename?: 'NavItemFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type NavItemOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type NavItemOutput = {
+  __typename?: 'NavItemOutput';
+  autocomplete?: Maybe<NavItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<NavItemFacet>;
+  item?: Maybe<NavItem>;
+  items?: Maybe<Array<Maybe<NavItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type NavItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type NavItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<NavItemWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<NavItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<NavItemWhereInput>>>;
+};
+
+export type NavigationMenuBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'NavigationMenuBlock';
+  MenuNavigationHeading?: Maybe<Scalars['String']['output']>;
+  NavigationLinks?: Maybe<Array<Maybe<Link>>>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type NavigationMenuBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type NavigationMenuBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type NavigationMenuBlockAutocomplete = {
+  __typename?: 'NavigationMenuBlockAutocomplete';
+  NavigationLinks?: Maybe<LinkAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type NavigationMenuBlockFacet = {
+  __typename?: 'NavigationMenuBlockFacet';
+  NavigationLinks?: Maybe<LinkFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type NavigationMenuBlockOrderByInput = {
+  NavigationLinks?: InputMaybe<LinkOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type NavigationMenuBlockOutput = {
+  __typename?: 'NavigationMenuBlockOutput';
+  autocomplete?: Maybe<NavigationMenuBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<NavigationMenuBlockFacet>;
+  item?: Maybe<NavigationMenuBlock>;
+  items?: Maybe<Array<Maybe<NavigationMenuBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type NavigationMenuBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type NavigationMenuBlockProperty = {
+  __typename?: 'NavigationMenuBlockProperty';
+  MenuNavigationHeading?: Maybe<Scalars['String']['output']>;
+  NavigationLinks?: Maybe<Array<Maybe<Link>>>;
+};
+
+export type NavigationMenuBlockPropertyFacet = {
+  __typename?: 'NavigationMenuBlockPropertyFacet';
+  NavigationLinks?: Maybe<LinkFacet>;
+};
+
+export type NavigationMenuBlockPropertyOrderByInput = {
+  NavigationLinks?: InputMaybe<LinkOrderByInput>;
+};
+
+export type NavigationMenuBlockPropertyWhereInput = {
+  NavigationLinks?: InputMaybe<LinkWhereInput>;
+};
+
+export type NavigationMenuBlockWhereInput = {
+  NavigationLinks?: InputMaybe<LinkWhereInput>;
+  _and?: InputMaybe<Array<InputMaybe<NavigationMenuBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<NavigationMenuBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<NavigationMenuBlockWhereInput>>>;
 };
 
 export type NumberFacet = {
@@ -3472,7 +4959,7 @@ export type NumberFactor = {
   value?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type OdpEmbedBlock = IData & _IComponent & _IContent & {
+export type OdpEmbedBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OdpEmbedBlock';
   ContentId?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -3480,6 +4967,8 @@ export type OdpEmbedBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -3499,15 +4988,18 @@ export type OdpEmbedBlock_linkArgs = {
 
 export type OdpEmbedBlockAutocomplete = {
   __typename?: 'OdpEmbedBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OdpEmbedBlockFacet = {
   __typename?: 'OdpEmbedBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OdpEmbedBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3534,24 +5026,30 @@ export type OdpEmbedBlockOutputtotalArgs = {
 export type OdpEmbedBlockWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OdpEmbedBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OdpEmbedBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OdpEmbedBlockWhereInput>>>;
 };
 
-export type OptiFormsChoiceElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsChoiceElement';
-  AllowMultiSelect?: Maybe<Scalars['Boolean']['output']>;
-  Label?: Maybe<Scalars['String']['output']>;
-  Options?: Maybe<Scalars['JSON']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  Validators?: Maybe<Scalars['JSON']['output']>;
+export type OfficeLocation = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'OfficeLocation';
+  OfficeAddressCity?: Maybe<Scalars['String']['output']>;
+  OfficeAddressCountry?: Maybe<Scalars['String']['output']>;
+  OfficeAddressPostalCode?: Maybe<Scalars['String']['output']>;
+  OfficeAddressStreet1?: Maybe<Scalars['String']['output']>;
+  OfficeAddressStreet2?: Maybe<Scalars['String']['output']>;
+  OfficeEmail?: Maybe<Scalars['String']['output']>;
+  OfficePhone?: Maybe<Scalars['String']['output']>;
+  OfficeTitle?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -3560,26 +5058,29 @@ export type OptiFormsChoiceElement = IData & _IComponent & _IContent & {
 };
 
 
-export type OptiFormsChoiceElement_fulltextArgs = {
+export type OfficeLocation_fulltextArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
 
-export type OptiFormsChoiceElement_linkArgs = {
+export type OfficeLocation_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
-export type OptiFormsChoiceElementAutocomplete = {
-  __typename?: 'OptiFormsChoiceElementAutocomplete';
+export type OfficeLocationAutocomplete = {
+  __typename?: 'OfficeLocationAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
-export type OptiFormsChoiceElementFacet = {
-  __typename?: 'OptiFormsChoiceElementFacet';
+export type OfficeLocationFacet = {
+  __typename?: 'OfficeLocationFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
-export type OptiFormsChoiceElementOrderByInput = {
+export type OfficeLocationOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3588,686 +5089,29 @@ export type OptiFormsChoiceElementOrderByInput = {
   _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type OptiFormsChoiceElementOutput = {
-  __typename?: 'OptiFormsChoiceElementOutput';
-  autocomplete?: Maybe<OptiFormsChoiceElementAutocomplete>;
+export type OfficeLocationOutput = {
+  __typename?: 'OfficeLocationOutput';
+  autocomplete?: Maybe<OfficeLocationAutocomplete>;
   cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsChoiceElementFacet>;
-  item?: Maybe<OptiFormsChoiceElement>;
-  items?: Maybe<Array<Maybe<OptiFormsChoiceElement>>>;
+  facets?: Maybe<OfficeLocationFacet>;
+  item?: Maybe<OfficeLocation>;
+  items?: Maybe<Array<Maybe<OfficeLocation>>>;
   total?: Maybe<Scalars['Int']['output']>;
 };
 
 
-export type OptiFormsChoiceElementOutputtotalArgs = {
+export type OfficeLocationOutputtotalArgs = {
   all?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type OptiFormsChoiceElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
+export type OfficeLocationWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<OfficeLocationWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
-};
-
-export type OptiFormsContainerData = IData & _IComponent & _IContent & _ISection & {
-  __typename?: 'OptiFormsContainerData';
-  Description?: Maybe<Scalars['String']['output']>;
-  ResetConfirmationMessage?: Maybe<Scalars['String']['output']>;
-  ShowSummaryMessageAfterSubmission?: Maybe<Scalars['Boolean']['output']>;
-  SubmitConfirmationMessage?: Maybe<Scalars['String']['output']>;
-  SubmitUrl?: Maybe<ContentUrl>;
-  Title?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-  composition?: Maybe<CompositionStructureNode>;
-};
-
-
-export type OptiFormsContainerData_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsContainerData_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsContainerDataAutocomplete = {
-  __typename?: 'OptiFormsContainerDataAutocomplete';
-  SubmitUrl?: Maybe<ContentUrlAutocomplete>;
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-  composition?: Maybe<CompositionStructureNodeAutocomplete>;
-};
-
-export type OptiFormsContainerDataFacet = {
-  __typename?: 'OptiFormsContainerDataFacet';
-  SubmitUrl?: Maybe<ContentUrlFacet>;
-  _metadata?: Maybe<IContentMetadataFacet>;
-  composition?: Maybe<CompositionStructureNodeFacet>;
-};
-
-export type OptiFormsContainerDataOrderByInput = {
-  SubmitUrl?: InputMaybe<ContentUrlOrderByInput>;
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-  composition?: InputMaybe<CompositionStructureNodeOrderByInput>;
-};
-
-export type OptiFormsContainerDataOutput = {
-  __typename?: 'OptiFormsContainerDataOutput';
-  autocomplete?: Maybe<OptiFormsContainerDataAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsContainerDataFacet>;
-  item?: Maybe<OptiFormsContainerData>;
-  items?: Maybe<Array<Maybe<OptiFormsContainerData>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsContainerDataOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsContainerDataWhereInput = {
-  SubmitUrl?: InputMaybe<ContentUrlWhereInput>;
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsContainerDataWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsContainerDataWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsContainerDataWhereInput>>>;
-  composition?: InputMaybe<CompositionStructureNodeWhereInput>;
-};
-
-export type OptiFormsNumberElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsNumberElement';
-  AutoComplete?: Maybe<Scalars['String']['output']>;
-  Label?: Maybe<Scalars['String']['output']>;
-  Placeholder?: Maybe<Scalars['String']['output']>;
-  PredefinedValue?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  Validators?: Maybe<Scalars['JSON']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsNumberElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsNumberElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsNumberElementAutocomplete = {
-  __typename?: 'OptiFormsNumberElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsNumberElementFacet = {
-  __typename?: 'OptiFormsNumberElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsNumberElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsNumberElementOutput = {
-  __typename?: 'OptiFormsNumberElementOutput';
-  autocomplete?: Maybe<OptiFormsNumberElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsNumberElementFacet>;
-  item?: Maybe<OptiFormsNumberElement>;
-  items?: Maybe<Array<Maybe<OptiFormsNumberElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsNumberElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsNumberElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
-};
-
-export type OptiFormsRangeElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsRangeElement';
-  Increment?: Maybe<Scalars['Int']['output']>;
-  Label?: Maybe<Scalars['String']['output']>;
-  Max?: Maybe<Scalars['Int']['output']>;
-  Min?: Maybe<Scalars['Int']['output']>;
-  PredefinedValue?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsRangeElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsRangeElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsRangeElementAutocomplete = {
-  __typename?: 'OptiFormsRangeElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsRangeElementFacet = {
-  __typename?: 'OptiFormsRangeElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsRangeElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsRangeElementOutput = {
-  __typename?: 'OptiFormsRangeElementOutput';
-  autocomplete?: Maybe<OptiFormsRangeElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsRangeElementFacet>;
-  item?: Maybe<OptiFormsRangeElement>;
-  items?: Maybe<Array<Maybe<OptiFormsRangeElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsRangeElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsRangeElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
-};
-
-export type OptiFormsResetElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsResetElement';
-  Label?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsResetElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsResetElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsResetElementAutocomplete = {
-  __typename?: 'OptiFormsResetElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsResetElementFacet = {
-  __typename?: 'OptiFormsResetElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsResetElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsResetElementOutput = {
-  __typename?: 'OptiFormsResetElementOutput';
-  autocomplete?: Maybe<OptiFormsResetElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsResetElementFacet>;
-  item?: Maybe<OptiFormsResetElement>;
-  items?: Maybe<Array<Maybe<OptiFormsResetElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsResetElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsResetElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
-};
-
-export type OptiFormsSelectionElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsSelectionElement';
-  AllowMultiSelect?: Maybe<Scalars['Boolean']['output']>;
-  AutoComplete?: Maybe<Scalars['String']['output']>;
-  Label?: Maybe<Scalars['String']['output']>;
-  Options?: Maybe<Scalars['JSON']['output']>;
-  Placeholder?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  Validators?: Maybe<Scalars['JSON']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsSelectionElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsSelectionElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsSelectionElementAutocomplete = {
-  __typename?: 'OptiFormsSelectionElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsSelectionElementFacet = {
-  __typename?: 'OptiFormsSelectionElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsSelectionElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsSelectionElementOutput = {
-  __typename?: 'OptiFormsSelectionElementOutput';
-  autocomplete?: Maybe<OptiFormsSelectionElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsSelectionElementFacet>;
-  item?: Maybe<OptiFormsSelectionElement>;
-  items?: Maybe<Array<Maybe<OptiFormsSelectionElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsSelectionElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsSelectionElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
-};
-
-export type OptiFormsSubmitElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsSubmitElement';
-  Label?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsSubmitElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsSubmitElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsSubmitElementAutocomplete = {
-  __typename?: 'OptiFormsSubmitElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsSubmitElementFacet = {
-  __typename?: 'OptiFormsSubmitElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsSubmitElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsSubmitElementOutput = {
-  __typename?: 'OptiFormsSubmitElementOutput';
-  autocomplete?: Maybe<OptiFormsSubmitElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsSubmitElementFacet>;
-  item?: Maybe<OptiFormsSubmitElement>;
-  items?: Maybe<Array<Maybe<OptiFormsSubmitElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsSubmitElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsSubmitElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
-};
-
-export type OptiFormsTextareaElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsTextareaElement';
-  AutoComplete?: Maybe<Scalars['String']['output']>;
-  Label?: Maybe<Scalars['String']['output']>;
-  Placeholder?: Maybe<Scalars['String']['output']>;
-  PredefinedValue?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  Validators?: Maybe<Scalars['JSON']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsTextareaElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsTextareaElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsTextareaElementAutocomplete = {
-  __typename?: 'OptiFormsTextareaElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsTextareaElementFacet = {
-  __typename?: 'OptiFormsTextareaElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsTextareaElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsTextareaElementOutput = {
-  __typename?: 'OptiFormsTextareaElementOutput';
-  autocomplete?: Maybe<OptiFormsTextareaElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsTextareaElementFacet>;
-  item?: Maybe<OptiFormsTextareaElement>;
-  items?: Maybe<Array<Maybe<OptiFormsTextareaElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsTextareaElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsTextareaElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
-};
-
-export type OptiFormsTextboxElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsTextboxElement';
-  AutoComplete?: Maybe<Scalars['String']['output']>;
-  Label?: Maybe<Scalars['String']['output']>;
-  Placeholder?: Maybe<Scalars['String']['output']>;
-  PredefinedValue?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  Validators?: Maybe<Scalars['JSON']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsTextboxElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsTextboxElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsTextboxElementAutocomplete = {
-  __typename?: 'OptiFormsTextboxElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsTextboxElementFacet = {
-  __typename?: 'OptiFormsTextboxElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsTextboxElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsTextboxElementOutput = {
-  __typename?: 'OptiFormsTextboxElementOutput';
-  autocomplete?: Maybe<OptiFormsTextboxElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsTextboxElementFacet>;
-  item?: Maybe<OptiFormsTextboxElement>;
-  items?: Maybe<Array<Maybe<OptiFormsTextboxElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsTextboxElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsTextboxElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
-};
-
-export type OptiFormsUrlElement = IData & _IComponent & _IContent & {
-  __typename?: 'OptiFormsUrlElement';
-  Label?: Maybe<Scalars['String']['output']>;
-  Placeholder?: Maybe<Scalars['String']['output']>;
-  PredefinedValue?: Maybe<Scalars['String']['output']>;
-  Tooltip?: Maybe<Scalars['String']['output']>;
-  Validators?: Maybe<Scalars['JSON']['output']>;
-  /** @deprecated Use `_link` field instead */
-  _children?: Maybe<QueryRef>;
-  _deleted?: Maybe<Scalars['Bool']['output']>;
-  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  _id?: Maybe<Scalars['String']['output']>;
-  _link?: Maybe<QueryRef>;
-  _metadata?: Maybe<IContentMetadata>;
-  _modified?: Maybe<Scalars['Date']['output']>;
-  _score?: Maybe<Scalars['Float']['output']>;
-  _track?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type OptiFormsUrlElement_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type OptiFormsUrlElement_linkArgs = {
-  type?: InputMaybe<LinkTypes>;
-};
-
-export type OptiFormsUrlElementAutocomplete = {
-  __typename?: 'OptiFormsUrlElementAutocomplete';
-  _metadata?: Maybe<IContentMetadataAutocomplete>;
-};
-
-export type OptiFormsUrlElementFacet = {
-  __typename?: 'OptiFormsUrlElementFacet';
-  _metadata?: Maybe<IContentMetadataFacet>;
-};
-
-export type OptiFormsUrlElementOrderByInput = {
-  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
-  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
-  _modified?: InputMaybe<OrderBy>;
-  _ranking?: InputMaybe<Ranking>;
-  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
-  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type OptiFormsUrlElementOutput = {
-  __typename?: 'OptiFormsUrlElementOutput';
-  autocomplete?: Maybe<OptiFormsUrlElementAutocomplete>;
-  cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<OptiFormsUrlElementFacet>;
-  item?: Maybe<OptiFormsUrlElement>;
-  items?: Maybe<Array<Maybe<OptiFormsUrlElement>>>;
-  total?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type OptiFormsUrlElementOutputtotalArgs = {
-  all?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type OptiFormsUrlElementWhereInput = {
-  _and?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
-  _fulltext?: InputMaybe<SearchableStringFilterInput>;
-  _metadata?: InputMaybe<IContentMetadataWhereInput>;
-  _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
+  _not?: InputMaybe<Array<InputMaybe<OfficeLocationWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<OfficeLocationWhereInput>>>;
 };
 
 export enum OrderBy {
@@ -4280,7 +5124,7 @@ export enum OrderByFacetType {
   VALUE = 'VALUE'
 }
 
-export type PageSeoSettings = IData & _IComponent & _IContent & {
+export type PageSeoSettings = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'PageSeoSettings';
   GraphType?: Maybe<Scalars['String']['output']>;
   MetaDescription?: Maybe<Scalars['String']['output']>;
@@ -4292,6 +5136,8 @@ export type PageSeoSettings = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -4332,6 +5178,7 @@ export type PageSeoSettings_linkArgs = {
 export type PageSeoSettingsAutocomplete = {
   __typename?: 'PageSeoSettingsAutocomplete';
   SharingImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -4342,6 +5189,7 @@ export type PageSeoSettingsFacet = {
   MetaKeywords?: Maybe<Array<Maybe<StringFacet>>>;
   MetaTitle?: Maybe<Array<Maybe<StringFacet>>>;
   SharingImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -4383,6 +5231,7 @@ export type PageSeoSettingsOrderByInput = {
   MetaKeywords?: InputMaybe<OrderBy>;
   MetaTitle?: InputMaybe<OrderBy>;
   SharingImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4505,19 +5354,22 @@ export type PageSeoSettingsWhereInput = {
   SharingImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<PageSeoSettingsWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<PageSeoSettingsWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<PageSeoSettingsWhereInput>>>;
 };
 
-export type ParagraphElement = IData & _IComponent & _IContent & {
+export type ParagraphElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ParagraphElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -4538,16 +5390,19 @@ export type ParagraphElement_linkArgs = {
 
 export type ParagraphElementAutocomplete = {
   __typename?: 'ParagraphElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ParagraphElementFacet = {
   __typename?: 'ParagraphElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   text?: Maybe<SearchableRichTextFacet>;
 };
 
 export type ParagraphElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4575,6 +5430,7 @@ export type ParagraphElementOutputtotalArgs = {
 export type ParagraphElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ParagraphElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ParagraphElementWhereInput>>>;
@@ -4582,67 +5438,416 @@ export type ParagraphElementWhereInput = {
   text?: InputMaybe<SearchableRichTextWhereInput>;
 };
 
+export type PinnedInput = {
+  /** Pinned collection keys */
+  collections?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  phrase?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PortfolioGridBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'PortfolioGridBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<_IContent>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type PortfolioGridBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type PortfolioGridBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type PortfolioGridBlockAutocomplete = {
+  __typename?: 'PortfolioGridBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  items?: Maybe<_IContentAutocomplete>;
+};
+
+export type PortfolioGridBlockFacet = {
+  __typename?: 'PortfolioGridBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  items?: Maybe<_IContentFacet>;
+};
+
+export type PortfolioGridBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  items?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type PortfolioGridBlockOutput = {
+  __typename?: 'PortfolioGridBlockOutput';
+  autocomplete?: Maybe<PortfolioGridBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<PortfolioGridBlockFacet>;
+  item?: Maybe<PortfolioGridBlock>;
+  items?: Maybe<Array<Maybe<PortfolioGridBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type PortfolioGridBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type PortfolioGridBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<PortfolioGridBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<PortfolioGridBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<PortfolioGridBlockWhereInput>>>;
+  items?: InputMaybe<_IContentWhereInput>;
+};
+
+export type PortfolioItemBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'PortfolioItemBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  imageUrl?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type PortfolioItemBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type PortfolioItemBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type PortfolioItemBlockAutocomplete = {
+  __typename?: 'PortfolioItemBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type PortfolioItemBlockFacet = {
+  __typename?: 'PortfolioItemBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type PortfolioItemBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type PortfolioItemBlockOutput = {
+  __typename?: 'PortfolioItemBlockOutput';
+  autocomplete?: Maybe<PortfolioItemBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<PortfolioItemBlockFacet>;
+  item?: Maybe<PortfolioItemBlock>;
+  items?: Maybe<Array<Maybe<PortfolioItemBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type PortfolioItemBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type PortfolioItemBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<PortfolioItemBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<PortfolioItemBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<PortfolioItemBlockWhereInput>>>;
+};
+
+export type ProductPage = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'ProductPage';
+  ProductName?: Maybe<Scalars['String']['output']>;
+  Title?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ProductPage_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ProductPage_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ProductPageAutocomplete = {
+  __typename?: 'ProductPageAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type ProductPageFacet = {
+  __typename?: 'ProductPageFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type ProductPageOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ProductPageOutput = {
+  __typename?: 'ProductPageOutput';
+  autocomplete?: Maybe<ProductPageAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ProductPageFacet>;
+  item?: Maybe<ProductPage>;
+  items?: Maybe<Array<Maybe<ProductPage>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ProductPageOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ProductPageWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ProductPageWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ProductPageWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ProductPageWhereInput>>>;
+};
+
+export type ProfileBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'ProfileBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  bio?: Maybe<Scalars['String']['output']>;
+  imageSrc?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ProfileBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ProfileBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ProfileBlockAutocomplete = {
+  __typename?: 'ProfileBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type ProfileBlockFacet = {
+  __typename?: 'ProfileBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type ProfileBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ProfileBlockOutput = {
+  __typename?: 'ProfileBlockOutput';
+  autocomplete?: Maybe<ProfileBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ProfileBlockFacet>;
+  item?: Maybe<ProfileBlock>;
+  items?: Maybe<Array<Maybe<ProfileBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ProfileBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ProfileBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ProfileBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ProfileBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ProfileBlockWhereInput>>>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  ArticleGroupPage?: Maybe<ArticleGroupPageOutput>;
   ArticleListElement?: Maybe<ArticleListElementOutput>;
+  ArticlePage?: Maybe<ArticlePageOutput>;
+  AvailabilityBlock?: Maybe<AvailabilityBlockOutput>;
+  BannerBlock?: Maybe<BannerBlockOutput>;
   BlankExperience?: Maybe<BlankExperienceOutput>;
   BlankSection?: Maybe<BlankSectionOutput>;
-  BlogListingBlock?: Maybe<BlogListingBlockOutput>;
   BlogPostPage?: Maybe<BlogPostPageOutput>;
   BlogSectionExperience?: Maybe<BlogSectionExperienceOutput>;
   ButtonBlock?: Maybe<ButtonBlockOutput>;
+  CMSPage?: Maybe<CMSPageOutput>;
   CTAElement?: Maybe<CTAElementOutput>;
   CardBlock?: Maybe<CardBlockOutput>;
   CarouselBlock?: Maybe<CarouselBlockOutput>;
-  ContentRecsBlock?: Maybe<ContentRecsBlockOutput>;
+  ContactBlock?: Maybe<ContactBlockOutput>;
   ContentRecsElement?: Maybe<ContentRecsElementOutput>;
   ContinueReadingComponent?: Maybe<ContinueReadingComponentOutput>;
   Data?: Maybe<DataOutput>;
+  DefaultImage?: Maybe<DefaultImageOutput>;
+  DefaultVideo?: Maybe<DefaultVideoOutput>;
+  Dictionary?: Maybe<DictionaryOutput>;
+  DictionaryItem?: Maybe<DictionaryItemOutput>;
+  Footer?: Maybe<FooterOutput>;
+  FooterColumn?: Maybe<FooterColumnOutput>;
   GenericMedia?: Maybe<GenericMediaOutput>;
+  GenericMedia123?: Maybe<GenericMedia123Output>;
+  Header?: Maybe<HeaderOutput>;
+  HeaderBlock?: Maybe<HeaderBlockOutput>;
   HeadingElement?: Maybe<HeadingElementOutput>;
+  Hero?: Maybe<HeroOutput>;
   HeroBlock?: Maybe<HeroBlockOutput>;
-  HomePageHeroBlock?: Maybe<HomePageHeroBlockOutput>;
-  HtmlBlock?: Maybe<HtmlBlockOutput>;
   Image?: Maybe<ImageOutput>;
   ImageElement?: Maybe<ImageElementOutput>;
   ImageMedia?: Maybe<ImageMediaOutput>;
   LandingPage?: Maybe<LandingPageOutput>;
-  LayoutContainerBlock?: Maybe<LayoutContainerBlockOutput>;
   LayoutSettingsBlock?: Maybe<LayoutSettingsBlockOutput>;
+  LogoItemBlock?: Maybe<LogoItemBlockOutput>;
+  LogosBlock?: Maybe<LogosBlockOutput>;
   MegaMenuGroupBlock?: Maybe<MegaMenuGroupBlockOutput>;
   MenuNavigationBlock?: Maybe<MenuNavigationBlockOutput>;
+  NavItem?: Maybe<NavItemOutput>;
+  NavigationMenuBlock?: Maybe<NavigationMenuBlockOutput>;
   OdpEmbedBlock?: Maybe<OdpEmbedBlockOutput>;
-  OptiFormsChoiceElement?: Maybe<OptiFormsChoiceElementOutput>;
-  OptiFormsContainerData?: Maybe<OptiFormsContainerDataOutput>;
-  OptiFormsNumberElement?: Maybe<OptiFormsNumberElementOutput>;
-  OptiFormsRangeElement?: Maybe<OptiFormsRangeElementOutput>;
-  OptiFormsResetElement?: Maybe<OptiFormsResetElementOutput>;
-  OptiFormsSelectionElement?: Maybe<OptiFormsSelectionElementOutput>;
-  OptiFormsSubmitElement?: Maybe<OptiFormsSubmitElementOutput>;
-  OptiFormsTextareaElement?: Maybe<OptiFormsTextareaElementOutput>;
-  OptiFormsTextboxElement?: Maybe<OptiFormsTextboxElementOutput>;
-  OptiFormsUrlElement?: Maybe<OptiFormsUrlElementOutput>;
+  OfficeLocation?: Maybe<OfficeLocationOutput>;
   PageSeoSettings?: Maybe<PageSeoSettingsOutput>;
   ParagraphElement?: Maybe<ParagraphElementOutput>;
+  PortfolioGridBlock?: Maybe<PortfolioGridBlockOutput>;
+  PortfolioItemBlock?: Maybe<PortfolioItemBlockOutput>;
+  ProductPage?: Maybe<ProductPageOutput>;
+  ProfileBlock?: Maybe<ProfileBlockOutput>;
   QuoteBlock?: Maybe<QuoteBlockOutput>;
   RichTextElement?: Maybe<RichTextElementOutput>;
-  StandardPage?: Maybe<StandardPageOutput>;
+  SEOExperience?: Maybe<SEOExperienceOutput>;
+  ServiceItem?: Maybe<ServiceItemOutput>;
+  ServicesBlock?: Maybe<ServicesBlockOutput>;
+  SocialLink?: Maybe<SocialLinkOutput>;
   StartPage?: Maybe<StartPageOutput>;
+  StoryBlock?: Maybe<StoryBlockOutput>;
   SysContentFolder?: Maybe<SysContentFolderOutput>;
   TestimonialElement?: Maybe<TestimonialElementOutput>;
+  TestimonialItem?: Maybe<TestimonialItemOutput>;
+  TestimonialItemBlock?: Maybe<TestimonialItemBlockOutput>;
+  TestimonialsBlock?: Maybe<TestimonialsBlockOutput>;
   TextBlock?: Maybe<TextBlockOutput>;
   Video?: Maybe<VideoOutput>;
   VideoElement?: Maybe<VideoElementOutput>;
   VideoMedia?: Maybe<VideoMediaOutput>;
+  WebsiteFooter?: Maybe<WebsiteFooterOutput>;
+  _AssetItem?: Maybe<_AssetItemOutput>;
   _Component?: Maybe<_ComponentOutput>;
   _Content?: Maybe<_ContentOutput>;
   _Experience?: Maybe<_ExperienceOutput>;
   _Folder?: Maybe<_FolderOutput>;
   _Image?: Maybe<_ImageOutput>;
+  _ImageItem?: Maybe<_ImageItemOutput>;
+  _Item?: Maybe<_ItemOutput>;
   _Media?: Maybe<_MediaOutput>;
   _Page?: Maybe<_PageOutput>;
   _Section?: Maybe<_SectionOutput>;
   _Video?: Maybe<_VideoOutput>;
+};
+
+
+export type QueryArticleGroupPageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ArticleGroupPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ArticleGroupPageWhereInput>;
 };
 
 
@@ -4652,11 +5857,53 @@ export type QueryArticleListElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArticleListElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ArticleListElementWhereInput>;
+};
+
+
+export type QueryArticlePageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ArticlePageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ArticlePageWhereInput>;
+};
+
+
+export type QueryAvailabilityBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<AvailabilityBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<AvailabilityBlockWhereInput>;
+};
+
+
+export type QueryBannerBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<BannerBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<BannerBlockWhereInput>;
 };
 
 
@@ -4666,9 +5913,9 @@ export type QueryBlankExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankExperienceWhereInput>;
 };
@@ -4680,25 +5927,11 @@ export type QueryBlankSectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankSectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
-};
-
-
-export type QueryBlogListingBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<BlogListingBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<BlogListingBlockWhereInput>;
 };
 
 
@@ -4708,9 +5941,9 @@ export type QueryBlogPostPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogPostPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogPostPageWhereInput>;
 };
@@ -4722,9 +5955,9 @@ export type QueryBlogSectionExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogSectionExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogSectionExperienceWhereInput>;
 };
@@ -4736,11 +5969,25 @@ export type QueryButtonBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ButtonBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ButtonBlockWhereInput>;
+};
+
+
+export type QueryCMSPageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<CMSPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<CMSPageWhereInput>;
 };
 
 
@@ -4750,9 +5997,9 @@ export type QueryCTAElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CTAElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CTAElementWhereInput>;
 };
@@ -4764,9 +6011,9 @@ export type QueryCardBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CardBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CardBlockWhereInput>;
 };
@@ -4778,25 +6025,25 @@ export type QueryCarouselBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CarouselBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CarouselBlockWhereInput>;
 };
 
 
-export type QueryContentRecsBlockArgs = {
+export type QueryContactBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<ContentRecsBlockOrderByInput>;
+  orderBy?: InputMaybe<ContactBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<ContentRecsBlockWhereInput>;
+  where?: InputMaybe<ContactBlockWhereInput>;
 };
 
 
@@ -4806,9 +6053,9 @@ export type QueryContentRecsElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentRecsElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContentRecsElementWhereInput>;
 };
@@ -4820,9 +6067,9 @@ export type QueryContinueReadingComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContinueReadingComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContinueReadingComponentWhereInput>;
 };
@@ -4834,11 +6081,95 @@ export type QueryDataArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<system_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<DataWhereInput>;
+};
+
+
+export type QueryDefaultImageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DefaultImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DefaultImageWhereInput>;
+};
+
+
+export type QueryDefaultVideoArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DefaultVideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DefaultVideoWhereInput>;
+};
+
+
+export type QueryDictionaryArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DictionaryOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DictionaryWhereInput>;
+};
+
+
+export type QueryDictionaryItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DictionaryItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DictionaryItemWhereInput>;
+};
+
+
+export type QueryFooterArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<FooterOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<FooterWhereInput>;
+};
+
+
+export type QueryFooterColumnArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<FooterColumnOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<FooterColumnWhereInput>;
 };
 
 
@@ -4848,11 +6179,53 @@ export type QueryGenericMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GenericMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<GenericMediaWhereInput>;
+};
+
+
+export type QueryGenericMedia123Args = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<GenericMedia123OrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<GenericMedia123WhereInput>;
+};
+
+
+export type QueryHeaderArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<HeaderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<HeaderWhereInput>;
+};
+
+
+export type QueryHeaderBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<HeaderBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<HeaderBlockWhereInput>;
 };
 
 
@@ -4862,11 +6235,25 @@ export type QueryHeadingElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeadingElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeadingElementWhereInput>;
+};
+
+
+export type QueryHeroArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<HeroOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<HeroWhereInput>;
 };
 
 
@@ -4876,39 +6263,11 @@ export type QueryHeroBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeroBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeroBlockWhereInput>;
-};
-
-
-export type QueryHomePageHeroBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<HomePageHeroBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<HomePageHeroBlockWhereInput>;
-};
-
-
-export type QueryHtmlBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<HtmlBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<HtmlBlockWhereInput>;
 };
 
 
@@ -4918,9 +6277,9 @@ export type QueryImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageWhereInput>;
 };
@@ -4932,9 +6291,9 @@ export type QueryImageElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageElementWhereInput>;
 };
@@ -4946,9 +6305,9 @@ export type QueryImageMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageMediaWhereInput>;
 };
@@ -4960,25 +6319,11 @@ export type QueryLandingPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LandingPageWhereInput>;
-};
-
-
-export type QueryLayoutContainerBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<LayoutContainerBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<LayoutContainerBlockWhereInput>;
 };
 
 
@@ -4988,11 +6333,39 @@ export type QueryLayoutSettingsBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutSettingsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LayoutSettingsBlockWhereInput>;
+};
+
+
+export type QueryLogoItemBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<LogoItemBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<LogoItemBlockWhereInput>;
+};
+
+
+export type QueryLogosBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<LogosBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<LogosBlockWhereInput>;
 };
 
 
@@ -5002,9 +6375,9 @@ export type QueryMegaMenuGroupBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MegaMenuGroupBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MegaMenuGroupBlockWhereInput>;
 };
@@ -5016,11 +6389,39 @@ export type QueryMenuNavigationBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MenuNavigationBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MenuNavigationBlockWhereInput>;
+};
+
+
+export type QueryNavItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<NavItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<NavItemWhereInput>;
+};
+
+
+export type QueryNavigationMenuBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<NavigationMenuBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<NavigationMenuBlockWhereInput>;
 };
 
 
@@ -5030,151 +6431,25 @@ export type QueryOdpEmbedBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OdpEmbedBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OdpEmbedBlockWhereInput>;
 };
 
 
-export type QueryOptiFormsChoiceElementArgs = {
+export type QueryOfficeLocationArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsChoiceElementOrderByInput>;
+  orderBy?: InputMaybe<OfficeLocationOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsChoiceElementWhereInput>;
-};
-
-
-export type QueryOptiFormsContainerDataArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsContainerDataOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsContainerDataWhereInput>;
-};
-
-
-export type QueryOptiFormsNumberElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsNumberElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsNumberElementWhereInput>;
-};
-
-
-export type QueryOptiFormsRangeElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsRangeElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsRangeElementWhereInput>;
-};
-
-
-export type QueryOptiFormsResetElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsResetElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsResetElementWhereInput>;
-};
-
-
-export type QueryOptiFormsSelectionElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsSelectionElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsSelectionElementWhereInput>;
-};
-
-
-export type QueryOptiFormsSubmitElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsSubmitElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsSubmitElementWhereInput>;
-};
-
-
-export type QueryOptiFormsTextareaElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsTextareaElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsTextareaElementWhereInput>;
-};
-
-
-export type QueryOptiFormsTextboxElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsTextboxElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsTextboxElementWhereInput>;
-};
-
-
-export type QueryOptiFormsUrlElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsUrlElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsUrlElementWhereInput>;
+  where?: InputMaybe<OfficeLocationWhereInput>;
 };
 
 
@@ -5184,9 +6459,9 @@ export type QueryPageSeoSettingsArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<PageSeoSettingsOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<PageSeoSettingsWhereInput>;
 };
@@ -5198,11 +6473,67 @@ export type QueryParagraphElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ParagraphElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ParagraphElementWhereInput>;
+};
+
+
+export type QueryPortfolioGridBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<PortfolioGridBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<PortfolioGridBlockWhereInput>;
+};
+
+
+export type QueryPortfolioItemBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<PortfolioItemBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<PortfolioItemBlockWhereInput>;
+};
+
+
+export type QueryProductPageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ProductPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ProductPageWhereInput>;
+};
+
+
+export type QueryProfileBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ProfileBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ProfileBlockWhereInput>;
 };
 
 
@@ -5212,9 +6543,9 @@ export type QueryQuoteBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<QuoteBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<QuoteBlockWhereInput>;
 };
@@ -5226,25 +6557,67 @@ export type QueryRichTextElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<RichTextElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<RichTextElementWhereInput>;
 };
 
 
-export type QueryStandardPageArgs = {
+export type QuerySEOExperienceArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<StandardPageOrderByInput>;
+  orderBy?: InputMaybe<SEOExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<StandardPageWhereInput>;
+  where?: InputMaybe<SEOExperienceWhereInput>;
+};
+
+
+export type QueryServiceItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ServiceItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ServiceItemWhereInput>;
+};
+
+
+export type QueryServicesBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ServicesBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ServicesBlockWhereInput>;
+};
+
+
+export type QuerySocialLinkArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<SocialLinkOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<SocialLinkWhereInput>;
 };
 
 
@@ -5254,11 +6627,25 @@ export type QueryStartPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StartPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<StartPageWhereInput>;
+};
+
+
+export type QueryStoryBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<StoryBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<StoryBlockWhereInput>;
 };
 
 
@@ -5268,9 +6655,9 @@ export type QuerySysContentFolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SysContentFolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<SysContentFolderWhereInput>;
 };
@@ -5282,11 +6669,53 @@ export type QueryTestimonialElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TestimonialElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TestimonialElementWhereInput>;
+};
+
+
+export type QueryTestimonialItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<TestimonialItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<TestimonialItemWhereInput>;
+};
+
+
+export type QueryTestimonialItemBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<TestimonialItemBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<TestimonialItemBlockWhereInput>;
+};
+
+
+export type QueryTestimonialsBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<TestimonialsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<TestimonialsBlockWhereInput>;
 };
 
 
@@ -5296,9 +6725,9 @@ export type QueryTextBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TextBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TextBlockWhereInput>;
 };
@@ -5310,9 +6739,9 @@ export type QueryVideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoWhereInput>;
 };
@@ -5324,9 +6753,9 @@ export type QueryVideoElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoElementWhereInput>;
 };
@@ -5338,11 +6767,39 @@ export type QueryVideoMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoMediaWhereInput>;
+};
+
+
+export type QueryWebsiteFooterArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<WebsiteFooterOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<WebsiteFooterWhereInput>;
+};
+
+
+export type Query_AssetItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_AssetItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_AssetItemWhereInput>;
 };
 
 
@@ -5352,9 +6809,9 @@ export type Query_ComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ComponentWhereInput>;
 };
@@ -5366,9 +6823,9 @@ export type Query_ContentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ContentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ContentWhereInput>;
 };
@@ -5380,9 +6837,9 @@ export type Query_ExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ExperienceWhereInput>;
 };
@@ -5394,9 +6851,9 @@ export type Query_FolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_FolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_FolderWhereInput>;
 };
@@ -5408,11 +6865,39 @@ export type Query_ImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ImageWhereInput>;
+};
+
+
+export type Query_ImageItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ImageItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ImageItemWhereInput>;
+};
+
+
+export type Query_ItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ItemWhereInput>;
 };
 
 
@@ -5422,9 +6907,9 @@ export type Query_MediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_MediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_MediaWhereInput>;
 };
@@ -5436,9 +6921,9 @@ export type Query_PageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_PageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_PageWhereInput>;
 };
@@ -5450,9 +6935,9 @@ export type Query_SectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_SectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_SectionWhereInput>;
 };
@@ -5464,74 +6949,109 @@ export type Query_VideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_VideoWhereInput>;
 };
 
 export type QueryRef = {
   __typename?: 'QueryRef';
+  ArticleGroupPage?: Maybe<ArticleGroupPageOutput>;
   ArticleListElement?: Maybe<ArticleListElementOutput>;
+  ArticlePage?: Maybe<ArticlePageOutput>;
+  AvailabilityBlock?: Maybe<AvailabilityBlockOutput>;
+  BannerBlock?: Maybe<BannerBlockOutput>;
   BlankExperience?: Maybe<BlankExperienceOutput>;
   BlankSection?: Maybe<BlankSectionOutput>;
-  BlogListingBlock?: Maybe<BlogListingBlockOutput>;
   BlogPostPage?: Maybe<BlogPostPageOutput>;
   BlogSectionExperience?: Maybe<BlogSectionExperienceOutput>;
   ButtonBlock?: Maybe<ButtonBlockOutput>;
+  CMSPage?: Maybe<CMSPageOutput>;
   CTAElement?: Maybe<CTAElementOutput>;
   CardBlock?: Maybe<CardBlockOutput>;
   CarouselBlock?: Maybe<CarouselBlockOutput>;
-  ContentRecsBlock?: Maybe<ContentRecsBlockOutput>;
+  ContactBlock?: Maybe<ContactBlockOutput>;
   ContentRecsElement?: Maybe<ContentRecsElementOutput>;
   ContinueReadingComponent?: Maybe<ContinueReadingComponentOutput>;
   Data?: Maybe<DataOutput>;
+  DefaultImage?: Maybe<DefaultImageOutput>;
+  DefaultVideo?: Maybe<DefaultVideoOutput>;
+  Dictionary?: Maybe<DictionaryOutput>;
+  DictionaryItem?: Maybe<DictionaryItemOutput>;
+  Footer?: Maybe<FooterOutput>;
+  FooterColumn?: Maybe<FooterColumnOutput>;
   GenericMedia?: Maybe<GenericMediaOutput>;
+  GenericMedia123?: Maybe<GenericMedia123Output>;
+  Header?: Maybe<HeaderOutput>;
+  HeaderBlock?: Maybe<HeaderBlockOutput>;
   HeadingElement?: Maybe<HeadingElementOutput>;
+  Hero?: Maybe<HeroOutput>;
   HeroBlock?: Maybe<HeroBlockOutput>;
-  HomePageHeroBlock?: Maybe<HomePageHeroBlockOutput>;
-  HtmlBlock?: Maybe<HtmlBlockOutput>;
   Image?: Maybe<ImageOutput>;
   ImageElement?: Maybe<ImageElementOutput>;
   ImageMedia?: Maybe<ImageMediaOutput>;
   LandingPage?: Maybe<LandingPageOutput>;
-  LayoutContainerBlock?: Maybe<LayoutContainerBlockOutput>;
   LayoutSettingsBlock?: Maybe<LayoutSettingsBlockOutput>;
+  LogoItemBlock?: Maybe<LogoItemBlockOutput>;
+  LogosBlock?: Maybe<LogosBlockOutput>;
   MegaMenuGroupBlock?: Maybe<MegaMenuGroupBlockOutput>;
   MenuNavigationBlock?: Maybe<MenuNavigationBlockOutput>;
+  NavItem?: Maybe<NavItemOutput>;
+  NavigationMenuBlock?: Maybe<NavigationMenuBlockOutput>;
   OdpEmbedBlock?: Maybe<OdpEmbedBlockOutput>;
-  OptiFormsChoiceElement?: Maybe<OptiFormsChoiceElementOutput>;
-  OptiFormsContainerData?: Maybe<OptiFormsContainerDataOutput>;
-  OptiFormsNumberElement?: Maybe<OptiFormsNumberElementOutput>;
-  OptiFormsRangeElement?: Maybe<OptiFormsRangeElementOutput>;
-  OptiFormsResetElement?: Maybe<OptiFormsResetElementOutput>;
-  OptiFormsSelectionElement?: Maybe<OptiFormsSelectionElementOutput>;
-  OptiFormsSubmitElement?: Maybe<OptiFormsSubmitElementOutput>;
-  OptiFormsTextareaElement?: Maybe<OptiFormsTextareaElementOutput>;
-  OptiFormsTextboxElement?: Maybe<OptiFormsTextboxElementOutput>;
-  OptiFormsUrlElement?: Maybe<OptiFormsUrlElementOutput>;
+  OfficeLocation?: Maybe<OfficeLocationOutput>;
   PageSeoSettings?: Maybe<PageSeoSettingsOutput>;
   ParagraphElement?: Maybe<ParagraphElementOutput>;
+  PortfolioGridBlock?: Maybe<PortfolioGridBlockOutput>;
+  PortfolioItemBlock?: Maybe<PortfolioItemBlockOutput>;
+  ProductPage?: Maybe<ProductPageOutput>;
+  ProfileBlock?: Maybe<ProfileBlockOutput>;
   QuoteBlock?: Maybe<QuoteBlockOutput>;
   RichTextElement?: Maybe<RichTextElementOutput>;
-  StandardPage?: Maybe<StandardPageOutput>;
+  SEOExperience?: Maybe<SEOExperienceOutput>;
+  ServiceItem?: Maybe<ServiceItemOutput>;
+  ServicesBlock?: Maybe<ServicesBlockOutput>;
+  SocialLink?: Maybe<SocialLinkOutput>;
   StartPage?: Maybe<StartPageOutput>;
+  StoryBlock?: Maybe<StoryBlockOutput>;
   SysContentFolder?: Maybe<SysContentFolderOutput>;
   TestimonialElement?: Maybe<TestimonialElementOutput>;
+  TestimonialItem?: Maybe<TestimonialItemOutput>;
+  TestimonialItemBlock?: Maybe<TestimonialItemBlockOutput>;
+  TestimonialsBlock?: Maybe<TestimonialsBlockOutput>;
   TextBlock?: Maybe<TextBlockOutput>;
   Video?: Maybe<VideoOutput>;
   VideoElement?: Maybe<VideoElementOutput>;
   VideoMedia?: Maybe<VideoMediaOutput>;
+  WebsiteFooter?: Maybe<WebsiteFooterOutput>;
+  _AssetItem?: Maybe<_AssetItemOutput>;
   _Component?: Maybe<_ComponentOutput>;
   _Content?: Maybe<_ContentOutput>;
   _Experience?: Maybe<_ExperienceOutput>;
   _Folder?: Maybe<_FolderOutput>;
   _Image?: Maybe<_ImageOutput>;
+  _ImageItem?: Maybe<_ImageItemOutput>;
+  _Item?: Maybe<_ItemOutput>;
   _Media?: Maybe<_MediaOutput>;
   _Page?: Maybe<_PageOutput>;
   _Section?: Maybe<_SectionOutput>;
   _Video?: Maybe<_VideoOutput>;
+};
+
+
+export type QueryRefArticleGroupPageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ArticleGroupPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ArticleGroupPageWhereInput>;
 };
 
 
@@ -5541,11 +7061,53 @@ export type QueryRefArticleListElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArticleListElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ArticleListElementWhereInput>;
+};
+
+
+export type QueryRefArticlePageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ArticlePageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ArticlePageWhereInput>;
+};
+
+
+export type QueryRefAvailabilityBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<AvailabilityBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<AvailabilityBlockWhereInput>;
+};
+
+
+export type QueryRefBannerBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<BannerBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<BannerBlockWhereInput>;
 };
 
 
@@ -5555,9 +7117,9 @@ export type QueryRefBlankExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankExperienceWhereInput>;
 };
@@ -5569,25 +7131,11 @@ export type QueryRefBlankSectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankSectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
-};
-
-
-export type QueryRefBlogListingBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<BlogListingBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<BlogListingBlockWhereInput>;
 };
 
 
@@ -5597,9 +7145,9 @@ export type QueryRefBlogPostPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogPostPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogPostPageWhereInput>;
 };
@@ -5611,9 +7159,9 @@ export type QueryRefBlogSectionExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogSectionExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogSectionExperienceWhereInput>;
 };
@@ -5625,11 +7173,25 @@ export type QueryRefButtonBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ButtonBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ButtonBlockWhereInput>;
+};
+
+
+export type QueryRefCMSPageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<CMSPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<CMSPageWhereInput>;
 };
 
 
@@ -5639,9 +7201,9 @@ export type QueryRefCTAElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CTAElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CTAElementWhereInput>;
 };
@@ -5653,9 +7215,9 @@ export type QueryRefCardBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CardBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CardBlockWhereInput>;
 };
@@ -5667,25 +7229,25 @@ export type QueryRefCarouselBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CarouselBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CarouselBlockWhereInput>;
 };
 
 
-export type QueryRefContentRecsBlockArgs = {
+export type QueryRefContactBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<ContentRecsBlockOrderByInput>;
+  orderBy?: InputMaybe<ContactBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<ContentRecsBlockWhereInput>;
+  where?: InputMaybe<ContactBlockWhereInput>;
 };
 
 
@@ -5695,9 +7257,9 @@ export type QueryRefContentRecsElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentRecsElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContentRecsElementWhereInput>;
 };
@@ -5709,9 +7271,9 @@ export type QueryRefContinueReadingComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContinueReadingComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContinueReadingComponentWhereInput>;
 };
@@ -5723,11 +7285,95 @@ export type QueryRefDataArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<system_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<DataWhereInput>;
+};
+
+
+export type QueryRefDefaultImageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DefaultImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DefaultImageWhereInput>;
+};
+
+
+export type QueryRefDefaultVideoArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DefaultVideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DefaultVideoWhereInput>;
+};
+
+
+export type QueryRefDictionaryArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DictionaryOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DictionaryWhereInput>;
+};
+
+
+export type QueryRefDictionaryItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<DictionaryItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<DictionaryItemWhereInput>;
+};
+
+
+export type QueryRefFooterArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<FooterOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<FooterWhereInput>;
+};
+
+
+export type QueryRefFooterColumnArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<FooterColumnOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<FooterColumnWhereInput>;
 };
 
 
@@ -5737,11 +7383,53 @@ export type QueryRefGenericMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GenericMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<GenericMediaWhereInput>;
+};
+
+
+export type QueryRefGenericMedia123Args = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<GenericMedia123OrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<GenericMedia123WhereInput>;
+};
+
+
+export type QueryRefHeaderArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<HeaderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<HeaderWhereInput>;
+};
+
+
+export type QueryRefHeaderBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<HeaderBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<HeaderBlockWhereInput>;
 };
 
 
@@ -5751,11 +7439,25 @@ export type QueryRefHeadingElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeadingElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeadingElementWhereInput>;
+};
+
+
+export type QueryRefHeroArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<HeroOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<HeroWhereInput>;
 };
 
 
@@ -5765,39 +7467,11 @@ export type QueryRefHeroBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeroBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeroBlockWhereInput>;
-};
-
-
-export type QueryRefHomePageHeroBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<HomePageHeroBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<HomePageHeroBlockWhereInput>;
-};
-
-
-export type QueryRefHtmlBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<HtmlBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<HtmlBlockWhereInput>;
 };
 
 
@@ -5807,9 +7481,9 @@ export type QueryRefImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageWhereInput>;
 };
@@ -5821,9 +7495,9 @@ export type QueryRefImageElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageElementWhereInput>;
 };
@@ -5835,9 +7509,9 @@ export type QueryRefImageMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageMediaWhereInput>;
 };
@@ -5849,25 +7523,11 @@ export type QueryRefLandingPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LandingPageWhereInput>;
-};
-
-
-export type QueryRefLayoutContainerBlockArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<LayoutContainerBlockOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<LayoutContainerBlockWhereInput>;
 };
 
 
@@ -5877,11 +7537,39 @@ export type QueryRefLayoutSettingsBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutSettingsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LayoutSettingsBlockWhereInput>;
+};
+
+
+export type QueryRefLogoItemBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<LogoItemBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<LogoItemBlockWhereInput>;
+};
+
+
+export type QueryRefLogosBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<LogosBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<LogosBlockWhereInput>;
 };
 
 
@@ -5891,9 +7579,9 @@ export type QueryRefMegaMenuGroupBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MegaMenuGroupBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MegaMenuGroupBlockWhereInput>;
 };
@@ -5905,11 +7593,39 @@ export type QueryRefMenuNavigationBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MenuNavigationBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MenuNavigationBlockWhereInput>;
+};
+
+
+export type QueryRefNavItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<NavItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<NavItemWhereInput>;
+};
+
+
+export type QueryRefNavigationMenuBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<NavigationMenuBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<NavigationMenuBlockWhereInput>;
 };
 
 
@@ -5919,151 +7635,25 @@ export type QueryRefOdpEmbedBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OdpEmbedBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OdpEmbedBlockWhereInput>;
 };
 
 
-export type QueryRefOptiFormsChoiceElementArgs = {
+export type QueryRefOfficeLocationArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsChoiceElementOrderByInput>;
+  orderBy?: InputMaybe<OfficeLocationOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsChoiceElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsContainerDataArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsContainerDataOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsContainerDataWhereInput>;
-};
-
-
-export type QueryRefOptiFormsNumberElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsNumberElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsNumberElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsRangeElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsRangeElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsRangeElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsResetElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsResetElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsResetElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsSelectionElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsSelectionElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsSelectionElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsSubmitElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsSubmitElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsSubmitElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsTextareaElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsTextareaElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsTextareaElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsTextboxElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsTextboxElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsTextboxElementWhereInput>;
-};
-
-
-export type QueryRefOptiFormsUrlElementArgs = {
-  cursor?: InputMaybe<Scalars['String']['input']>;
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<OptiFormsUrlElementOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
-  variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<OptiFormsUrlElementWhereInput>;
+  where?: InputMaybe<OfficeLocationWhereInput>;
 };
 
 
@@ -6073,9 +7663,9 @@ export type QueryRefPageSeoSettingsArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<PageSeoSettingsOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<PageSeoSettingsWhereInput>;
 };
@@ -6087,11 +7677,67 @@ export type QueryRefParagraphElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ParagraphElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ParagraphElementWhereInput>;
+};
+
+
+export type QueryRefPortfolioGridBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<PortfolioGridBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<PortfolioGridBlockWhereInput>;
+};
+
+
+export type QueryRefPortfolioItemBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<PortfolioItemBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<PortfolioItemBlockWhereInput>;
+};
+
+
+export type QueryRefProductPageArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ProductPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ProductPageWhereInput>;
+};
+
+
+export type QueryRefProfileBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ProfileBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ProfileBlockWhereInput>;
 };
 
 
@@ -6101,9 +7747,9 @@ export type QueryRefQuoteBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<QuoteBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<QuoteBlockWhereInput>;
 };
@@ -6115,25 +7761,67 @@ export type QueryRefRichTextElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<RichTextElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<RichTextElementWhereInput>;
 };
 
 
-export type QueryRefStandardPageArgs = {
+export type QueryRefSEOExperienceArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
-  orderBy?: InputMaybe<StandardPageOrderByInput>;
+  orderBy?: InputMaybe<SEOExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
-  where?: InputMaybe<StandardPageWhereInput>;
+  where?: InputMaybe<SEOExperienceWhereInput>;
+};
+
+
+export type QueryRefServiceItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ServiceItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ServiceItemWhereInput>;
+};
+
+
+export type QueryRefServicesBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ServicesBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ServicesBlockWhereInput>;
+};
+
+
+export type QueryRefSocialLinkArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<SocialLinkOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<SocialLinkWhereInput>;
 };
 
 
@@ -6143,11 +7831,25 @@ export type QueryRefStartPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StartPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<StartPageWhereInput>;
+};
+
+
+export type QueryRefStoryBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<StoryBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<StoryBlockWhereInput>;
 };
 
 
@@ -6157,9 +7859,9 @@ export type QueryRefSysContentFolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SysContentFolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<SysContentFolderWhereInput>;
 };
@@ -6171,11 +7873,53 @@ export type QueryRefTestimonialElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TestimonialElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TestimonialElementWhereInput>;
+};
+
+
+export type QueryRefTestimonialItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<TestimonialItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<TestimonialItemWhereInput>;
+};
+
+
+export type QueryRefTestimonialItemBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<TestimonialItemBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<TestimonialItemBlockWhereInput>;
+};
+
+
+export type QueryRefTestimonialsBlockArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<TestimonialsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<TestimonialsBlockWhereInput>;
 };
 
 
@@ -6185,9 +7929,9 @@ export type QueryRefTextBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TextBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TextBlockWhereInput>;
 };
@@ -6199,9 +7943,9 @@ export type QueryRefVideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoWhereInput>;
 };
@@ -6213,9 +7957,9 @@ export type QueryRefVideoElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoElementWhereInput>;
 };
@@ -6227,11 +7971,39 @@ export type QueryRefVideoMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoMediaWhereInput>;
+};
+
+
+export type QueryRefWebsiteFooterArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<WebsiteFooterOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<WebsiteFooterWhereInput>;
+};
+
+
+export type QueryRef_AssetItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_AssetItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_AssetItemWhereInput>;
 };
 
 
@@ -6241,9 +8013,9 @@ export type QueryRef_ComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ComponentWhereInput>;
 };
@@ -6255,9 +8027,9 @@ export type QueryRef_ContentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ContentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ContentWhereInput>;
 };
@@ -6269,9 +8041,9 @@ export type QueryRef_ExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ExperienceWhereInput>;
 };
@@ -6283,9 +8055,9 @@ export type QueryRef_FolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_FolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_FolderWhereInput>;
 };
@@ -6297,11 +8069,39 @@ export type QueryRef_ImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ImageWhereInput>;
+};
+
+
+export type QueryRef_ImageItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ImageItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ImageItemWhereInput>;
+};
+
+
+export type QueryRef_ItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ItemWhereInput>;
 };
 
 
@@ -6311,9 +8111,9 @@ export type QueryRef_MediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_MediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_MediaWhereInput>;
 };
@@ -6325,9 +8125,9 @@ export type QueryRef_PageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_PageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_PageWhereInput>;
 };
@@ -6339,9 +8139,9 @@ export type QueryRef_SectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_SectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_SectionWhereInput>;
 };
@@ -6353,14 +8153,14 @@ export type QueryRef_VideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
   track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_VideoWhereInput>;
 };
 
-export type QuoteBlock = IData & _IComponent & _IContent & {
+export type QuoteBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'QuoteBlock';
   QuoteActive?: Maybe<Scalars['Boolean']['output']>;
   QuoteColor?: Maybe<Scalars['String']['output']>;
@@ -6373,6 +8173,8 @@ export type QuoteBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -6393,17 +8195,20 @@ export type QuoteBlock_linkArgs = {
 export type QuoteBlockAutocomplete = {
   __typename?: 'QuoteBlockAutocomplete';
   QuoteProfilePicture?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type QuoteBlockFacet = {
   __typename?: 'QuoteBlockFacet';
   QuoteProfilePicture?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type QuoteBlockOrderByInput = {
   QuoteProfilePicture?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6431,6 +8236,7 @@ export type QuoteBlockWhereInput = {
   QuoteProfilePicture?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<QuoteBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<QuoteBlockWhereInput>>>;
@@ -6466,13 +8272,15 @@ export type RichTextAutocompletehtmlArgs = {
   value: Scalars['String']['input'];
 };
 
-export type RichTextElement = IData & _IComponent & _IContent & {
+export type RichTextElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'RichTextElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -6493,16 +8301,19 @@ export type RichTextElement_linkArgs = {
 
 export type RichTextElementAutocomplete = {
   __typename?: 'RichTextElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type RichTextElementFacet = {
   __typename?: 'RichTextElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   text?: Maybe<SearchableRichTextFacet>;
 };
 
 export type RichTextElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6530,6 +8341,7 @@ export type RichTextElementOutputtotalArgs = {
 export type RichTextElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<RichTextElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<RichTextElementWhereInput>>>;
@@ -6556,6 +8368,87 @@ export type RichTextOrderByInput = {
 
 export type RichTextWhereInput = {
   html?: InputMaybe<StringFilterInput>;
+};
+
+export type SEOExperience = IData & _IContent & _IExperience & _IItem & _IPage & {
+  __typename?: 'SEOExperience';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  composition?: Maybe<CompositionStructureNode>;
+  keywords?: Maybe<Scalars['String']['output']>;
+  shortDescription?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type SEOExperience_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type SEOExperience_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type SEOExperienceAutocomplete = {
+  __typename?: 'SEOExperienceAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  composition?: Maybe<CompositionStructureNodeAutocomplete>;
+};
+
+export type SEOExperienceFacet = {
+  __typename?: 'SEOExperienceFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  composition?: Maybe<CompositionStructureNodeFacet>;
+};
+
+export type SEOExperienceOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  composition?: InputMaybe<CompositionStructureNodeOrderByInput>;
+};
+
+export type SEOExperienceOutput = {
+  __typename?: 'SEOExperienceOutput';
+  autocomplete?: Maybe<SEOExperienceAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<SEOExperienceFacet>;
+  item?: Maybe<SEOExperience>;
+  items?: Maybe<Array<Maybe<SEOExperience>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type SEOExperienceOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SEOExperienceWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<SEOExperienceWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<SEOExperienceWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<SEOExperienceWhereInput>>>;
+  composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
 export type SearchableRichText = {
@@ -6617,84 +8510,49 @@ export type SearchableStringFilterInput = {
   synonyms?: InputMaybe<Array<InputMaybe<SynonymSlot>>>;
 };
 
-export type StandardPage = IData & _IContent & _IPage & {
-  __typename?: 'StandardPage';
-  MainBody?: Maybe<SearchableRichText>;
-  SeoSettings?: Maybe<PageSeoSettingsProperty>;
-  StandardPageHeading?: Maybe<Scalars['String']['output']>;
-  StandardPromoImage?: Maybe<ContentReference>;
-  StandardSubHeading?: Maybe<Scalars['String']['output']>;
+export type ServiceItem = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'ServiceItem';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 
-export type StandardPageStandardPageHeadingArgs = {
+export type ServiceItem_fulltextArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
 
-export type StandardPageStandardSubHeadingArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type StandardPage_fulltextArgs = {
-  highlight?: InputMaybe<HighlightOptions>;
-};
-
-
-export type StandardPage_linkArgs = {
+export type ServiceItem_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
-export type StandardPageAutocomplete = {
-  __typename?: 'StandardPageAutocomplete';
-  SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
-  StandardPromoImage?: Maybe<ContentReferenceAutocomplete>;
+export type ServiceItemAutocomplete = {
+  __typename?: 'ServiceItemAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
-export type StandardPageFacet = {
-  __typename?: 'StandardPageFacet';
-  MainBody?: Maybe<SearchableRichTextFacet>;
-  SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
-  StandardPageHeading?: Maybe<Array<Maybe<StringFacet>>>;
-  StandardPromoImage?: Maybe<ContentReferenceFacet>;
-  StandardSubHeading?: Maybe<Array<Maybe<StringFacet>>>;
+export type ServiceItemFacet = {
+  __typename?: 'ServiceItemFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
-
-export type StandardPageFacetStandardPageHeadingArgs = {
-  filters?: InputMaybe<Array<Scalars['String']['input']>>;
-  limit?: Scalars['Int']['input'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type StandardPageFacetStandardSubHeadingArgs = {
-  filters?: InputMaybe<Array<Scalars['String']['input']>>;
-  limit?: Scalars['Int']['input'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-export type StandardPageOrderByInput = {
-  MainBody?: InputMaybe<SearchableRichTextOrderByInput>;
-  SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
-  StandardPageHeading?: InputMaybe<OrderBy>;
-  StandardPromoImage?: InputMaybe<ContentReferenceOrderByInput>;
-  StandardSubHeading?: InputMaybe<OrderBy>;
+export type ServiceItemOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6703,56 +8561,202 @@ export type StandardPageOrderByInput = {
   _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type StandardPageOutput = {
-  __typename?: 'StandardPageOutput';
-  autocomplete?: Maybe<StandardPageAutocomplete>;
+export type ServiceItemOutput = {
+  __typename?: 'ServiceItemOutput';
+  autocomplete?: Maybe<ServiceItemAutocomplete>;
   cursor?: Maybe<Scalars['String']['output']>;
-  facets?: Maybe<StandardPageFacet>;
-  item?: Maybe<StandardPage>;
-  items?: Maybe<Array<Maybe<StandardPage>>>;
+  facets?: Maybe<ServiceItemFacet>;
+  item?: Maybe<ServiceItem>;
+  items?: Maybe<Array<Maybe<ServiceItem>>>;
   total?: Maybe<Scalars['Int']['output']>;
 };
 
 
-export type StandardPageOutputtotalArgs = {
+export type ServiceItemOutputtotalArgs = {
   all?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type StandardPageWhereInput = {
-  MainBody?: InputMaybe<SearchableRichTextWhereInput>;
-  SeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
-  StandardPageHeading?: InputMaybe<SearchableStringFilterInput>;
-  StandardPromoImage?: InputMaybe<ContentReferenceWhereInput>;
-  StandardSubHeading?: InputMaybe<SearchableStringFilterInput>;
-  _and?: InputMaybe<Array<InputMaybe<StandardPageWhereInput>>>;
+export type ServiceItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ServiceItemWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
-  _not?: InputMaybe<Array<InputMaybe<StandardPageWhereInput>>>;
-  _or?: InputMaybe<Array<InputMaybe<StandardPageWhereInput>>>;
+  _not?: InputMaybe<Array<InputMaybe<ServiceItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ServiceItemWhereInput>>>;
 };
 
-export type StartPage = IData & _IContent & _IPage & {
-  __typename?: 'StartPage';
-  FooterNavigationContentArea?: Maybe<Array<Maybe<_IContent>>>;
-  FooterNavigationCopyrightText?: Maybe<Scalars['String']['output']>;
-  FooterNavigationSubLinks?: Maybe<Array<Maybe<Link>>>;
-  HomePageHeroContentArea?: Maybe<Array<Maybe<_IContent>>>;
-  HomePageMainContentArea?: Maybe<Array<Maybe<_IContent>>>;
-  MainNavigationContentArea?: Maybe<Array<Maybe<_IContent>>>;
-  SeoSettings?: Maybe<PageSeoSettingsProperty>;
-  SiteImageLogo?: Maybe<ContentReference>;
-  UtilityNavigationContentArea?: Maybe<Array<Maybe<_IContent>>>;
+export type ServicesBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'ServicesBlock';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
+  services?: Maybe<Array<Maybe<_IContent>>>;
+};
+
+
+export type ServicesBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ServicesBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ServicesBlockAutocomplete = {
+  __typename?: 'ServicesBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  services?: Maybe<_IContentAutocomplete>;
+};
+
+export type ServicesBlockFacet = {
+  __typename?: 'ServicesBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  services?: Maybe<_IContentFacet>;
+};
+
+export type ServicesBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  services?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type ServicesBlockOutput = {
+  __typename?: 'ServicesBlockOutput';
+  autocomplete?: Maybe<ServicesBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ServicesBlockFacet>;
+  item?: Maybe<ServicesBlock>;
+  items?: Maybe<Array<Maybe<ServicesBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ServicesBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ServicesBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ServicesBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ServicesBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ServicesBlockWhereInput>>>;
+  services?: InputMaybe<_IContentWhereInput>;
+};
+
+export type SocialLink = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'SocialLink';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+  platform?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type SocialLink_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type SocialLink_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type SocialLinkAutocomplete = {
+  __typename?: 'SocialLinkAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type SocialLinkFacet = {
+  __typename?: 'SocialLinkFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type SocialLinkOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type SocialLinkOutput = {
+  __typename?: 'SocialLinkOutput';
+  autocomplete?: Maybe<SocialLinkAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<SocialLinkFacet>;
+  item?: Maybe<SocialLink>;
+  items?: Maybe<Array<Maybe<SocialLink>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type SocialLinkOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SocialLinkWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<SocialLinkWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<SocialLinkWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<SocialLinkWhereInput>>>;
+};
+
+export type StartPage = IData & _IContent & _IItem & _IPage & {
+  __typename?: 'StartPage';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  blocks?: Maybe<Array<Maybe<_IContent>>>;
+  keywords?: Maybe<Scalars['String']['output']>;
+  shortDescription?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -6767,45 +8771,27 @@ export type StartPage_linkArgs = {
 
 export type StartPageAutocomplete = {
   __typename?: 'StartPageAutocomplete';
-  FooterNavigationContentArea?: Maybe<_IContentAutocomplete>;
-  FooterNavigationSubLinks?: Maybe<LinkAutocomplete>;
-  HomePageHeroContentArea?: Maybe<_IContentAutocomplete>;
-  HomePageMainContentArea?: Maybe<_IContentAutocomplete>;
-  MainNavigationContentArea?: Maybe<_IContentAutocomplete>;
-  SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
-  SiteImageLogo?: Maybe<ContentReferenceAutocomplete>;
-  UtilityNavigationContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
+  blocks?: Maybe<_IContentAutocomplete>;
 };
 
 export type StartPageFacet = {
   __typename?: 'StartPageFacet';
-  FooterNavigationContentArea?: Maybe<_IContentFacet>;
-  FooterNavigationSubLinks?: Maybe<LinkFacet>;
-  HomePageHeroContentArea?: Maybe<_IContentFacet>;
-  HomePageMainContentArea?: Maybe<_IContentFacet>;
-  MainNavigationContentArea?: Maybe<_IContentFacet>;
-  SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
-  SiteImageLogo?: Maybe<ContentReferenceFacet>;
-  UtilityNavigationContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
+  blocks?: Maybe<_IContentFacet>;
 };
 
 export type StartPageOrderByInput = {
-  FooterNavigationContentArea?: InputMaybe<_IContentOrderByInput>;
-  FooterNavigationSubLinks?: InputMaybe<LinkOrderByInput>;
-  HomePageHeroContentArea?: InputMaybe<_IContentOrderByInput>;
-  HomePageMainContentArea?: InputMaybe<_IContentOrderByInput>;
-  MainNavigationContentArea?: InputMaybe<_IContentOrderByInput>;
-  SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
-  SiteImageLogo?: InputMaybe<ContentReferenceOrderByInput>;
-  UtilityNavigationContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
   _ranking?: InputMaybe<Ranking>;
   /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
   _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  blocks?: InputMaybe<_IContentOrderByInput>;
 };
 
 export type StartPageOutput = {
@@ -6824,20 +8810,89 @@ export type StartPageOutputtotalArgs = {
 };
 
 export type StartPageWhereInput = {
-  FooterNavigationContentArea?: InputMaybe<_IContentWhereInput>;
-  FooterNavigationSubLinks?: InputMaybe<LinkWhereInput>;
-  HomePageHeroContentArea?: InputMaybe<_IContentWhereInput>;
-  HomePageMainContentArea?: InputMaybe<_IContentWhereInput>;
-  MainNavigationContentArea?: InputMaybe<_IContentWhereInput>;
-  SeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
-  SiteImageLogo?: InputMaybe<ContentReferenceWhereInput>;
-  UtilityNavigationContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<StartPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<StartPageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<StartPageWhereInput>>>;
+  blocks?: InputMaybe<_IContentWhereInput>;
+};
+
+export type StoryBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'StoryBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  highlights?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  story?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type StoryBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type StoryBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type StoryBlockAutocomplete = {
+  __typename?: 'StoryBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type StoryBlockFacet = {
+  __typename?: 'StoryBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type StoryBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type StoryBlockOutput = {
+  __typename?: 'StoryBlockOutput';
+  autocomplete?: Maybe<StoryBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<StoryBlockFacet>;
+  item?: Maybe<StoryBlock>;
+  items?: Maybe<Array<Maybe<StoryBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type StoryBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type StoryBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<StoryBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<StoryBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<StoryBlockWhereInput>>>;
 };
 
 export type StringFacet = {
@@ -6878,13 +8933,15 @@ export enum SynonymSlot {
   TWO = 'TWO'
 }
 
-export type SysContentFolder = IData & _IContent & _IFolder & {
+export type SysContentFolder = IData & _IContent & _IFolder & _IItem & {
   __typename?: 'SysContentFolder';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -6904,15 +8961,18 @@ export type SysContentFolder_linkArgs = {
 
 export type SysContentFolderAutocomplete = {
   __typename?: 'SysContentFolderAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type SysContentFolderFacet = {
   __typename?: 'SysContentFolderFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type SysContentFolderOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6939,19 +8999,22 @@ export type SysContentFolderOutputtotalArgs = {
 export type SysContentFolderWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
 };
 
-export type TestimonialElement = IData & _IComponent & _IContent & {
+export type TestimonialElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'TestimonialElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -6976,6 +9039,7 @@ export type TestimonialElement_linkArgs = {
 
 export type TestimonialElementAutocomplete = {
   __typename?: 'TestimonialElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   customerImage?: Maybe<ContentReferenceAutocomplete>;
   referenceText?: Maybe<RichTextAutocomplete>;
@@ -6983,12 +9047,14 @@ export type TestimonialElementAutocomplete = {
 
 export type TestimonialElementFacet = {
   __typename?: 'TestimonialElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   customerImage?: Maybe<ContentReferenceFacet>;
   referenceText?: Maybe<RichTextFacet>;
 };
 
 export type TestimonialElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7017,6 +9083,7 @@ export type TestimonialElementOutputtotalArgs = {
 export type TestimonialElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<TestimonialElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<TestimonialElementWhereInput>>>;
@@ -7025,7 +9092,240 @@ export type TestimonialElementWhereInput = {
   referenceText?: InputMaybe<RichTextWhereInput>;
 };
 
-export type TextBlock = IData & _IComponent & _IContent & {
+export type TestimonialItem = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'TestimonialItem';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  avatarSrc?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+  fullName?: Maybe<Scalars['String']['output']>;
+  position?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type TestimonialItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type TestimonialItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type TestimonialItemAutocomplete = {
+  __typename?: 'TestimonialItemAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type TestimonialItemBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'TestimonialItemBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  avatarSrc?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+  fullName?: Maybe<Scalars['String']['output']>;
+  position?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type TestimonialItemBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type TestimonialItemBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type TestimonialItemBlockAutocomplete = {
+  __typename?: 'TestimonialItemBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type TestimonialItemBlockFacet = {
+  __typename?: 'TestimonialItemBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type TestimonialItemBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type TestimonialItemBlockOutput = {
+  __typename?: 'TestimonialItemBlockOutput';
+  autocomplete?: Maybe<TestimonialItemBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<TestimonialItemBlockFacet>;
+  item?: Maybe<TestimonialItemBlock>;
+  items?: Maybe<Array<Maybe<TestimonialItemBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type TestimonialItemBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TestimonialItemBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<TestimonialItemBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<TestimonialItemBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<TestimonialItemBlockWhereInput>>>;
+};
+
+export type TestimonialItemFacet = {
+  __typename?: 'TestimonialItemFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type TestimonialItemOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type TestimonialItemOutput = {
+  __typename?: 'TestimonialItemOutput';
+  autocomplete?: Maybe<TestimonialItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<TestimonialItemFacet>;
+  item?: Maybe<TestimonialItem>;
+  items?: Maybe<Array<Maybe<TestimonialItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type TestimonialItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TestimonialItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<TestimonialItemWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<TestimonialItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<TestimonialItemWhereInput>>>;
+};
+
+export type TestimonialsBlock = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'TestimonialsBlock';
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+  testimonials?: Maybe<Array<Maybe<_IContent>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type TestimonialsBlock_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type TestimonialsBlock_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type TestimonialsBlockAutocomplete = {
+  __typename?: 'TestimonialsBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+  testimonials?: Maybe<_IContentAutocomplete>;
+};
+
+export type TestimonialsBlockFacet = {
+  __typename?: 'TestimonialsBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+  testimonials?: Maybe<_IContentFacet>;
+};
+
+export type TestimonialsBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+  testimonials?: InputMaybe<_IContentOrderByInput>;
+};
+
+export type TestimonialsBlockOutput = {
+  __typename?: 'TestimonialsBlockOutput';
+  autocomplete?: Maybe<TestimonialsBlockAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<TestimonialsBlockFacet>;
+  item?: Maybe<TestimonialsBlock>;
+  items?: Maybe<Array<Maybe<TestimonialsBlock>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type TestimonialsBlockOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TestimonialsBlockWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<TestimonialsBlockWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<TestimonialsBlockWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<TestimonialsBlockWhereInput>>>;
+  testimonials?: InputMaybe<_IContentWhereInput>;
+};
+
+export type TextBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'TextBlock';
   TextBlockDescription?: Maybe<RichText>;
   TextBlockHeading?: Maybe<Scalars['String']['output']>;
@@ -7039,6 +9339,8 @@ export type TextBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7059,17 +9361,20 @@ export type TextBlock_linkArgs = {
 export type TextBlockAutocomplete = {
   __typename?: 'TextBlockAutocomplete';
   TextBlockDescription?: Maybe<RichTextAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type TextBlockFacet = {
   __typename?: 'TextBlockFacet';
   TextBlockDescription?: Maybe<RichTextFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type TextBlockOrderByInput = {
   TextBlockDescription?: InputMaybe<RichTextOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7097,6 +9402,7 @@ export type TextBlockWhereInput = {
   TextBlockDescription?: InputMaybe<RichTextWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
@@ -7115,13 +9421,16 @@ export type VariationInput = {
   value?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type Video = IData & _IContent & _IMedia & _IVideo & {
+export type Video = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
   __typename?: 'Video';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7141,16 +9450,20 @@ export type Video_linkArgs = {
 
 export type VideoAutocomplete = {
   __typename?: 'VideoAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
-export type VideoElement = IData & _IComponent & _IContent & {
+export type VideoElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'VideoElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7173,6 +9486,7 @@ export type VideoElement_linkArgs = {
 
 export type VideoElementAutocomplete = {
   __typename?: 'VideoElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   placeholder?: Maybe<ContentReferenceAutocomplete>;
   video?: Maybe<ContentReferenceAutocomplete>;
@@ -7180,12 +9494,14 @@ export type VideoElementAutocomplete = {
 
 export type VideoElementFacet = {
   __typename?: 'VideoElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   placeholder?: Maybe<ContentReferenceFacet>;
   video?: Maybe<ContentReferenceFacet>;
 };
 
 export type VideoElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7214,6 +9530,7 @@ export type VideoElementOutputtotalArgs = {
 export type VideoElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<VideoElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<VideoElementWhereInput>>>;
@@ -7224,16 +9541,21 @@ export type VideoElementWhereInput = {
 
 export type VideoFacet = {
   __typename?: 'VideoFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
-export type VideoMedia = IData & _IContent & _IMedia & _IVideo & {
+export type VideoMedia = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
   __typename?: 'VideoMedia';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7253,15 +9575,21 @@ export type VideoMedia_linkArgs = {
 
 export type VideoMediaAutocomplete = {
   __typename?: 'VideoMediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type VideoMediaFacet = {
   __typename?: 'VideoMediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type VideoMediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7287,7 +9615,9 @@ export type VideoMediaOutputtotalArgs = {
 
 export type VideoMediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<VideoMediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<VideoMediaWhereInput>>>;
@@ -7295,6 +9625,8 @@ export type VideoMediaWhereInput = {
 };
 
 export type VideoOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7320,20 +9652,267 @@ export type VideoOutputtotalArgs = {
 
 export type VideoWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<VideoWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<VideoWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<VideoWhereInput>>>;
 };
 
-export type _Component = IData & _IComponent & _IContent & {
+export type WebsiteFooter = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'WebsiteFooter';
+  FooterFirstLinkList?: Maybe<NavigationMenuBlockProperty>;
+  FooterLegalLinks?: Maybe<Array<Maybe<Link>>>;
+  FooterLogo?: Maybe<ContentReference>;
+  FooterLogoAltText?: Maybe<Scalars['String']['output']>;
+  FooterMainOfficeLocation?: Maybe<Array<Maybe<_IContent>>>;
+  FooterSecondLinkList?: Maybe<NavigationMenuBlockProperty>;
+  FooterThirdLinkList?: Maybe<NavigationMenuBlockProperty>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type WebsiteFooter_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type WebsiteFooter_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type WebsiteFooterAutocomplete = {
+  __typename?: 'WebsiteFooterAutocomplete';
+  FooterLegalLinks?: Maybe<LinkAutocomplete>;
+  FooterLogo?: Maybe<ContentReferenceAutocomplete>;
+  FooterMainOfficeLocation?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type WebsiteFooterFacet = {
+  __typename?: 'WebsiteFooterFacet';
+  FooterFirstLinkList?: Maybe<NavigationMenuBlockPropertyFacet>;
+  FooterLegalLinks?: Maybe<LinkFacet>;
+  FooterLogo?: Maybe<ContentReferenceFacet>;
+  FooterMainOfficeLocation?: Maybe<_IContentFacet>;
+  FooterSecondLinkList?: Maybe<NavigationMenuBlockPropertyFacet>;
+  FooterThirdLinkList?: Maybe<NavigationMenuBlockPropertyFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type WebsiteFooterOrderByInput = {
+  FooterFirstLinkList?: InputMaybe<NavigationMenuBlockPropertyOrderByInput>;
+  FooterLegalLinks?: InputMaybe<LinkOrderByInput>;
+  FooterLogo?: InputMaybe<ContentReferenceOrderByInput>;
+  FooterMainOfficeLocation?: InputMaybe<_IContentOrderByInput>;
+  FooterSecondLinkList?: InputMaybe<NavigationMenuBlockPropertyOrderByInput>;
+  FooterThirdLinkList?: InputMaybe<NavigationMenuBlockPropertyOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type WebsiteFooterOutput = {
+  __typename?: 'WebsiteFooterOutput';
+  autocomplete?: Maybe<WebsiteFooterAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<WebsiteFooterFacet>;
+  item?: Maybe<WebsiteFooter>;
+  items?: Maybe<Array<Maybe<WebsiteFooter>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type WebsiteFooterOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type WebsiteFooterWhereInput = {
+  FooterFirstLinkList?: InputMaybe<NavigationMenuBlockPropertyWhereInput>;
+  FooterLegalLinks?: InputMaybe<LinkWhereInput>;
+  FooterLogo?: InputMaybe<ContentReferenceWhereInput>;
+  FooterMainOfficeLocation?: InputMaybe<_IContentWhereInput>;
+  FooterSecondLinkList?: InputMaybe<NavigationMenuBlockPropertyWhereInput>;
+  FooterThirdLinkList?: InputMaybe<NavigationMenuBlockPropertyWhereInput>;
+  _and?: InputMaybe<Array<InputMaybe<WebsiteFooterWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<WebsiteFooterWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<WebsiteFooterWhereInput>>>;
+};
+
+export type _AssetItem = IData & _IAssetItem & _IItem & {
+  __typename?: '_AssetItem';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _AssetItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _AssetItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _AssetItemAutocomplete = {
+  __typename?: '_AssetItemAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+};
+
+export type _AssetItemFacet = {
+  __typename?: '_AssetItemFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+};
+
+export type _AssetItemOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type _AssetItemOutput = {
+  __typename?: '_AssetItemOutput';
+  autocomplete?: Maybe<_AssetItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<_AssetItemFacet>;
+  item?: Maybe<_IAssetItem>;
+  items?: Maybe<Array<Maybe<_IAssetItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type _AssetItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type _AssetItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<_AssetItemWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<_AssetItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<_AssetItemWhereInput>>>;
+};
+
+export type _AssetMetadata = {
+  __typename?: '_AssetMetadata';
+  fileSize?: Maybe<Scalars['Float']['output']>;
+  mimeType?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type _AssetMetadataAutocomplete = {
+  __typename?: '_AssetMetadataAutocomplete';
+  mimeType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  url?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type _AssetMetadataAutocompletemimeTypeArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type _AssetMetadataAutocompleteurlArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type _AssetMetadataFacet = {
+  __typename?: '_AssetMetadataFacet';
+  fileSize?: Maybe<Array<Maybe<NumberFacet>>>;
+  mimeType?: Maybe<Array<Maybe<StringFacet>>>;
+  url?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type _AssetMetadataFacetfileSizeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
+};
+
+
+export type _AssetMetadataFacetmimeTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type _AssetMetadataFaceturlArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type _AssetMetadataOrderByInput = {
+  fileSize?: InputMaybe<OrderBy>;
+  mimeType?: InputMaybe<OrderBy>;
+  url?: InputMaybe<OrderBy>;
+};
+
+export type _AssetMetadataWhereInput = {
+  fileSize?: InputMaybe<FloatFilterInput>;
+  mimeType?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type _Component = IData & _IComponent & _IContent & _IItem & {
   __typename?: '_Component';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7353,15 +9932,18 @@ export type _Component_linkArgs = {
 
 export type _ComponentAutocomplete = {
   __typename?: '_ComponentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _ComponentFacet = {
   __typename?: '_ComponentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _ComponentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7388,19 +9970,22 @@ export type _ComponentOutputtotalArgs = {
 export type _ComponentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ComponentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ComponentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ComponentWhereInput>>>;
 };
 
-export type _Content = IData & _IContent & {
+export type _Content = IData & _IContent & _IItem & {
   __typename?: '_Content';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7420,15 +10005,18 @@ export type _Content_linkArgs = {
 
 export type _ContentAutocomplete = {
   __typename?: '_ContentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _ContentFacet = {
   __typename?: '_ContentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _ContentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7455,19 +10043,22 @@ export type _ContentOutputtotalArgs = {
 export type _ContentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ContentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ContentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ContentWhereInput>>>;
 };
 
-export type _Experience = IData & _IContent & _IExperience & _IPage & {
+export type _Experience = IData & _IContent & _IExperience & _IItem & _IPage & {
   __typename?: '_Experience';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7488,17 +10079,20 @@ export type _Experience_linkArgs = {
 
 export type _ExperienceAutocomplete = {
   __typename?: '_ExperienceAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type _ExperienceFacet = {
   __typename?: '_ExperienceFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type _ExperienceOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7526,6 +10120,7 @@ export type _ExperienceOutputtotalArgs = {
 export type _ExperienceWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ExperienceWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ExperienceWhereInput>>>;
@@ -7533,13 +10128,15 @@ export type _ExperienceWhereInput = {
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type _Folder = IData & _IContent & _IFolder & {
+export type _Folder = IData & _IContent & _IFolder & _IItem & {
   __typename?: '_Folder';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7559,15 +10156,18 @@ export type _Folder_linkArgs = {
 
 export type _FolderAutocomplete = {
   __typename?: '_FolderAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _FolderFacet = {
   __typename?: '_FolderFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _FolderOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7594,10 +10194,36 @@ export type _FolderOutputtotalArgs = {
 export type _FolderWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_FolderWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_FolderWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_FolderWhereInput>>>;
+};
+
+export type _IAssetItem = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _IAssetItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _IAssetItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
 };
 
 export type _IComponent = {
@@ -7606,6 +10232,8 @@ export type _IComponent = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7625,10 +10253,12 @@ export type _IComponent_linkArgs = {
 
 export type _IComponentFacet = {
   __typename?: '_IComponentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _IComponentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7640,6 +10270,7 @@ export type _IComponentOrderByInput = {
 export type _IComponentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_IComponentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_IComponentWhereInput>>>;
@@ -7652,6 +10283,8 @@ export type _IContent = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7671,15 +10304,18 @@ export type _IContent_linkArgs = {
 
 export type _IContentAutocomplete = {
   __typename?: '_IContentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _IContentFacet = {
   __typename?: '_IContentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _IContentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7691,6 +10327,7 @@ export type _IContentOrderByInput = {
 export type _IContentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_IContentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_IContentWhereInput>>>;
@@ -7703,6 +10340,8 @@ export type _IExperience = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7727,6 +10366,8 @@ export type _IFolder = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7745,11 +10386,15 @@ export type _IFolder_linkArgs = {
 };
 
 export type _IImage = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7767,12 +10412,65 @@ export type _IImage_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
-export type _IMedia = {
+export type _IImageItem = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _IImageItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _IImageItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _IItem = {
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _IItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _IItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _IMedia = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7796,6 +10494,8 @@ export type _IPage = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7819,6 +10519,8 @@ export type _ISection = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7838,11 +10540,14 @@ export type _ISection_linkArgs = {
 };
 
 export type _IVideo = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7860,13 +10565,17 @@ export type _IVideo_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
-export type _Image = IData & _IContent & _IImage & _IMedia & {
+export type _Image = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
   __typename?: '_Image';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7886,15 +10595,140 @@ export type _Image_linkArgs = {
 
 export type _ImageAutocomplete = {
   __typename?: '_ImageAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _ImageFacet = {
   __typename?: '_ImageFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+export type _ImageItem = IData & _IAssetItem & _IImageItem & _IItem & {
+  __typename?: '_ImageItem';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _ImageItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _ImageItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _ImageItemAutocomplete = {
+  __typename?: '_ImageItemAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+};
+
+export type _ImageItemFacet = {
+  __typename?: '_ImageItemFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+};
+
+export type _ImageItemOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type _ImageItemOutput = {
+  __typename?: '_ImageItemOutput';
+  autocomplete?: Maybe<_ImageItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<_ImageItemFacet>;
+  item?: Maybe<_IImageItem>;
+  items?: Maybe<Array<Maybe<_IImageItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type _ImageItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type _ImageItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<_ImageItemWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<_ImageItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<_ImageItemWhereInput>>>;
+};
+
+export type _ImageMetadata = {
+  __typename?: '_ImageMetadata';
+  height?: Maybe<Scalars['Int']['output']>;
+  width?: Maybe<Scalars['Int']['output']>;
+};
+
+export type _ImageMetadataFacet = {
+  __typename?: '_ImageMetadataFacet';
+  height?: Maybe<Array<Maybe<NumberFacet>>>;
+  width?: Maybe<Array<Maybe<NumberFacet>>>;
+};
+
+
+export type _ImageMetadataFacetheightArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
+};
+
+
+export type _ImageMetadataFacetwidthArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
+};
+
+export type _ImageMetadataOrderByInput = {
+  height?: InputMaybe<OrderBy>;
+  width?: InputMaybe<OrderBy>;
+};
+
+export type _ImageMetadataWhereInput = {
+  height?: InputMaybe<IntFilterInput>;
+  width?: InputMaybe<IntFilterInput>;
+};
+
 export type _ImageOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7920,20 +10754,94 @@ export type _ImageOutputtotalArgs = {
 
 export type _ImageWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ImageWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ImageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ImageWhereInput>>>;
 };
 
-export type _Media = IData & _IContent & _IMedia & {
-  __typename?: '_Media';
+export type _Item = IData & _IItem & {
+  __typename?: '_Item';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _Item_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _Item_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _ItemAutocomplete = {
+  __typename?: '_ItemAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+};
+
+export type _ItemFacet = {
+  __typename?: '_ItemFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+};
+
+export type _ItemOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type _ItemOutput = {
+  __typename?: '_ItemOutput';
+  autocomplete?: Maybe<_ItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<_ItemFacet>;
+  item?: Maybe<_IItem>;
+  items?: Maybe<Array<Maybe<_IItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type _ItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type _ItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<_ItemWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<_ItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<_ItemWhereInput>>>;
+};
+
+export type _Media = IData & _IAssetItem & _IContent & _IItem & _IMedia & {
+  __typename?: '_Media';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -7953,15 +10861,21 @@ export type _Media_linkArgs = {
 
 export type _MediaAutocomplete = {
   __typename?: '_MediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _MediaFacet = {
   __typename?: '_MediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _MediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7987,20 +10901,107 @@ export type _MediaOutputtotalArgs = {
 
 export type _MediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_MediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_MediaWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_MediaWhereInput>>>;
 };
 
-export type _Page = IData & _IContent & _IPage & {
+export type _Metadata = {
+  __typename?: '_Metadata';
+  displayName?: Maybe<Scalars['String']['output']>;
+  key?: Maybe<Scalars['String']['output']>;
+  lastModified?: Maybe<Scalars['DateTime']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _MetadatadisplayNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+export type _MetadataAutocomplete = {
+  __typename?: '_MetadataAutocomplete';
+  key?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  type?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type _MetadataAutocompletekeyArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type _MetadataAutocompletetypeArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type _MetadataFacet = {
+  __typename?: '_MetadataFacet';
+  displayName?: Maybe<Array<Maybe<StringFacet>>>;
+  key?: Maybe<Array<Maybe<StringFacet>>>;
+  lastModified?: Maybe<Array<Maybe<DateFacet>>>;
+  type?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type _MetadataFacetdisplayNameArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type _MetadataFacetkeyArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type _MetadataFacetlastModifiedArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type _MetadataFacettypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type _MetadataOrderByInput = {
+  displayName?: InputMaybe<OrderBy>;
+  key?: InputMaybe<OrderBy>;
+  lastModified?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
+
+export type _MetadataWhereInput = {
+  displayName?: InputMaybe<SearchableStringFilterInput>;
+  key?: InputMaybe<StringFilterInput>;
+  lastModified?: InputMaybe<DateFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+};
+
+export type _Page = IData & _IContent & _IItem & _IPage & {
   __typename?: '_Page';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -8020,15 +11021,18 @@ export type _Page_linkArgs = {
 
 export type _PageAutocomplete = {
   __typename?: '_PageAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _PageFacet = {
   __typename?: '_PageFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _PageOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -8055,19 +11059,22 @@ export type _PageOutputtotalArgs = {
 export type _PageWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_PageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_PageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_PageWhereInput>>>;
 };
 
-export type _Section = IData & _IComponent & _IContent & _ISection & {
+export type _Section = IData & _IComponent & _IContent & _IItem & _ISection & {
   __typename?: '_Section';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -8088,17 +11095,20 @@ export type _Section_linkArgs = {
 
 export type _SectionAutocomplete = {
   __typename?: '_SectionAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type _SectionFacet = {
   __typename?: '_SectionFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type _SectionOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -8126,6 +11136,7 @@ export type _SectionOutputtotalArgs = {
 export type _SectionWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_SectionWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_SectionWhereInput>>>;
@@ -8133,13 +11144,16 @@ export type _SectionWhereInput = {
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type _Video = IData & _IContent & _IMedia & _IVideo & {
+export type _Video = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
   __typename?: '_Video';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
@@ -8159,15 +11173,21 @@ export type _Video_linkArgs = {
 
 export type _VideoAutocomplete = {
   __typename?: '_VideoAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _VideoFacet = {
   __typename?: '_VideoFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _VideoOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -8193,7 +11213,9 @@ export type _VideoOutputtotalArgs = {
 
 export type _VideoWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_VideoWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_VideoWhereInput>>>;
@@ -8206,7 +11228,7 @@ export enum system_Locales {
 }
 
 export type usePinnedInput = {
-  collectionId?: InputMaybe<Scalars['String']['input']>;
+  collectionId?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   phrase?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -8444,17 +11466,26 @@ export type CTAElementDataFragment = { __typename?: 'CTAElement', cta_text?: str
   ) | null } & { ' $fragmentName'?: 'CTAElementDataFragment' };
 
 export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', CarouselItemsContentArea?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticleGroupPage_Fragment': IContentListItem_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ArticleListElement_Fragment': IContentListItem_ArticleListElement_Fragment;'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticlePage_Fragment': IContentListItem_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_AvailabilityBlock_Fragment': IContentListItem_AvailabilityBlock_Fragment;'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_BannerBlock_Fragment': IContentListItem_BannerBlock_Fragment;'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankExperience_Fragment': IContentListItem_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankSection_Fragment': IContentListItem_BlankSection_Fragment;'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_BlogListingBlock_Fragment': IContentListItem_BlogListingBlock_Fragment;'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlogPostPage_Fragment': IContentListItem_BlogPostPage_Fragment } }
@@ -8465,6 +11496,9 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ButtonBlock_Fragment': IContentListItem_ButtonBlock_Fragment;'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_CMSPage_Fragment': IContentListItem_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CTAElement_Fragment': IContentListItem_CTAElement_Fragment;'BlockData_CTAElement_Fragment': BlockData_CTAElement_Fragment;'CTAElementDataFragment': CTAElementDataFragment } }
   ) | (
@@ -8474,8 +11508,8 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CarouselBlock_Fragment': IContentListItem_CarouselBlock_Fragment;'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsBlock_Fragment': IContentListItem_ContentRecsBlock_Fragment;'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ContactBlock_Fragment': IContentListItem_ContactBlock_Fragment;'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsElement_Fragment': IContentListItem_ContentRecsElement_Fragment;'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
@@ -8483,20 +11517,44 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContinueReadingComponent_Fragment': IContentListItem_ContinueReadingComponent_Fragment;'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultImage_Fragment': IContentListItem_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultVideo_Fragment': IContentListItem_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Dictionary_Fragment': IContentListItem_Dictionary_Fragment;'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DictionaryItem_Fragment': IContentListItem_DictionaryItem_Fragment;'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Footer_Fragment': IContentListItem_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_FooterColumn_Fragment': IContentListItem_FooterColumn_Fragment;'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia_Fragment': IContentListItem_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia123_Fragment': IContentListItem_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Header_Fragment': IContentListItem_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_HeaderBlock_Fragment': IContentListItem_HeaderBlock_Fragment;'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeadingElement_Fragment': IContentListItem_HeadingElement_Fragment;'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Hero_Fragment': IContentListItem_Hero_Fragment;'BlockData_Hero_Fragment': BlockData_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeroBlock_Fragment': IContentListItem_HeroBlock_Fragment;'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HomePageHeroBlock_Fragment': IContentListItem_HomePageHeroBlock_Fragment;'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HtmlBlock_Fragment': IContentListItem_HtmlBlock_Fragment;'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentListItem_Image_Fragment': IContentListItem_Image_Fragment } }
@@ -8510,11 +11568,14 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LandingPage_Fragment': IContentListItem_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_LayoutContainerBlock_Fragment': IContentListItem_LayoutContainerBlock_Fragment;'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LayoutSettingsBlock_Fragment': IContentListItem_LayoutSettingsBlock_Fragment;'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogoItemBlock_Fragment': IContentListItem_LogoItemBlock_Fragment;'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogosBlock_Fragment': IContentListItem_LogosBlock_Fragment;'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MegaMenuGroupBlock_Fragment': IContentListItem_MegaMenuGroupBlock_Fragment;'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -8522,38 +11583,17 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MenuNavigationBlock_Fragment': IContentListItem_MenuNavigationBlock_Fragment;'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavItem_Fragment': IContentListItem_NavItem_Fragment;'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavigationMenuBlock_Fragment': IContentListItem_NavigationMenuBlock_Fragment;'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OdpEmbedBlock_Fragment': IContentListItem_OdpEmbedBlock_Fragment;'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsRangeElement_Fragment': IContentListItem_OptiFormsRangeElement_Fragment;'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsResetElement_Fragment': IContentListItem_OptiFormsResetElement_Fragment;'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSelectionElement_Fragment': IContentListItem_OptiFormsSelectionElement_Fragment;'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSubmitElement_Fragment': IContentListItem_OptiFormsSubmitElement_Fragment;'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextareaElement_Fragment': IContentListItem_OptiFormsTextareaElement_Fragment;'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextboxElement_Fragment': IContentListItem_OptiFormsTextboxElement_Fragment;'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsUrlElement_Fragment': IContentListItem_OptiFormsUrlElement_Fragment;'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OfficeLocation_Fragment': IContentListItem_OfficeLocation_Fragment;'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentListItem_PageSeoSettings_Fragment': IContentListItem_PageSeoSettings_Fragment;'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -8561,23 +11601,56 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ParagraphElement_Fragment': IContentListItem_ParagraphElement_Fragment;'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioGridBlock_Fragment': IContentListItem_PortfolioGridBlock_Fragment;'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioItemBlock_Fragment': IContentListItem_PortfolioItemBlock_Fragment;'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProductPage_Fragment': IContentListItem_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProfileBlock_Fragment': IContentListItem_ProfileBlock_Fragment;'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_QuoteBlock_Fragment': IContentListItem_QuoteBlock_Fragment;'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_RichTextElement_Fragment': IContentListItem_RichTextElement_Fragment;'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_StandardPage_Fragment': IContentListItem_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SEOExperience_Fragment': IContentListItem_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServiceItem_Fragment': IContentListItem_ServiceItem_Fragment;'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServicesBlock_Fragment': IContentListItem_ServicesBlock_Fragment;'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SocialLink_Fragment': IContentListItem_SocialLink_Fragment;'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_StartPage_Fragment': IContentListItem_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_StoryBlock_Fragment': IContentListItem_StoryBlock_Fragment;'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentListItem_SysContentFolder_Fragment': IContentListItem_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialElement_Fragment': IContentListItem_TestimonialElement_Fragment;'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItem_Fragment': IContentListItem_TestimonialItem_Fragment;'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItemBlock_Fragment': IContentListItem_TestimonialItemBlock_Fragment;'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialsBlock_Fragment': IContentListItem_TestimonialsBlock_Fragment;'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TextBlock_Fragment': IContentListItem_TextBlock_Fragment;'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
@@ -8590,6 +11663,9 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_VideoMedia_Fragment': IContentListItem_VideoMedia_Fragment;'VideoMediaComponentDataFragment': VideoMediaComponentDataFragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_WebsiteFooter_Fragment': IContentListItem_WebsiteFooter_Fragment;'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Component_Fragment': IContentListItem__Component_Fragment;'BlockData__Component_Fragment': BlockData__Component_Fragment } }
@@ -8622,17 +11698,26 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
 export type ContentRecsElementDataFragment = { __typename?: 'ContentRecsElement', ElementDeliveryApiKey?: string | null, ElementRecommendationCount?: number | null } & { ' $fragmentName'?: 'ContentRecsElementDataFragment' };
 
 export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadingComponent', topline?: string | null, shared?: boolean | null, heading?: string | null, content?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment;'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment;'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment;'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment;'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment;'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
@@ -8643,6 +11728,9 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment;'BlockData_CTAElement_Fragment': BlockData_CTAElement_Fragment;'CTAElementDataFragment': CTAElementDataFragment } }
   ) | (
@@ -8652,8 +11740,8 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment;'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment;'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment;'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment;'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
@@ -8661,20 +11749,44 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment;'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment;'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment;'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment;'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment;'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment;'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment;'BlockData_Hero_Fragment': BlockData_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment;'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment;'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment;'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment } }
@@ -8688,11 +11800,14 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment;'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment;'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment;'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment;'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment;'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -8700,38 +11815,17 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment;'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment;'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment;'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment;'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment;'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment;'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment;'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment;'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment;'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment;'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment;'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment;'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment;'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -8739,23 +11833,56 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment;'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment;'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment;'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment;'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment;'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment;'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment;'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment;'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment;'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment;'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment;'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment;'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment;'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment;'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment;'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
@@ -8768,6 +11895,9 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment;'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment;'BlockData__Component_Fragment': BlockData__Component_Fragment } }
@@ -8823,17 +11953,26 @@ export type ImageElementDataFragment = { __typename?: 'ImageElement', altText?: 
   ) | null } & { ' $fragmentName'?: 'ImageElementDataFragment' };
 
 export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBlock', contactInfoHeading?: string | null, copyright?: string | null, appIdentifiers?: string | null, mainMenu?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticleGroupPage_Fragment': IContentListItem_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ArticleListElement_Fragment': IContentListItem_ArticleListElement_Fragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticlePage_Fragment': IContentListItem_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_AvailabilityBlock_Fragment': IContentListItem_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_BannerBlock_Fragment': IContentListItem_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankExperience_Fragment': IContentListItem_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankSection_Fragment': IContentListItem_BlankSection_Fragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_BlogListingBlock_Fragment': IContentListItem_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlogPostPage_Fragment': IContentListItem_BlogPostPage_Fragment } }
@@ -8844,6 +11983,9 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ButtonBlock_Fragment': IContentListItem_ButtonBlock_Fragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_CMSPage_Fragment': IContentListItem_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CTAElement_Fragment': IContentListItem_CTAElement_Fragment } }
   ) | (
@@ -8853,8 +11995,8 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CarouselBlock_Fragment': IContentListItem_CarouselBlock_Fragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsBlock_Fragment': IContentListItem_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ContactBlock_Fragment': IContentListItem_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsElement_Fragment': IContentListItem_ContentRecsElement_Fragment } }
@@ -8862,20 +12004,44 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContinueReadingComponent_Fragment': IContentListItem_ContinueReadingComponent_Fragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultImage_Fragment': IContentListItem_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultVideo_Fragment': IContentListItem_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Dictionary_Fragment': IContentListItem_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DictionaryItem_Fragment': IContentListItem_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Footer_Fragment': IContentListItem_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_FooterColumn_Fragment': IContentListItem_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia_Fragment': IContentListItem_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia123_Fragment': IContentListItem_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Header_Fragment': IContentListItem_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_HeaderBlock_Fragment': IContentListItem_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeadingElement_Fragment': IContentListItem_HeadingElement_Fragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Hero_Fragment': IContentListItem_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeroBlock_Fragment': IContentListItem_HeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HomePageHeroBlock_Fragment': IContentListItem_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HtmlBlock_Fragment': IContentListItem_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentListItem_Image_Fragment': IContentListItem_Image_Fragment } }
@@ -8889,11 +12055,14 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LandingPage_Fragment': IContentListItem_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_LayoutContainerBlock_Fragment': IContentListItem_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LayoutSettingsBlock_Fragment': IContentListItem_LayoutSettingsBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogoItemBlock_Fragment': IContentListItem_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogosBlock_Fragment': IContentListItem_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MegaMenuGroupBlock_Fragment': IContentListItem_MegaMenuGroupBlock_Fragment } }
@@ -8901,38 +12070,17 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MenuNavigationBlock_Fragment': IContentListItem_MenuNavigationBlock_Fragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavItem_Fragment': IContentListItem_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavigationMenuBlock_Fragment': IContentListItem_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OdpEmbedBlock_Fragment': IContentListItem_OdpEmbedBlock_Fragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsRangeElement_Fragment': IContentListItem_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsResetElement_Fragment': IContentListItem_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSelectionElement_Fragment': IContentListItem_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSubmitElement_Fragment': IContentListItem_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextareaElement_Fragment': IContentListItem_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextboxElement_Fragment': IContentListItem_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsUrlElement_Fragment': IContentListItem_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OfficeLocation_Fragment': IContentListItem_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentListItem_PageSeoSettings_Fragment': IContentListItem_PageSeoSettings_Fragment } }
@@ -8940,23 +12088,56 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ParagraphElement_Fragment': IContentListItem_ParagraphElement_Fragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioGridBlock_Fragment': IContentListItem_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioItemBlock_Fragment': IContentListItem_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProductPage_Fragment': IContentListItem_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProfileBlock_Fragment': IContentListItem_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_QuoteBlock_Fragment': IContentListItem_QuoteBlock_Fragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_RichTextElement_Fragment': IContentListItem_RichTextElement_Fragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_StandardPage_Fragment': IContentListItem_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SEOExperience_Fragment': IContentListItem_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServiceItem_Fragment': IContentListItem_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServicesBlock_Fragment': IContentListItem_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SocialLink_Fragment': IContentListItem_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_StartPage_Fragment': IContentListItem_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_StoryBlock_Fragment': IContentListItem_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentListItem_SysContentFolder_Fragment': IContentListItem_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialElement_Fragment': IContentListItem_TestimonialElement_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItem_Fragment': IContentListItem_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItemBlock_Fragment': IContentListItem_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialsBlock_Fragment': IContentListItem_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TextBlock_Fragment': IContentListItem_TextBlock_Fragment } }
@@ -8969,6 +12150,9 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_VideoMedia_Fragment': IContentListItem_VideoMedia_Fragment;'VideoMediaComponentDataFragment': VideoMediaComponentDataFragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_WebsiteFooter_Fragment': IContentListItem_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Component_Fragment': IContentListItem__Component_Fragment } }
@@ -8997,17 +12181,26 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: '_Video' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Video_Fragment': IContentListItem__Video_Fragment } }
   ) | null> | null, serviceButtons?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticleGroupPage_Fragment': IContentListItem_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ArticleListElement_Fragment': IContentListItem_ArticleListElement_Fragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticlePage_Fragment': IContentListItem_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_AvailabilityBlock_Fragment': IContentListItem_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_BannerBlock_Fragment': IContentListItem_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankExperience_Fragment': IContentListItem_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankSection_Fragment': IContentListItem_BlankSection_Fragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_BlogListingBlock_Fragment': IContentListItem_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlogPostPage_Fragment': IContentListItem_BlogPostPage_Fragment } }
@@ -9018,6 +12211,9 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ButtonBlock_Fragment': IContentListItem_ButtonBlock_Fragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_CMSPage_Fragment': IContentListItem_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CTAElement_Fragment': IContentListItem_CTAElement_Fragment } }
   ) | (
@@ -9027,8 +12223,8 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CarouselBlock_Fragment': IContentListItem_CarouselBlock_Fragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsBlock_Fragment': IContentListItem_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ContactBlock_Fragment': IContentListItem_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsElement_Fragment': IContentListItem_ContentRecsElement_Fragment } }
@@ -9036,20 +12232,44 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContinueReadingComponent_Fragment': IContentListItem_ContinueReadingComponent_Fragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultImage_Fragment': IContentListItem_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultVideo_Fragment': IContentListItem_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Dictionary_Fragment': IContentListItem_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DictionaryItem_Fragment': IContentListItem_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Footer_Fragment': IContentListItem_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_FooterColumn_Fragment': IContentListItem_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia_Fragment': IContentListItem_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia123_Fragment': IContentListItem_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Header_Fragment': IContentListItem_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_HeaderBlock_Fragment': IContentListItem_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeadingElement_Fragment': IContentListItem_HeadingElement_Fragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Hero_Fragment': IContentListItem_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeroBlock_Fragment': IContentListItem_HeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HomePageHeroBlock_Fragment': IContentListItem_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HtmlBlock_Fragment': IContentListItem_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentListItem_Image_Fragment': IContentListItem_Image_Fragment } }
@@ -9063,11 +12283,14 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LandingPage_Fragment': IContentListItem_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_LayoutContainerBlock_Fragment': IContentListItem_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LayoutSettingsBlock_Fragment': IContentListItem_LayoutSettingsBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogoItemBlock_Fragment': IContentListItem_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogosBlock_Fragment': IContentListItem_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MegaMenuGroupBlock_Fragment': IContentListItem_MegaMenuGroupBlock_Fragment } }
@@ -9075,38 +12298,17 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MenuNavigationBlock_Fragment': IContentListItem_MenuNavigationBlock_Fragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavItem_Fragment': IContentListItem_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavigationMenuBlock_Fragment': IContentListItem_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OdpEmbedBlock_Fragment': IContentListItem_OdpEmbedBlock_Fragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsRangeElement_Fragment': IContentListItem_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsResetElement_Fragment': IContentListItem_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSelectionElement_Fragment': IContentListItem_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSubmitElement_Fragment': IContentListItem_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextareaElement_Fragment': IContentListItem_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextboxElement_Fragment': IContentListItem_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsUrlElement_Fragment': IContentListItem_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OfficeLocation_Fragment': IContentListItem_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentListItem_PageSeoSettings_Fragment': IContentListItem_PageSeoSettings_Fragment } }
@@ -9114,23 +12316,56 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ParagraphElement_Fragment': IContentListItem_ParagraphElement_Fragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioGridBlock_Fragment': IContentListItem_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioItemBlock_Fragment': IContentListItem_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProductPage_Fragment': IContentListItem_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProfileBlock_Fragment': IContentListItem_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_QuoteBlock_Fragment': IContentListItem_QuoteBlock_Fragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_RichTextElement_Fragment': IContentListItem_RichTextElement_Fragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_StandardPage_Fragment': IContentListItem_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SEOExperience_Fragment': IContentListItem_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServiceItem_Fragment': IContentListItem_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServicesBlock_Fragment': IContentListItem_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SocialLink_Fragment': IContentListItem_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_StartPage_Fragment': IContentListItem_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_StoryBlock_Fragment': IContentListItem_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentListItem_SysContentFolder_Fragment': IContentListItem_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialElement_Fragment': IContentListItem_TestimonialElement_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItem_Fragment': IContentListItem_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItemBlock_Fragment': IContentListItem_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialsBlock_Fragment': IContentListItem_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TextBlock_Fragment': IContentListItem_TextBlock_Fragment } }
@@ -9143,6 +12378,9 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_VideoMedia_Fragment': IContentListItem_VideoMedia_Fragment;'VideoMediaComponentDataFragment': VideoMediaComponentDataFragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_WebsiteFooter_Fragment': IContentListItem_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Component_Fragment': IContentListItem__Component_Fragment } }
@@ -9171,17 +12409,26 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: '_Video' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Video_Fragment': IContentListItem__Video_Fragment } }
   ) | null> | null, contactInfo?: { __typename?: 'RichText', json?: any | null, html?: string | null } | null, footerMenus?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticleGroupPage_Fragment': IContentListItem_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ArticleListElement_Fragment': IContentListItem_ArticleListElement_Fragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticlePage_Fragment': IContentListItem_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_AvailabilityBlock_Fragment': IContentListItem_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_BannerBlock_Fragment': IContentListItem_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankExperience_Fragment': IContentListItem_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankSection_Fragment': IContentListItem_BlankSection_Fragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_BlogListingBlock_Fragment': IContentListItem_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlogPostPage_Fragment': IContentListItem_BlogPostPage_Fragment } }
@@ -9192,6 +12439,9 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ButtonBlock_Fragment': IContentListItem_ButtonBlock_Fragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_CMSPage_Fragment': IContentListItem_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CTAElement_Fragment': IContentListItem_CTAElement_Fragment } }
   ) | (
@@ -9201,8 +12451,8 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CarouselBlock_Fragment': IContentListItem_CarouselBlock_Fragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsBlock_Fragment': IContentListItem_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ContactBlock_Fragment': IContentListItem_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsElement_Fragment': IContentListItem_ContentRecsElement_Fragment } }
@@ -9210,20 +12460,44 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContinueReadingComponent_Fragment': IContentListItem_ContinueReadingComponent_Fragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultImage_Fragment': IContentListItem_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultVideo_Fragment': IContentListItem_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Dictionary_Fragment': IContentListItem_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DictionaryItem_Fragment': IContentListItem_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Footer_Fragment': IContentListItem_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_FooterColumn_Fragment': IContentListItem_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia_Fragment': IContentListItem_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia123_Fragment': IContentListItem_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Header_Fragment': IContentListItem_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_HeaderBlock_Fragment': IContentListItem_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeadingElement_Fragment': IContentListItem_HeadingElement_Fragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Hero_Fragment': IContentListItem_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeroBlock_Fragment': IContentListItem_HeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HomePageHeroBlock_Fragment': IContentListItem_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HtmlBlock_Fragment': IContentListItem_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentListItem_Image_Fragment': IContentListItem_Image_Fragment } }
@@ -9237,11 +12511,14 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LandingPage_Fragment': IContentListItem_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_LayoutContainerBlock_Fragment': IContentListItem_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LayoutSettingsBlock_Fragment': IContentListItem_LayoutSettingsBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogoItemBlock_Fragment': IContentListItem_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogosBlock_Fragment': IContentListItem_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MegaMenuGroupBlock_Fragment': IContentListItem_MegaMenuGroupBlock_Fragment } }
@@ -9249,38 +12526,17 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MenuNavigationBlock_Fragment': IContentListItem_MenuNavigationBlock_Fragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavItem_Fragment': IContentListItem_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavigationMenuBlock_Fragment': IContentListItem_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OdpEmbedBlock_Fragment': IContentListItem_OdpEmbedBlock_Fragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsRangeElement_Fragment': IContentListItem_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsResetElement_Fragment': IContentListItem_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSelectionElement_Fragment': IContentListItem_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSubmitElement_Fragment': IContentListItem_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextareaElement_Fragment': IContentListItem_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextboxElement_Fragment': IContentListItem_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsUrlElement_Fragment': IContentListItem_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OfficeLocation_Fragment': IContentListItem_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentListItem_PageSeoSettings_Fragment': IContentListItem_PageSeoSettings_Fragment } }
@@ -9288,23 +12544,56 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ParagraphElement_Fragment': IContentListItem_ParagraphElement_Fragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioGridBlock_Fragment': IContentListItem_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioItemBlock_Fragment': IContentListItem_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProductPage_Fragment': IContentListItem_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProfileBlock_Fragment': IContentListItem_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_QuoteBlock_Fragment': IContentListItem_QuoteBlock_Fragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_RichTextElement_Fragment': IContentListItem_RichTextElement_Fragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_StandardPage_Fragment': IContentListItem_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SEOExperience_Fragment': IContentListItem_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServiceItem_Fragment': IContentListItem_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServicesBlock_Fragment': IContentListItem_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SocialLink_Fragment': IContentListItem_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_StartPage_Fragment': IContentListItem_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_StoryBlock_Fragment': IContentListItem_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentListItem_SysContentFolder_Fragment': IContentListItem_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialElement_Fragment': IContentListItem_TestimonialElement_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItem_Fragment': IContentListItem_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItemBlock_Fragment': IContentListItem_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialsBlock_Fragment': IContentListItem_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TextBlock_Fragment': IContentListItem_TextBlock_Fragment } }
@@ -9317,6 +12606,9 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_VideoMedia_Fragment': IContentListItem_VideoMedia_Fragment;'VideoMediaComponentDataFragment': VideoMediaComponentDataFragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_WebsiteFooter_Fragment': IContentListItem_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Component_Fragment': IContentListItem__Component_Fragment } }
@@ -9353,17 +12645,26 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'ContentUrl' }
     & { ' $fragmentRefs'?: { 'LinkDataFragment': LinkDataFragment } }
   ) | null, MegaMenuContentArea?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment;'BlogPostPageMenuBlockFragment': BlogPostPageMenuBlockFragment } }
@@ -9374,6 +12675,9 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
   ) | (
@@ -9383,8 +12687,8 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment } }
@@ -9392,20 +12696,44 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment } }
@@ -9419,11 +12747,14 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment } }
@@ -9431,38 +12762,17 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment } }
@@ -9470,23 +12780,56 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment } }
@@ -9499,6 +12842,9 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment } }
@@ -9663,17 +13009,26 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'ContentReference' }
     & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
   ) | null, blogBody?: { __typename?: 'SearchableRichText', json?: any | null } | null, continueReading?: Array<(
+    { __typename?: 'ArticleGroupPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticleGroupPage_Fragment': IContentListItem_ArticleGroupPage_Fragment } }
+  ) | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ArticleListElement_Fragment': IContentListItem_ArticleListElement_Fragment;'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
+  ) | (
+    { __typename?: 'ArticlePage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ArticlePage_Fragment': IContentListItem_ArticlePage_Fragment } }
+  ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_AvailabilityBlock_Fragment': IContentListItem_AvailabilityBlock_Fragment;'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_BannerBlock_Fragment': IContentListItem_BannerBlock_Fragment;'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment } }
   ) | (
     { __typename?: 'BlankExperience' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankExperience_Fragment': IContentListItem_BlankExperience_Fragment } }
   ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlankSection_Fragment': IContentListItem_BlankSection_Fragment;'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_BlogListingBlock_Fragment': IContentListItem_BlogListingBlock_Fragment;'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'BlogPostPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_BlogPostPage_Fragment': IContentListItem_BlogPostPage_Fragment } }
@@ -9684,6 +13039,9 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ButtonBlock_Fragment': IContentListItem_ButtonBlock_Fragment;'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
   ) | (
+    { __typename?: 'CMSPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_CMSPage_Fragment': IContentListItem_CMSPage_Fragment } }
+  ) | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CTAElement_Fragment': IContentListItem_CTAElement_Fragment;'BlockData_CTAElement_Fragment': BlockData_CTAElement_Fragment;'CTAElementDataFragment': CTAElementDataFragment } }
   ) | (
@@ -9693,8 +13051,8 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_CarouselBlock_Fragment': IContentListItem_CarouselBlock_Fragment;'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsBlock_Fragment': IContentListItem_ContentRecsBlock_Fragment;'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ContactBlock_Fragment': IContentListItem_ContactBlock_Fragment;'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContentRecsElement_Fragment': IContentListItem_ContentRecsElement_Fragment;'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
@@ -9702,20 +13060,44 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ContinueReadingComponent_Fragment': IContentListItem_ContinueReadingComponent_Fragment;'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
   ) | (
+    { __typename?: 'DefaultImage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultImage_Fragment': IContentListItem_DefaultImage_Fragment } }
+  ) | (
+    { __typename?: 'DefaultVideo' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DefaultVideo_Fragment': IContentListItem_DefaultVideo_Fragment } }
+  ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Dictionary_Fragment': IContentListItem_Dictionary_Fragment;'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_DictionaryItem_Fragment': IContentListItem_DictionaryItem_Fragment;'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'Footer' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Footer_Fragment': IContentListItem_Footer_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_FooterColumn_Fragment': IContentListItem_FooterColumn_Fragment;'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment } }
+  ) | (
     { __typename?: 'GenericMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia_Fragment': IContentListItem_GenericMedia_Fragment } }
+  ) | (
+    { __typename?: 'GenericMedia123' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_GenericMedia123_Fragment': IContentListItem_GenericMedia123_Fragment } }
+  ) | (
+    { __typename?: 'Header' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Header_Fragment': IContentListItem_Header_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_HeaderBlock_Fragment': IContentListItem_HeaderBlock_Fragment;'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment } }
   ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeadingElement_Fragment': IContentListItem_HeadingElement_Fragment;'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_Hero_Fragment': IContentListItem_Hero_Fragment;'BlockData_Hero_Fragment': BlockData_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_HeroBlock_Fragment': IContentListItem_HeroBlock_Fragment;'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HomePageHeroBlock_Fragment': IContentListItem_HomePageHeroBlock_Fragment;'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_HtmlBlock_Fragment': IContentListItem_HtmlBlock_Fragment;'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment } }
   ) | (
     { __typename?: 'Image' }
     & { ' $fragmentRefs'?: { 'IContentListItem_Image_Fragment': IContentListItem_Image_Fragment } }
@@ -9729,11 +13111,14 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'LandingPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LandingPage_Fragment': IContentListItem_LandingPage_Fragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_LayoutContainerBlock_Fragment': IContentListItem_LayoutContainerBlock_Fragment;'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_LayoutSettingsBlock_Fragment': IContentListItem_LayoutSettingsBlock_Fragment;'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogoItemBlock_Fragment': IContentListItem_LogoItemBlock_Fragment;'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_LogosBlock_Fragment': IContentListItem_LogosBlock_Fragment;'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MegaMenuGroupBlock_Fragment': IContentListItem_MegaMenuGroupBlock_Fragment;'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -9741,38 +13126,17 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_MenuNavigationBlock_Fragment': IContentListItem_MenuNavigationBlock_Fragment;'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavItem_Fragment': IContentListItem_NavItem_Fragment;'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_NavigationMenuBlock_Fragment': IContentListItem_NavigationMenuBlock_Fragment;'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OdpEmbedBlock_Fragment': IContentListItem_OdpEmbedBlock_Fragment;'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsRangeElement_Fragment': IContentListItem_OptiFormsRangeElement_Fragment;'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsResetElement_Fragment': IContentListItem_OptiFormsResetElement_Fragment;'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSelectionElement_Fragment': IContentListItem_OptiFormsSelectionElement_Fragment;'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsSubmitElement_Fragment': IContentListItem_OptiFormsSubmitElement_Fragment;'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextareaElement_Fragment': IContentListItem_OptiFormsTextareaElement_Fragment;'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsTextboxElement_Fragment': IContentListItem_OptiFormsTextboxElement_Fragment;'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsUrlElement_Fragment': IContentListItem_OptiFormsUrlElement_Fragment;'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OfficeLocation_Fragment': IContentListItem_OfficeLocation_Fragment;'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'IContentListItem_PageSeoSettings_Fragment': IContentListItem_PageSeoSettings_Fragment;'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -9780,23 +13144,56 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_ParagraphElement_Fragment': IContentListItem_ParagraphElement_Fragment;'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioGridBlock_Fragment': IContentListItem_PortfolioGridBlock_Fragment;'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_PortfolioItemBlock_Fragment': IContentListItem_PortfolioItemBlock_Fragment;'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProductPage' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProductPage_Fragment': IContentListItem_ProductPage_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ProfileBlock_Fragment': IContentListItem_ProfileBlock_Fragment;'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_QuoteBlock_Fragment': IContentListItem_QuoteBlock_Fragment;'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_RichTextElement_Fragment': IContentListItem_RichTextElement_Fragment;'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
   ) | (
-    { __typename?: 'StandardPage' }
-    & { ' $fragmentRefs'?: { 'IContentListItem_StandardPage_Fragment': IContentListItem_StandardPage_Fragment } }
+    { __typename?: 'SEOExperience' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SEOExperience_Fragment': IContentListItem_SEOExperience_Fragment } }
+  ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServiceItem_Fragment': IContentListItem_ServiceItem_Fragment;'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_ServicesBlock_Fragment': IContentListItem_ServicesBlock_Fragment;'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_SocialLink_Fragment': IContentListItem_SocialLink_Fragment;'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment } }
   ) | (
     { __typename?: 'StartPage' }
     & { ' $fragmentRefs'?: { 'IContentListItem_StartPage_Fragment': IContentListItem_StartPage_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_StoryBlock_Fragment': IContentListItem_StoryBlock_Fragment;'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment } }
   ) | (
     { __typename?: 'SysContentFolder' }
     & { ' $fragmentRefs'?: { 'IContentListItem_SysContentFolder_Fragment': IContentListItem_SysContentFolder_Fragment } }
   ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialElement_Fragment': IContentListItem_TestimonialElement_Fragment;'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItem_Fragment': IContentListItem_TestimonialItem_Fragment;'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialItemBlock_Fragment': IContentListItem_TestimonialItemBlock_Fragment;'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_TestimonialsBlock_Fragment': IContentListItem_TestimonialsBlock_Fragment;'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'IContentListItem_TextBlock_Fragment': IContentListItem_TextBlock_Fragment;'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
@@ -9809,6 +13206,9 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
   ) | (
     { __typename?: 'VideoMedia' }
     & { ' $fragmentRefs'?: { 'IContentListItem_VideoMedia_Fragment': IContentListItem_VideoMedia_Fragment;'VideoMediaComponentDataFragment': VideoMediaComponentDataFragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_WebsiteFooter_Fragment': IContentListItem_WebsiteFooter_Fragment;'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'IContentListItem__Component_Fragment': IContentListItem__Component_Fragment;'BlockData__Component_Fragment': BlockData__Component_Fragment } }
@@ -9855,19 +13255,22 @@ export type getLandingPageMetaDataQuery = { __typename?: 'Query', LandingPage?: 
           & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
         ) | null } | null } | null> | null } | null };
 
-export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentArea?: Array<(
+export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentArea?: Array<{ __typename?: 'ArticleGroupPage' } | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
+  ) | { __typename?: 'ArticlePage' } | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment } }
   ) | { __typename?: 'BlankExperience' } | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment } }
   ) | { __typename?: 'BlogPostPage' } | { __typename?: 'BlogSectionExperience' } | (
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
-  ) | (
+  ) | { __typename?: 'CMSPage' } | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'BlockData_CTAElement_Fragment': BlockData_CTAElement_Fragment;'CTAElementDataFragment': CTAElementDataFragment } }
   ) | (
@@ -9877,35 +13280,47 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
   ) | (
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
-  ) | { __typename?: 'GenericMedia' } | (
+  ) | { __typename?: 'DefaultImage' } | { __typename?: 'DefaultVideo' } | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment } }
+  ) | { __typename?: 'Footer' } | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment } }
+  ) | { __typename?: 'GenericMedia' } | { __typename?: 'GenericMedia123' } | { __typename?: 'Header' } | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment } }
+  ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'BlockData_Hero_Fragment': BlockData_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment } }
   ) | { __typename?: 'Image' } | (
     { __typename?: 'ImageElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ImageElement_Fragment': BlockData_ImageElement_Fragment;'ImageElementDataFragment': ImageElementDataFragment } }
   ) | { __typename?: 'ImageMedia' } | { __typename?: 'LandingPage' } | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -9913,38 +13328,17 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -9952,14 +13346,44 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment } }
+  ) | { __typename?: 'ProductPage' } | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
-  ) | { __typename?: 'StandardPage' } | { __typename?: 'StartPage' } | { __typename?: 'SysContentFolder' } | (
+  ) | { __typename?: 'SEOExperience' } | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment } }
+  ) | { __typename?: 'StartPage' } | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment } }
+  ) | { __typename?: 'SysContentFolder' } | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
@@ -9967,24 +13391,30 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'VideoElement' }
     & { ' $fragmentRefs'?: { 'BlockData_VideoElement_Fragment': BlockData_VideoElement_Fragment;'VideoElementDataFragment': VideoElementDataFragment } }
   ) | { __typename?: 'VideoMedia' } | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment } }
+  ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'BlockData__Component_Fragment': BlockData__Component_Fragment } }
   ) | { __typename?: '_Content' } | { __typename?: '_Experience' } | { __typename?: '_Folder' } | { __typename?: '_Image' } | { __typename?: '_Media' } | { __typename?: '_Page' } | (
     { __typename?: '_Section' }
     & { ' $fragmentRefs'?: { 'BlockData__Section_Fragment': BlockData__Section_Fragment } }
-  ) | { __typename?: '_Video' } | null> | null, MainContentArea?: Array<(
+  ) | { __typename?: '_Video' } | null> | null, MainContentArea?: Array<{ __typename?: 'ArticleGroupPage' } | (
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
+  ) | { __typename?: 'ArticlePage' } | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment } }
   ) | { __typename?: 'BlankExperience' } | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment } }
   ) | { __typename?: 'BlogPostPage' } | { __typename?: 'BlogSectionExperience' } | (
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
-  ) | (
+  ) | { __typename?: 'CMSPage' } | (
     { __typename?: 'CTAElement' }
     & { ' $fragmentRefs'?: { 'BlockData_CTAElement_Fragment': BlockData_CTAElement_Fragment;'CTAElementDataFragment': CTAElementDataFragment } }
   ) | (
@@ -9994,35 +13424,47 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
   ) | (
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
-  ) | { __typename?: 'GenericMedia' } | (
+  ) | { __typename?: 'DefaultImage' } | { __typename?: 'DefaultVideo' } | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment } }
+  ) | { __typename?: 'Footer' } | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment } }
+  ) | { __typename?: 'GenericMedia' } | { __typename?: 'GenericMedia123' } | { __typename?: 'Header' } | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment } }
+  ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
   ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'BlockData_Hero_Fragment': BlockData_Hero_Fragment } }
+  ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
-  ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment } }
   ) | { __typename?: 'Image' } | (
     { __typename?: 'ImageElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ImageElement_Fragment': BlockData_ImageElement_Fragment;'ImageElementDataFragment': ImageElementDataFragment } }
   ) | { __typename?: 'ImageMedia' } | { __typename?: 'LandingPage' } | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -10030,38 +13472,17 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -10069,14 +13490,44 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment } }
+  ) | { __typename?: 'ProductPage' } | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
-  ) | { __typename?: 'StandardPage' } | { __typename?: 'StartPage' } | { __typename?: 'SysContentFolder' } | (
+  ) | { __typename?: 'SEOExperience' } | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment } }
+  ) | { __typename?: 'StartPage' } | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment } }
+  ) | { __typename?: 'SysContentFolder' } | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
@@ -10084,6 +13535,9 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'VideoElement' }
     & { ' $fragmentRefs'?: { 'BlockData_VideoElement_Fragment': BlockData_VideoElement_Fragment;'VideoElementDataFragment': VideoElementDataFragment } }
   ) | { __typename?: 'VideoMedia' } | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment } }
+  ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'BlockData__Component_Fragment': BlockData__Component_Fragment } }
   ) | { __typename?: '_Content' } | { __typename?: '_Experience' } | { __typename?: '_Folder' } | { __typename?: '_Image' } | { __typename?: '_Media' } | { __typename?: '_Page' } | (
@@ -10100,17 +13554,26 @@ export type getFooterDataQueryVariables = Exact<{
 
 
 export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typename?: 'LayoutSettingsBlockOutput', items?: Array<{ __typename?: 'LayoutSettingsBlock', copyright?: string | null, contactInfoHeading?: string | null, _metadata?: { __typename?: 'ContentMetadata', key?: string | null, displayName?: string | null } | { __typename?: 'InstanceMetadata', key?: string | null, displayName?: string | null } | { __typename?: 'ItemMetadata', key?: string | null, displayName?: string | null } | { __typename?: 'MediaMetadata', key?: string | null, displayName?: string | null } | null, footerMenus?: Array<(
+        { __typename?: 'ArticleGroupPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+      ) | (
         { __typename?: 'ArticleListElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
+      ) | (
+        { __typename?: 'ArticlePage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+      ) | (
+        { __typename?: 'AvailabilityBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+      ) | (
+        { __typename?: 'BannerBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
       ) | (
         { __typename?: 'BlankExperience' }
         & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment } }
       ) | (
         { __typename?: 'BlankSection' }
         & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
-      ) | (
-        { __typename?: 'BlogListingBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
       ) | (
         { __typename?: 'BlogPostPage' }
         & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
@@ -10121,6 +13584,9 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ButtonBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
       ) | (
+        { __typename?: 'CMSPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+      ) | (
         { __typename?: 'CTAElement' }
         & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
       ) | (
@@ -10130,8 +13596,8 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'CarouselBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
       ) | (
-        { __typename?: 'ContentRecsBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
+        { __typename?: 'ContactBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
       ) | (
         { __typename?: 'ContentRecsElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment } }
@@ -10139,20 +13605,44 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ContinueReadingComponent' }
         & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
       ) | (
+        { __typename?: 'DefaultImage' }
+        & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+      ) | (
+        { __typename?: 'DefaultVideo' }
+        & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+      ) | (
+        { __typename?: 'Dictionary' }
+        & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+      ) | (
+        { __typename?: 'DictionaryItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+      ) | (
+        { __typename?: 'Footer' }
+        & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+      ) | (
+        { __typename?: 'FooterColumn' }
+        & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+      ) | (
         { __typename?: 'GenericMedia' }
         & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
+      ) | (
+        { __typename?: 'GenericMedia123' }
+        & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+      ) | (
+        { __typename?: 'Header' }
+        & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+      ) | (
+        { __typename?: 'HeaderBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
       ) | (
         { __typename?: 'HeadingElement' }
         & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
       ) | (
+        { __typename?: 'Hero' }
+        & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+      ) | (
         { __typename?: 'HeroBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
-      ) | (
-        { __typename?: 'HomePageHeroBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-      ) | (
-        { __typename?: 'HtmlBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
       ) | (
         { __typename?: 'Image' }
         & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment } }
@@ -10166,11 +13656,14 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'LandingPage' }
         & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
       ) | (
-        { __typename?: 'LayoutContainerBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-      ) | (
         { __typename?: 'LayoutSettingsBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
+      ) | (
+        { __typename?: 'LogoItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'LogosBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
       ) | (
         { __typename?: 'MegaMenuGroupBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment } }
@@ -10178,38 +13671,17 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'MenuNavigationBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
       ) | (
+        { __typename?: 'NavItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+      ) | (
+        { __typename?: 'NavigationMenuBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+      ) | (
         { __typename?: 'OdpEmbedBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
       ) | (
-        { __typename?: 'OptiFormsChoiceElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsContainerData' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsNumberElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsRangeElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsResetElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsSelectionElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsSubmitElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsTextareaElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsTextboxElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsUrlElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
+        { __typename?: 'OfficeLocation' }
+        & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
       ) | (
         { __typename?: 'PageSeoSettings' }
         & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment } }
@@ -10217,23 +13689,56 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ParagraphElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
       ) | (
+        { __typename?: 'PortfolioGridBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+      ) | (
+        { __typename?: 'PortfolioItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'ProductPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+      ) | (
+        { __typename?: 'ProfileBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+      ) | (
         { __typename?: 'QuoteBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
       ) | (
         { __typename?: 'RichTextElement' }
         & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
       ) | (
-        { __typename?: 'StandardPage' }
-        & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
+        { __typename?: 'SEOExperience' }
+        & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+      ) | (
+        { __typename?: 'ServiceItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+      ) | (
+        { __typename?: 'ServicesBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+      ) | (
+        { __typename?: 'SocialLink' }
+        & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
       ) | (
         { __typename?: 'StartPage' }
         & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
+      ) | (
+        { __typename?: 'StoryBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
       ) | (
         { __typename?: 'SysContentFolder' }
         & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment } }
       ) | (
         { __typename?: 'TestimonialElement' }
         & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialsBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
       ) | (
         { __typename?: 'TextBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment } }
@@ -10246,6 +13751,9 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
       ) | (
         { __typename?: 'VideoMedia' }
         & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
+      ) | (
+        { __typename?: 'WebsiteFooter' }
+        & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
       ) | (
         { __typename?: '_Component' }
         & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment } }
@@ -10285,17 +13793,26 @@ export type getHeaderDataQueryVariables = Exact<{
 
 
 export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typename?: 'LayoutSettingsBlockOutput', items?: Array<{ __typename?: 'LayoutSettingsBlock', appIdentifiers?: string | null, _metadata?: { __typename?: 'ContentMetadata', key?: string | null, displayName?: string | null } | { __typename?: 'InstanceMetadata', key?: string | null, displayName?: string | null } | { __typename?: 'ItemMetadata', key?: string | null, displayName?: string | null } | { __typename?: 'MediaMetadata', key?: string | null, displayName?: string | null } | null, mainMenu?: Array<(
+        { __typename?: 'ArticleGroupPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+      ) | (
         { __typename?: 'ArticleListElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
+      ) | (
+        { __typename?: 'ArticlePage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+      ) | (
+        { __typename?: 'AvailabilityBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+      ) | (
+        { __typename?: 'BannerBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
       ) | (
         { __typename?: 'BlankExperience' }
         & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment } }
       ) | (
         { __typename?: 'BlankSection' }
         & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
-      ) | (
-        { __typename?: 'BlogListingBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
       ) | (
         { __typename?: 'BlogPostPage' }
         & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
@@ -10306,6 +13823,9 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ButtonBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
       ) | (
+        { __typename?: 'CMSPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+      ) | (
         { __typename?: 'CTAElement' }
         & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
       ) | (
@@ -10315,8 +13835,8 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'CarouselBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
       ) | (
-        { __typename?: 'ContentRecsBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
+        { __typename?: 'ContactBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
       ) | (
         { __typename?: 'ContentRecsElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment } }
@@ -10324,20 +13844,44 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ContinueReadingComponent' }
         & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
       ) | (
+        { __typename?: 'DefaultImage' }
+        & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+      ) | (
+        { __typename?: 'DefaultVideo' }
+        & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+      ) | (
+        { __typename?: 'Dictionary' }
+        & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+      ) | (
+        { __typename?: 'DictionaryItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+      ) | (
+        { __typename?: 'Footer' }
+        & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+      ) | (
+        { __typename?: 'FooterColumn' }
+        & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+      ) | (
         { __typename?: 'GenericMedia' }
         & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
+      ) | (
+        { __typename?: 'GenericMedia123' }
+        & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+      ) | (
+        { __typename?: 'Header' }
+        & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+      ) | (
+        { __typename?: 'HeaderBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
       ) | (
         { __typename?: 'HeadingElement' }
         & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
       ) | (
+        { __typename?: 'Hero' }
+        & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+      ) | (
         { __typename?: 'HeroBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
-      ) | (
-        { __typename?: 'HomePageHeroBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-      ) | (
-        { __typename?: 'HtmlBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
       ) | (
         { __typename?: 'Image' }
         & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment } }
@@ -10351,11 +13895,14 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'LandingPage' }
         & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
       ) | (
-        { __typename?: 'LayoutContainerBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-      ) | (
         { __typename?: 'LayoutSettingsBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
+      ) | (
+        { __typename?: 'LogoItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'LogosBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
       ) | (
         { __typename?: 'MegaMenuGroupBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -10363,38 +13910,17 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'MenuNavigationBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment } }
       ) | (
+        { __typename?: 'NavItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+      ) | (
+        { __typename?: 'NavigationMenuBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+      ) | (
         { __typename?: 'OdpEmbedBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
       ) | (
-        { __typename?: 'OptiFormsChoiceElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsContainerData' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsNumberElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsRangeElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsResetElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsSelectionElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsSubmitElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsTextareaElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsTextboxElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsUrlElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
+        { __typename?: 'OfficeLocation' }
+        & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
       ) | (
         { __typename?: 'PageSeoSettings' }
         & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment } }
@@ -10402,23 +13928,56 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ParagraphElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
       ) | (
+        { __typename?: 'PortfolioGridBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+      ) | (
+        { __typename?: 'PortfolioItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'ProductPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+      ) | (
+        { __typename?: 'ProfileBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+      ) | (
         { __typename?: 'QuoteBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
       ) | (
         { __typename?: 'RichTextElement' }
         & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
       ) | (
-        { __typename?: 'StandardPage' }
-        & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
+        { __typename?: 'SEOExperience' }
+        & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+      ) | (
+        { __typename?: 'ServiceItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+      ) | (
+        { __typename?: 'ServicesBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+      ) | (
+        { __typename?: 'SocialLink' }
+        & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
       ) | (
         { __typename?: 'StartPage' }
         & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
+      ) | (
+        { __typename?: 'StoryBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
       ) | (
         { __typename?: 'SysContentFolder' }
         & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment } }
       ) | (
         { __typename?: 'TestimonialElement' }
         & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialsBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
       ) | (
         { __typename?: 'TextBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment } }
@@ -10431,6 +13990,9 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
       ) | (
         { __typename?: 'VideoMedia' }
         & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
+      ) | (
+        { __typename?: 'WebsiteFooter' }
+        & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
       ) | (
         { __typename?: '_Component' }
         & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment } }
@@ -10459,17 +14021,26 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: '_Video' }
         & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
       ) | null> | null, serviceButtons?: Array<(
+        { __typename?: 'ArticleGroupPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+      ) | (
         { __typename?: 'ArticleListElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
+      ) | (
+        { __typename?: 'ArticlePage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+      ) | (
+        { __typename?: 'AvailabilityBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+      ) | (
+        { __typename?: 'BannerBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
       ) | (
         { __typename?: 'BlankExperience' }
         & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment } }
       ) | (
         { __typename?: 'BlankSection' }
         & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
-      ) | (
-        { __typename?: 'BlogListingBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
       ) | (
         { __typename?: 'BlogPostPage' }
         & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
@@ -10480,6 +14051,9 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ButtonBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
       ) | (
+        { __typename?: 'CMSPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+      ) | (
         { __typename?: 'CTAElement' }
         & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
       ) | (
@@ -10489,8 +14063,8 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'CarouselBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
       ) | (
-        { __typename?: 'ContentRecsBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
+        { __typename?: 'ContactBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
       ) | (
         { __typename?: 'ContentRecsElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment } }
@@ -10498,20 +14072,44 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ContinueReadingComponent' }
         & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
       ) | (
+        { __typename?: 'DefaultImage' }
+        & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+      ) | (
+        { __typename?: 'DefaultVideo' }
+        & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+      ) | (
+        { __typename?: 'Dictionary' }
+        & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+      ) | (
+        { __typename?: 'DictionaryItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+      ) | (
+        { __typename?: 'Footer' }
+        & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+      ) | (
+        { __typename?: 'FooterColumn' }
+        & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+      ) | (
         { __typename?: 'GenericMedia' }
         & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
+      ) | (
+        { __typename?: 'GenericMedia123' }
+        & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+      ) | (
+        { __typename?: 'Header' }
+        & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+      ) | (
+        { __typename?: 'HeaderBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
       ) | (
         { __typename?: 'HeadingElement' }
         & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
       ) | (
+        { __typename?: 'Hero' }
+        & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+      ) | (
         { __typename?: 'HeroBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
-      ) | (
-        { __typename?: 'HomePageHeroBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-      ) | (
-        { __typename?: 'HtmlBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
       ) | (
         { __typename?: 'Image' }
         & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment } }
@@ -10525,11 +14123,14 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'LandingPage' }
         & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
       ) | (
-        { __typename?: 'LayoutContainerBlock' }
-        & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-      ) | (
         { __typename?: 'LayoutSettingsBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
+      ) | (
+        { __typename?: 'LogoItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'LogosBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
       ) | (
         { __typename?: 'MegaMenuGroupBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment } }
@@ -10537,38 +14138,17 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'MenuNavigationBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment } }
       ) | (
+        { __typename?: 'NavItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+      ) | (
+        { __typename?: 'NavigationMenuBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+      ) | (
         { __typename?: 'OdpEmbedBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
       ) | (
-        { __typename?: 'OptiFormsChoiceElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsContainerData' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsNumberElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsRangeElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsResetElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsSelectionElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsSubmitElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsTextareaElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsTextboxElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-      ) | (
-        { __typename?: 'OptiFormsUrlElement' }
-        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
+        { __typename?: 'OfficeLocation' }
+        & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
       ) | (
         { __typename?: 'PageSeoSettings' }
         & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment } }
@@ -10576,23 +14156,56 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'ParagraphElement' }
         & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
       ) | (
+        { __typename?: 'PortfolioGridBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+      ) | (
+        { __typename?: 'PortfolioItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'ProductPage' }
+        & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+      ) | (
+        { __typename?: 'ProfileBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+      ) | (
         { __typename?: 'QuoteBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
       ) | (
         { __typename?: 'RichTextElement' }
         & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
       ) | (
-        { __typename?: 'StandardPage' }
-        & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
+        { __typename?: 'SEOExperience' }
+        & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+      ) | (
+        { __typename?: 'ServiceItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+      ) | (
+        { __typename?: 'ServicesBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+      ) | (
+        { __typename?: 'SocialLink' }
+        & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
       ) | (
         { __typename?: 'StartPage' }
         & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
+      ) | (
+        { __typename?: 'StoryBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
       ) | (
         { __typename?: 'SysContentFolder' }
         & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment } }
       ) | (
         { __typename?: 'TestimonialElement' }
         & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialItem' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialItemBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+      ) | (
+        { __typename?: 'TestimonialsBlock' }
+        & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
       ) | (
         { __typename?: 'TextBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment } }
@@ -10605,6 +14218,9 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
       ) | (
         { __typename?: 'VideoMedia' }
         & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
+      ) | (
+        { __typename?: 'WebsiteFooter' }
+        & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
       ) | (
         { __typename?: '_Component' }
         & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment } }
@@ -10668,6 +14284,12 @@ export type searchContentQueryVariables = Exact<{
 
 
 export type searchContentQuery = { __typename?: 'Query', Content?: { __typename?: '_PageOutput', total?: number | null, items?: Array<(
+      { __typename?: 'ArticleGroupPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_ArticleGroupPage_Fragment': SearchData_ArticleGroupPage_Fragment } }
+    ) | (
+      { __typename?: 'ArticlePage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_ArticlePage_Fragment': SearchData_ArticlePage_Fragment } }
+    ) | (
       { __typename?: 'BlankExperience', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_BlankExperience_Fragment': SearchData_BlankExperience_Fragment } }
     ) | (
@@ -10677,11 +14299,23 @@ export type searchContentQuery = { __typename?: 'Query', Content?: { __typename?
       { __typename?: 'BlogSectionExperience', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_BlogSectionExperience_Fragment': SearchData_BlogSectionExperience_Fragment } }
     ) | (
+      { __typename?: 'CMSPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_CMSPage_Fragment': SearchData_CMSPage_Fragment } }
+    ) | (
+      { __typename?: 'Footer', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_Footer_Fragment': SearchData_Footer_Fragment } }
+    ) | (
+      { __typename?: 'Header', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_Header_Fragment': SearchData_Header_Fragment } }
+    ) | (
       { __typename?: 'LandingPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_LandingPage_Fragment': SearchData_LandingPage_Fragment } }
     ) | (
-      { __typename?: 'StandardPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
-      & { ' $fragmentRefs'?: { 'SearchData_StandardPage_Fragment': SearchData_StandardPage_Fragment } }
+      { __typename?: 'ProductPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_ProductPage_Fragment': SearchData_ProductPage_Fragment } }
+    ) | (
+      { __typename?: 'SEOExperience', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_SEOExperience_Fragment': SearchData_SEOExperience_Fragment } }
     ) | (
       { __typename?: 'StartPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_StartPage_Fragment': SearchData_StartPage_Fragment } }
@@ -10693,10 +14327,30 @@ export type searchContentQuery = { __typename?: 'Query', Content?: { __typename?
       & { ' $fragmentRefs'?: { 'SearchData__Page_Fragment': SearchData__Page_Fragment } }
     ) | null> | null, facets?: { __typename?: '_PageFacet', _metadata?: { __typename?: 'IContentMetadataFacet', types?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, locale?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null };
 
+type SearchData_ArticleGroupPage_Fragment = (
+  { __typename?: 'ArticleGroupPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ArticleGroupPage_Fragment' };
+
 type SearchData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
   & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_ArticleListElement_Fragment' };
+
+type SearchData_ArticlePage_Fragment = (
+  { __typename?: 'ArticlePage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ArticlePage_Fragment' };
+
+type SearchData_AvailabilityBlock_Fragment = (
+  { __typename?: 'AvailabilityBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_AvailabilityBlock_Fragment' };
+
+type SearchData_BannerBlock_Fragment = (
+  { __typename?: 'BannerBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_BannerBlock_Fragment' };
 
 type SearchData_BlankExperience_Fragment = (
   { __typename?: 'BlankExperience' }
@@ -10707,11 +14361,6 @@ type SearchData_BlankSection_Fragment = (
   { __typename?: 'BlankSection' }
   & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_BlankSection_Fragment' };
-
-type SearchData_BlogListingBlock_Fragment = (
-  { __typename?: 'BlogListingBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_BlogListingBlock_Fragment' };
 
 type SearchData_BlogPostPage_Fragment = (
   { __typename?: 'BlogPostPage' }
@@ -10728,6 +14377,11 @@ type SearchData_ButtonBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_ButtonBlock_Fragment' };
 
+type SearchData_CMSPage_Fragment = (
+  { __typename?: 'CMSPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_CMSPage_Fragment' };
+
 type SearchData_CTAElement_Fragment = (
   { __typename?: 'CTAElement' }
   & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
@@ -10743,10 +14397,10 @@ type SearchData_CarouselBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_CarouselBlock_Fragment' };
 
-type SearchData_ContentRecsBlock_Fragment = (
-  { __typename?: 'ContentRecsBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_ContentRecsBlock_Fragment' };
+type SearchData_ContactBlock_Fragment = (
+  { __typename?: 'ContactBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ContactBlock_Fragment' };
 
 type SearchData_ContentRecsElement_Fragment = (
   { __typename?: 'ContentRecsElement' }
@@ -10758,30 +14412,70 @@ type SearchData_ContinueReadingComponent_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_ContinueReadingComponent_Fragment' };
 
+type SearchData_DefaultImage_Fragment = (
+  { __typename?: 'DefaultImage' }
+  & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_DefaultImage_Fragment' };
+
+type SearchData_DefaultVideo_Fragment = (
+  { __typename?: 'DefaultVideo' }
+  & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_DefaultVideo_Fragment' };
+
+type SearchData_Dictionary_Fragment = (
+  { __typename?: 'Dictionary' }
+  & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_Dictionary_Fragment' };
+
+type SearchData_DictionaryItem_Fragment = (
+  { __typename?: 'DictionaryItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_DictionaryItem_Fragment' };
+
+type SearchData_Footer_Fragment = (
+  { __typename?: 'Footer' }
+  & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_Footer_Fragment' };
+
+type SearchData_FooterColumn_Fragment = (
+  { __typename?: 'FooterColumn' }
+  & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_FooterColumn_Fragment' };
+
 type SearchData_GenericMedia_Fragment = (
   { __typename?: 'GenericMedia' }
   & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_GenericMedia_Fragment' };
+
+type SearchData_GenericMedia123_Fragment = (
+  { __typename?: 'GenericMedia123' }
+  & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_GenericMedia123_Fragment' };
+
+type SearchData_Header_Fragment = (
+  { __typename?: 'Header' }
+  & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_Header_Fragment' };
+
+type SearchData_HeaderBlock_Fragment = (
+  { __typename?: 'HeaderBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_HeaderBlock_Fragment' };
 
 type SearchData_HeadingElement_Fragment = (
   { __typename?: 'HeadingElement' }
   & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_HeadingElement_Fragment' };
 
+type SearchData_Hero_Fragment = (
+  { __typename?: 'Hero' }
+  & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_Hero_Fragment' };
+
 type SearchData_HeroBlock_Fragment = (
   { __typename?: 'HeroBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_HeroBlock_Fragment' };
-
-type SearchData_HomePageHeroBlock_Fragment = (
-  { __typename?: 'HomePageHeroBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_HomePageHeroBlock_Fragment' };
-
-type SearchData_HtmlBlock_Fragment = (
-  { __typename?: 'HtmlBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_HtmlBlock_Fragment' };
 
 type SearchData_Image_Fragment = (
   { __typename?: 'Image' }
@@ -10803,15 +14497,20 @@ type SearchData_LandingPage_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_LandingPage_Fragment' };
 
-type SearchData_LayoutContainerBlock_Fragment = (
-  { __typename?: 'LayoutContainerBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_LayoutContainerBlock_Fragment' };
-
 type SearchData_LayoutSettingsBlock_Fragment = (
   { __typename?: 'LayoutSettingsBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_LayoutSettingsBlock_Fragment' };
+
+type SearchData_LogoItemBlock_Fragment = (
+  { __typename?: 'LogoItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_LogoItemBlock_Fragment' };
+
+type SearchData_LogosBlock_Fragment = (
+  { __typename?: 'LogosBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_LogosBlock_Fragment' };
 
 type SearchData_MegaMenuGroupBlock_Fragment = (
   { __typename?: 'MegaMenuGroupBlock' }
@@ -10823,60 +14522,25 @@ type SearchData_MenuNavigationBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_MenuNavigationBlock_Fragment' };
 
+type SearchData_NavItem_Fragment = (
+  { __typename?: 'NavItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_NavItem_Fragment' };
+
+type SearchData_NavigationMenuBlock_Fragment = (
+  { __typename?: 'NavigationMenuBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_NavigationMenuBlock_Fragment' };
+
 type SearchData_OdpEmbedBlock_Fragment = (
   { __typename?: 'OdpEmbedBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_OdpEmbedBlock_Fragment' };
 
-type SearchData_OptiFormsChoiceElement_Fragment = (
-  { __typename?: 'OptiFormsChoiceElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsChoiceElement_Fragment' };
-
-type SearchData_OptiFormsContainerData_Fragment = (
-  { __typename?: 'OptiFormsContainerData' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsContainerData_Fragment' };
-
-type SearchData_OptiFormsNumberElement_Fragment = (
-  { __typename?: 'OptiFormsNumberElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsNumberElement_Fragment' };
-
-type SearchData_OptiFormsRangeElement_Fragment = (
-  { __typename?: 'OptiFormsRangeElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsRangeElement_Fragment' };
-
-type SearchData_OptiFormsResetElement_Fragment = (
-  { __typename?: 'OptiFormsResetElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsResetElement_Fragment' };
-
-type SearchData_OptiFormsSelectionElement_Fragment = (
-  { __typename?: 'OptiFormsSelectionElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsSelectionElement_Fragment' };
-
-type SearchData_OptiFormsSubmitElement_Fragment = (
-  { __typename?: 'OptiFormsSubmitElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsSubmitElement_Fragment' };
-
-type SearchData_OptiFormsTextareaElement_Fragment = (
-  { __typename?: 'OptiFormsTextareaElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsTextareaElement_Fragment' };
-
-type SearchData_OptiFormsTextboxElement_Fragment = (
-  { __typename?: 'OptiFormsTextboxElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsTextboxElement_Fragment' };
-
-type SearchData_OptiFormsUrlElement_Fragment = (
-  { __typename?: 'OptiFormsUrlElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_OptiFormsUrlElement_Fragment' };
+type SearchData_OfficeLocation_Fragment = (
+  { __typename?: 'OfficeLocation' }
+  & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_OfficeLocation_Fragment' };
 
 type SearchData_PageSeoSettings_Fragment = (
   { __typename?: 'PageSeoSettings' }
@@ -10888,6 +14552,26 @@ type SearchData_ParagraphElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_ParagraphElement_Fragment' };
 
+type SearchData_PortfolioGridBlock_Fragment = (
+  { __typename?: 'PortfolioGridBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_PortfolioGridBlock_Fragment' };
+
+type SearchData_PortfolioItemBlock_Fragment = (
+  { __typename?: 'PortfolioItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_PortfolioItemBlock_Fragment' };
+
+type SearchData_ProductPage_Fragment = (
+  { __typename?: 'ProductPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ProductPage_Fragment' };
+
+type SearchData_ProfileBlock_Fragment = (
+  { __typename?: 'ProfileBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ProfileBlock_Fragment' };
+
 type SearchData_QuoteBlock_Fragment = (
   { __typename?: 'QuoteBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
@@ -10898,15 +14582,35 @@ type SearchData_RichTextElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_RichTextElement_Fragment' };
 
-type SearchData_StandardPage_Fragment = (
-  { __typename?: 'StandardPage' }
-  & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
-) & { ' $fragmentName'?: 'SearchData_StandardPage_Fragment' };
+type SearchData_SEOExperience_Fragment = (
+  { __typename?: 'SEOExperience' }
+  & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_SEOExperience_Fragment' };
+
+type SearchData_ServiceItem_Fragment = (
+  { __typename?: 'ServiceItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ServiceItem_Fragment' };
+
+type SearchData_ServicesBlock_Fragment = (
+  { __typename?: 'ServicesBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_ServicesBlock_Fragment' };
+
+type SearchData_SocialLink_Fragment = (
+  { __typename?: 'SocialLink' }
+  & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_SocialLink_Fragment' };
 
 type SearchData_StartPage_Fragment = (
   { __typename?: 'StartPage' }
   & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_StartPage_Fragment' };
+
+type SearchData_StoryBlock_Fragment = (
+  { __typename?: 'StoryBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_StoryBlock_Fragment' };
 
 type SearchData_SysContentFolder_Fragment = (
   { __typename?: 'SysContentFolder' }
@@ -10917,6 +14621,21 @@ type SearchData_TestimonialElement_Fragment = (
   { __typename?: 'TestimonialElement' }
   & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_TestimonialElement_Fragment' };
+
+type SearchData_TestimonialItem_Fragment = (
+  { __typename?: 'TestimonialItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_TestimonialItem_Fragment' };
+
+type SearchData_TestimonialItemBlock_Fragment = (
+  { __typename?: 'TestimonialItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_TestimonialItemBlock_Fragment' };
+
+type SearchData_TestimonialsBlock_Fragment = (
+  { __typename?: 'TestimonialsBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_TestimonialsBlock_Fragment' };
 
 type SearchData_TextBlock_Fragment = (
   { __typename?: 'TextBlock' }
@@ -10937,6 +14656,11 @@ type SearchData_VideoMedia_Fragment = (
   { __typename?: 'VideoMedia' }
   & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_VideoMedia_Fragment' };
+
+type SearchData_WebsiteFooter_Fragment = (
+  { __typename?: 'WebsiteFooter' }
+  & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_WebsiteFooter_Fragment' };
 
 type SearchData__Component_Fragment = (
   { __typename?: '_Component' }
@@ -10983,7 +14707,7 @@ type SearchData__Video_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData__Video_Fragment' };
 
-export type SearchDataFragment = SearchData_ArticleListElement_Fragment | SearchData_BlankExperience_Fragment | SearchData_BlankSection_Fragment | SearchData_BlogListingBlock_Fragment | SearchData_BlogPostPage_Fragment | SearchData_BlogSectionExperience_Fragment | SearchData_ButtonBlock_Fragment | SearchData_CTAElement_Fragment | SearchData_CardBlock_Fragment | SearchData_CarouselBlock_Fragment | SearchData_ContentRecsBlock_Fragment | SearchData_ContentRecsElement_Fragment | SearchData_ContinueReadingComponent_Fragment | SearchData_GenericMedia_Fragment | SearchData_HeadingElement_Fragment | SearchData_HeroBlock_Fragment | SearchData_HomePageHeroBlock_Fragment | SearchData_HtmlBlock_Fragment | SearchData_Image_Fragment | SearchData_ImageElement_Fragment | SearchData_ImageMedia_Fragment | SearchData_LandingPage_Fragment | SearchData_LayoutContainerBlock_Fragment | SearchData_LayoutSettingsBlock_Fragment | SearchData_MegaMenuGroupBlock_Fragment | SearchData_MenuNavigationBlock_Fragment | SearchData_OdpEmbedBlock_Fragment | SearchData_OptiFormsChoiceElement_Fragment | SearchData_OptiFormsContainerData_Fragment | SearchData_OptiFormsNumberElement_Fragment | SearchData_OptiFormsRangeElement_Fragment | SearchData_OptiFormsResetElement_Fragment | SearchData_OptiFormsSelectionElement_Fragment | SearchData_OptiFormsSubmitElement_Fragment | SearchData_OptiFormsTextareaElement_Fragment | SearchData_OptiFormsTextboxElement_Fragment | SearchData_OptiFormsUrlElement_Fragment | SearchData_PageSeoSettings_Fragment | SearchData_ParagraphElement_Fragment | SearchData_QuoteBlock_Fragment | SearchData_RichTextElement_Fragment | SearchData_StandardPage_Fragment | SearchData_StartPage_Fragment | SearchData_SysContentFolder_Fragment | SearchData_TestimonialElement_Fragment | SearchData_TextBlock_Fragment | SearchData_Video_Fragment | SearchData_VideoElement_Fragment | SearchData_VideoMedia_Fragment | SearchData__Component_Fragment | SearchData__Content_Fragment | SearchData__Experience_Fragment | SearchData__Folder_Fragment | SearchData__Image_Fragment | SearchData__Media_Fragment | SearchData__Page_Fragment | SearchData__Section_Fragment | SearchData__Video_Fragment;
+export type SearchDataFragment = SearchData_ArticleGroupPage_Fragment | SearchData_ArticleListElement_Fragment | SearchData_ArticlePage_Fragment | SearchData_AvailabilityBlock_Fragment | SearchData_BannerBlock_Fragment | SearchData_BlankExperience_Fragment | SearchData_BlankSection_Fragment | SearchData_BlogPostPage_Fragment | SearchData_BlogSectionExperience_Fragment | SearchData_ButtonBlock_Fragment | SearchData_CMSPage_Fragment | SearchData_CTAElement_Fragment | SearchData_CardBlock_Fragment | SearchData_CarouselBlock_Fragment | SearchData_ContactBlock_Fragment | SearchData_ContentRecsElement_Fragment | SearchData_ContinueReadingComponent_Fragment | SearchData_DefaultImage_Fragment | SearchData_DefaultVideo_Fragment | SearchData_Dictionary_Fragment | SearchData_DictionaryItem_Fragment | SearchData_Footer_Fragment | SearchData_FooterColumn_Fragment | SearchData_GenericMedia_Fragment | SearchData_GenericMedia123_Fragment | SearchData_Header_Fragment | SearchData_HeaderBlock_Fragment | SearchData_HeadingElement_Fragment | SearchData_Hero_Fragment | SearchData_HeroBlock_Fragment | SearchData_Image_Fragment | SearchData_ImageElement_Fragment | SearchData_ImageMedia_Fragment | SearchData_LandingPage_Fragment | SearchData_LayoutSettingsBlock_Fragment | SearchData_LogoItemBlock_Fragment | SearchData_LogosBlock_Fragment | SearchData_MegaMenuGroupBlock_Fragment | SearchData_MenuNavigationBlock_Fragment | SearchData_NavItem_Fragment | SearchData_NavigationMenuBlock_Fragment | SearchData_OdpEmbedBlock_Fragment | SearchData_OfficeLocation_Fragment | SearchData_PageSeoSettings_Fragment | SearchData_ParagraphElement_Fragment | SearchData_PortfolioGridBlock_Fragment | SearchData_PortfolioItemBlock_Fragment | SearchData_ProductPage_Fragment | SearchData_ProfileBlock_Fragment | SearchData_QuoteBlock_Fragment | SearchData_RichTextElement_Fragment | SearchData_SEOExperience_Fragment | SearchData_ServiceItem_Fragment | SearchData_ServicesBlock_Fragment | SearchData_SocialLink_Fragment | SearchData_StartPage_Fragment | SearchData_StoryBlock_Fragment | SearchData_SysContentFolder_Fragment | SearchData_TestimonialElement_Fragment | SearchData_TestimonialItem_Fragment | SearchData_TestimonialItemBlock_Fragment | SearchData_TestimonialsBlock_Fragment | SearchData_TextBlock_Fragment | SearchData_Video_Fragment | SearchData_VideoElement_Fragment | SearchData_VideoMedia_Fragment | SearchData_WebsiteFooter_Fragment | SearchData__Component_Fragment | SearchData__Content_Fragment | SearchData__Experience_Fragment | SearchData__Folder_Fragment | SearchData__Image_Fragment | SearchData__Media_Fragment | SearchData__Page_Fragment | SearchData__Section_Fragment | SearchData__Video_Fragment;
 
 export type personalizedSearchContentQueryVariables = Exact<{
   term: Scalars['String']['input'];
@@ -10998,6 +14722,12 @@ export type personalizedSearchContentQueryVariables = Exact<{
 
 
 export type personalizedSearchContentQuery = { __typename?: 'Query', Content?: { __typename?: '_PageOutput', total?: number | null, items?: Array<(
+      { __typename?: 'ArticleGroupPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_ArticleGroupPage_Fragment': SearchData_ArticleGroupPage_Fragment } }
+    ) | (
+      { __typename?: 'ArticlePage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_ArticlePage_Fragment': SearchData_ArticlePage_Fragment } }
+    ) | (
       { __typename?: 'BlankExperience', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_BlankExperience_Fragment': SearchData_BlankExperience_Fragment } }
     ) | (
@@ -11007,11 +14737,23 @@ export type personalizedSearchContentQuery = { __typename?: 'Query', Content?: {
       { __typename?: 'BlogSectionExperience', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_BlogSectionExperience_Fragment': SearchData_BlogSectionExperience_Fragment } }
     ) | (
+      { __typename?: 'CMSPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_CMSPage_Fragment': SearchData_CMSPage_Fragment } }
+    ) | (
+      { __typename?: 'Footer', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_Footer_Fragment': SearchData_Footer_Fragment } }
+    ) | (
+      { __typename?: 'Header', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_Header_Fragment': SearchData_Header_Fragment } }
+    ) | (
       { __typename?: 'LandingPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_LandingPage_Fragment': SearchData_LandingPage_Fragment } }
     ) | (
-      { __typename?: 'StandardPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
-      & { ' $fragmentRefs'?: { 'SearchData_StandardPage_Fragment': SearchData_StandardPage_Fragment } }
+      { __typename?: 'ProductPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_ProductPage_Fragment': SearchData_ProductPage_Fragment } }
+    ) | (
+      { __typename?: 'SEOExperience', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'SearchData_SEOExperience_Fragment': SearchData_SEOExperience_Fragment } }
     ) | (
       { __typename?: 'StartPage', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData_StartPage_Fragment': SearchData_StartPage_Fragment } }
@@ -11022,6 +14764,20 @@ export type personalizedSearchContentQuery = { __typename?: 'Query', Content?: {
       { __typename?: '_Page', _score?: number | null, preview?: Array<string | null> | null, _metadata?: { __typename?: 'ContentMetadata', published?: any | null } | { __typename?: 'InstanceMetadata', published?: any | null } | { __typename?: 'ItemMetadata', published?: any | null } | { __typename?: 'MediaMetadata', published?: any | null } | null }
       & { ' $fragmentRefs'?: { 'SearchData__Page_Fragment': SearchData__Page_Fragment } }
     ) | null> | null, facets?: { __typename?: '_PageFacet', _metadata?: { __typename?: 'IContentMetadataFacet', types?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, locale?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null };
+
+type IContentData_ArticleGroupPage_Fragment = { __typename?: 'ArticleGroupPage', _type: 'ArticleGroupPage', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_ArticleGroupPage_Fragment' };
 
 type IContentData_ArticleListElement_Fragment = { __typename?: 'ArticleListElement', _type: 'ArticleListElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11036,6 +14792,48 @@ type IContentData_ArticleListElement_Fragment = { __typename?: 'ArticleListEleme
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_ArticleListElement_Fragment' };
+
+type IContentData_ArticlePage_Fragment = { __typename?: 'ArticlePage', _type: 'ArticlePage', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_ArticlePage_Fragment' };
+
+type IContentData_AvailabilityBlock_Fragment = { __typename?: 'AvailabilityBlock', _type: 'AvailabilityBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_AvailabilityBlock_Fragment' };
+
+type IContentData_BannerBlock_Fragment = { __typename?: 'BannerBlock', _type: 'BannerBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_BannerBlock_Fragment' };
 
 type IContentData_BlankExperience_Fragment = { __typename?: 'BlankExperience', _type: 'BlankExperience', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11064,20 +14862,6 @@ type IContentData_BlankSection_Fragment = { __typename?: 'BlankSection', _type: 
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_BlankSection_Fragment' };
-
-type IContentData_BlogListingBlock_Fragment = { __typename?: 'BlogListingBlock', _type: 'BlogListingBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_BlogListingBlock_Fragment' };
 
 type IContentData_BlogPostPage_Fragment = { __typename?: 'BlogPostPage', _type: 'BlogPostPage', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11121,6 +14905,20 @@ type IContentData_ButtonBlock_Fragment = { __typename?: 'ButtonBlock', _type: 'B
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_ButtonBlock_Fragment' };
 
+type IContentData_CMSPage_Fragment = { __typename?: 'CMSPage', _type: 'CMSPage', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_CMSPage_Fragment' };
+
 type IContentData_CTAElement_Fragment = { __typename?: 'CTAElement', _type: 'CTAElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11163,7 +14961,7 @@ type IContentData_CarouselBlock_Fragment = { __typename?: 'CarouselBlock', _type
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_CarouselBlock_Fragment' };
 
-type IContentData_ContentRecsBlock_Fragment = { __typename?: 'ContentRecsBlock', _type: 'ContentRecsBlock', _metadata?: (
+type IContentData_ContactBlock_Fragment = { __typename?: 'ContactBlock', _type: 'ContactBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
   ) | (
@@ -11175,7 +14973,7 @@ type IContentData_ContentRecsBlock_Fragment = { __typename?: 'ContentRecsBlock',
   ) | (
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_ContentRecsBlock_Fragment' };
+  ) | null } & { ' $fragmentName'?: 'IContentData_ContactBlock_Fragment' };
 
 type IContentData_ContentRecsElement_Fragment = { __typename?: 'ContentRecsElement', _type: 'ContentRecsElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11205,6 +15003,90 @@ type IContentData_ContinueReadingComponent_Fragment = { __typename?: 'ContinueRe
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_ContinueReadingComponent_Fragment' };
 
+type IContentData_DefaultImage_Fragment = { __typename?: 'DefaultImage', _type: 'DefaultImage', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_DefaultImage_Fragment' };
+
+type IContentData_DefaultVideo_Fragment = { __typename?: 'DefaultVideo', _type: 'DefaultVideo', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_DefaultVideo_Fragment' };
+
+type IContentData_Dictionary_Fragment = { __typename?: 'Dictionary', _type: 'Dictionary', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_Dictionary_Fragment' };
+
+type IContentData_DictionaryItem_Fragment = { __typename?: 'DictionaryItem', _type: 'DictionaryItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_DictionaryItem_Fragment' };
+
+type IContentData_Footer_Fragment = { __typename?: 'Footer', _type: 'Footer', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_Footer_Fragment' };
+
+type IContentData_FooterColumn_Fragment = { __typename?: 'FooterColumn', _type: 'FooterColumn', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_FooterColumn_Fragment' };
+
 type IContentData_GenericMedia_Fragment = { __typename?: 'GenericMedia', _type: 'GenericMedia', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11218,6 +15100,48 @@ type IContentData_GenericMedia_Fragment = { __typename?: 'GenericMedia', _type: 
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_GenericMedia_Fragment' };
+
+type IContentData_GenericMedia123_Fragment = { __typename?: 'GenericMedia123', _type: 'GenericMedia123', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_GenericMedia123_Fragment' };
+
+type IContentData_Header_Fragment = { __typename?: 'Header', _type: 'Header', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_Header_Fragment' };
+
+type IContentData_HeaderBlock_Fragment = { __typename?: 'HeaderBlock', _type: 'HeaderBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_HeaderBlock_Fragment' };
 
 type IContentData_HeadingElement_Fragment = { __typename?: 'HeadingElement', _type: 'HeadingElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11233,6 +15157,20 @@ type IContentData_HeadingElement_Fragment = { __typename?: 'HeadingElement', _ty
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_HeadingElement_Fragment' };
 
+type IContentData_Hero_Fragment = { __typename?: 'Hero', _type: 'Hero', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_Hero_Fragment' };
+
 type IContentData_HeroBlock_Fragment = { __typename?: 'HeroBlock', _type: 'HeroBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11246,34 +15184,6 @@ type IContentData_HeroBlock_Fragment = { __typename?: 'HeroBlock', _type: 'HeroB
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_HeroBlock_Fragment' };
-
-type IContentData_HomePageHeroBlock_Fragment = { __typename?: 'HomePageHeroBlock', _type: 'HomePageHeroBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_HomePageHeroBlock_Fragment' };
-
-type IContentData_HtmlBlock_Fragment = { __typename?: 'HtmlBlock', _type: 'HtmlBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_HtmlBlock_Fragment' };
 
 type IContentData_Image_Fragment = { __typename?: 'Image', _type: 'Image', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11331,20 +15241,6 @@ type IContentData_LandingPage_Fragment = { __typename?: 'LandingPage', _type: 'L
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_LandingPage_Fragment' };
 
-type IContentData_LayoutContainerBlock_Fragment = { __typename?: 'LayoutContainerBlock', _type: 'LayoutContainerBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_LayoutContainerBlock_Fragment' };
-
 type IContentData_LayoutSettingsBlock_Fragment = { __typename?: 'LayoutSettingsBlock', _type: 'LayoutSettingsBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11358,6 +15254,34 @@ type IContentData_LayoutSettingsBlock_Fragment = { __typename?: 'LayoutSettingsB
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_LayoutSettingsBlock_Fragment' };
+
+type IContentData_LogoItemBlock_Fragment = { __typename?: 'LogoItemBlock', _type: 'LogoItemBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_LogoItemBlock_Fragment' };
+
+type IContentData_LogosBlock_Fragment = { __typename?: 'LogosBlock', _type: 'LogosBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_LogosBlock_Fragment' };
 
 type IContentData_MegaMenuGroupBlock_Fragment = { __typename?: 'MegaMenuGroupBlock', _type: 'MegaMenuGroupBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11387,6 +15311,34 @@ type IContentData_MenuNavigationBlock_Fragment = { __typename?: 'MenuNavigationB
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_MenuNavigationBlock_Fragment' };
 
+type IContentData_NavItem_Fragment = { __typename?: 'NavItem', _type: 'NavItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_NavItem_Fragment' };
+
+type IContentData_NavigationMenuBlock_Fragment = { __typename?: 'NavigationMenuBlock', _type: 'NavigationMenuBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_NavigationMenuBlock_Fragment' };
+
 type IContentData_OdpEmbedBlock_Fragment = { __typename?: 'OdpEmbedBlock', _type: 'OdpEmbedBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11401,7 +15353,7 @@ type IContentData_OdpEmbedBlock_Fragment = { __typename?: 'OdpEmbedBlock', _type
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_OdpEmbedBlock_Fragment' };
 
-type IContentData_OptiFormsChoiceElement_Fragment = { __typename?: 'OptiFormsChoiceElement', _type: 'OptiFormsChoiceElement', _metadata?: (
+type IContentData_OfficeLocation_Fragment = { __typename?: 'OfficeLocation', _type: 'OfficeLocation', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
   ) | (
@@ -11413,133 +15365,7 @@ type IContentData_OptiFormsChoiceElement_Fragment = { __typename?: 'OptiFormsCho
   ) | (
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsChoiceElement_Fragment' };
-
-type IContentData_OptiFormsContainerData_Fragment = { __typename?: 'OptiFormsContainerData', _type: 'OptiFormsContainerData', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsContainerData_Fragment' };
-
-type IContentData_OptiFormsNumberElement_Fragment = { __typename?: 'OptiFormsNumberElement', _type: 'OptiFormsNumberElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsNumberElement_Fragment' };
-
-type IContentData_OptiFormsRangeElement_Fragment = { __typename?: 'OptiFormsRangeElement', _type: 'OptiFormsRangeElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsRangeElement_Fragment' };
-
-type IContentData_OptiFormsResetElement_Fragment = { __typename?: 'OptiFormsResetElement', _type: 'OptiFormsResetElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsResetElement_Fragment' };
-
-type IContentData_OptiFormsSelectionElement_Fragment = { __typename?: 'OptiFormsSelectionElement', _type: 'OptiFormsSelectionElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsSelectionElement_Fragment' };
-
-type IContentData_OptiFormsSubmitElement_Fragment = { __typename?: 'OptiFormsSubmitElement', _type: 'OptiFormsSubmitElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsSubmitElement_Fragment' };
-
-type IContentData_OptiFormsTextareaElement_Fragment = { __typename?: 'OptiFormsTextareaElement', _type: 'OptiFormsTextareaElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsTextareaElement_Fragment' };
-
-type IContentData_OptiFormsTextboxElement_Fragment = { __typename?: 'OptiFormsTextboxElement', _type: 'OptiFormsTextboxElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsTextboxElement_Fragment' };
-
-type IContentData_OptiFormsUrlElement_Fragment = { __typename?: 'OptiFormsUrlElement', _type: 'OptiFormsUrlElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsUrlElement_Fragment' };
+  ) | null } & { ' $fragmentName'?: 'IContentData_OfficeLocation_Fragment' };
 
 type IContentData_PageSeoSettings_Fragment = { __typename?: 'PageSeoSettings', _type: 'PageSeoSettings', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11569,6 +15395,62 @@ type IContentData_ParagraphElement_Fragment = { __typename?: 'ParagraphElement',
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_ParagraphElement_Fragment' };
 
+type IContentData_PortfolioGridBlock_Fragment = { __typename?: 'PortfolioGridBlock', _type: 'PortfolioGridBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_PortfolioGridBlock_Fragment' };
+
+type IContentData_PortfolioItemBlock_Fragment = { __typename?: 'PortfolioItemBlock', _type: 'PortfolioItemBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_PortfolioItemBlock_Fragment' };
+
+type IContentData_ProductPage_Fragment = { __typename?: 'ProductPage', _type: 'ProductPage', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_ProductPage_Fragment' };
+
+type IContentData_ProfileBlock_Fragment = { __typename?: 'ProfileBlock', _type: 'ProfileBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_ProfileBlock_Fragment' };
+
 type IContentData_QuoteBlock_Fragment = { __typename?: 'QuoteBlock', _type: 'QuoteBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11597,7 +15479,7 @@ type IContentData_RichTextElement_Fragment = { __typename?: 'RichTextElement', _
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_RichTextElement_Fragment' };
 
-type IContentData_StandardPage_Fragment = { __typename?: 'StandardPage', _type: 'StandardPage', _metadata?: (
+type IContentData_SEOExperience_Fragment = { __typename?: 'SEOExperience', _type: 'SEOExperience', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
   ) | (
@@ -11609,7 +15491,49 @@ type IContentData_StandardPage_Fragment = { __typename?: 'StandardPage', _type: 
   ) | (
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IContentData_StandardPage_Fragment' };
+  ) | null } & { ' $fragmentName'?: 'IContentData_SEOExperience_Fragment' };
+
+type IContentData_ServiceItem_Fragment = { __typename?: 'ServiceItem', _type: 'ServiceItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_ServiceItem_Fragment' };
+
+type IContentData_ServicesBlock_Fragment = { __typename?: 'ServicesBlock', _type: 'ServicesBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_ServicesBlock_Fragment' };
+
+type IContentData_SocialLink_Fragment = { __typename?: 'SocialLink', _type: 'SocialLink', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_SocialLink_Fragment' };
 
 type IContentData_StartPage_Fragment = { __typename?: 'StartPage', _type: 'StartPage', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11624,6 +15548,20 @@ type IContentData_StartPage_Fragment = { __typename?: 'StartPage', _type: 'Start
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_StartPage_Fragment' };
+
+type IContentData_StoryBlock_Fragment = { __typename?: 'StoryBlock', _type: 'StoryBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_StoryBlock_Fragment' };
 
 type IContentData_SysContentFolder_Fragment = { __typename?: 'SysContentFolder', _type: 'SysContentFolder', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11652,6 +15590,48 @@ type IContentData_TestimonialElement_Fragment = { __typename?: 'TestimonialEleme
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_TestimonialElement_Fragment' };
+
+type IContentData_TestimonialItem_Fragment = { __typename?: 'TestimonialItem', _type: 'TestimonialItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_TestimonialItem_Fragment' };
+
+type IContentData_TestimonialItemBlock_Fragment = { __typename?: 'TestimonialItemBlock', _type: 'TestimonialItemBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_TestimonialItemBlock_Fragment' };
+
+type IContentData_TestimonialsBlock_Fragment = { __typename?: 'TestimonialsBlock', _type: 'TestimonialsBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_TestimonialsBlock_Fragment' };
 
 type IContentData_TextBlock_Fragment = { __typename?: 'TextBlock', _type: 'TextBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11708,6 +15688,20 @@ type IContentData_VideoMedia_Fragment = { __typename?: 'VideoMedia', _type: 'Vid
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_VideoMedia_Fragment' };
+
+type IContentData_WebsiteFooter_Fragment = { __typename?: 'WebsiteFooter', _type: 'WebsiteFooter', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_WebsiteFooter_Fragment' };
 
 type IContentData__Component_Fragment = { __typename?: '_Component', _type: '_Component', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11835,7 +15829,7 @@ type IContentData__Video_Fragment = { __typename?: '_Video', _type: '_Video', _m
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData__Video_Fragment' };
 
-export type IContentDataFragment = IContentData_ArticleListElement_Fragment | IContentData_BlankExperience_Fragment | IContentData_BlankSection_Fragment | IContentData_BlogListingBlock_Fragment | IContentData_BlogPostPage_Fragment | IContentData_BlogSectionExperience_Fragment | IContentData_ButtonBlock_Fragment | IContentData_CTAElement_Fragment | IContentData_CardBlock_Fragment | IContentData_CarouselBlock_Fragment | IContentData_ContentRecsBlock_Fragment | IContentData_ContentRecsElement_Fragment | IContentData_ContinueReadingComponent_Fragment | IContentData_GenericMedia_Fragment | IContentData_HeadingElement_Fragment | IContentData_HeroBlock_Fragment | IContentData_HomePageHeroBlock_Fragment | IContentData_HtmlBlock_Fragment | IContentData_Image_Fragment | IContentData_ImageElement_Fragment | IContentData_ImageMedia_Fragment | IContentData_LandingPage_Fragment | IContentData_LayoutContainerBlock_Fragment | IContentData_LayoutSettingsBlock_Fragment | IContentData_MegaMenuGroupBlock_Fragment | IContentData_MenuNavigationBlock_Fragment | IContentData_OdpEmbedBlock_Fragment | IContentData_OptiFormsChoiceElement_Fragment | IContentData_OptiFormsContainerData_Fragment | IContentData_OptiFormsNumberElement_Fragment | IContentData_OptiFormsRangeElement_Fragment | IContentData_OptiFormsResetElement_Fragment | IContentData_OptiFormsSelectionElement_Fragment | IContentData_OptiFormsSubmitElement_Fragment | IContentData_OptiFormsTextareaElement_Fragment | IContentData_OptiFormsTextboxElement_Fragment | IContentData_OptiFormsUrlElement_Fragment | IContentData_PageSeoSettings_Fragment | IContentData_ParagraphElement_Fragment | IContentData_QuoteBlock_Fragment | IContentData_RichTextElement_Fragment | IContentData_StandardPage_Fragment | IContentData_StartPage_Fragment | IContentData_SysContentFolder_Fragment | IContentData_TestimonialElement_Fragment | IContentData_TextBlock_Fragment | IContentData_Video_Fragment | IContentData_VideoElement_Fragment | IContentData_VideoMedia_Fragment | IContentData__Component_Fragment | IContentData__Content_Fragment | IContentData__Experience_Fragment | IContentData__Folder_Fragment | IContentData__Image_Fragment | IContentData__Media_Fragment | IContentData__Page_Fragment | IContentData__Section_Fragment | IContentData__Video_Fragment;
+export type IContentDataFragment = IContentData_ArticleGroupPage_Fragment | IContentData_ArticleListElement_Fragment | IContentData_ArticlePage_Fragment | IContentData_AvailabilityBlock_Fragment | IContentData_BannerBlock_Fragment | IContentData_BlankExperience_Fragment | IContentData_BlankSection_Fragment | IContentData_BlogPostPage_Fragment | IContentData_BlogSectionExperience_Fragment | IContentData_ButtonBlock_Fragment | IContentData_CMSPage_Fragment | IContentData_CTAElement_Fragment | IContentData_CardBlock_Fragment | IContentData_CarouselBlock_Fragment | IContentData_ContactBlock_Fragment | IContentData_ContentRecsElement_Fragment | IContentData_ContinueReadingComponent_Fragment | IContentData_DefaultImage_Fragment | IContentData_DefaultVideo_Fragment | IContentData_Dictionary_Fragment | IContentData_DictionaryItem_Fragment | IContentData_Footer_Fragment | IContentData_FooterColumn_Fragment | IContentData_GenericMedia_Fragment | IContentData_GenericMedia123_Fragment | IContentData_Header_Fragment | IContentData_HeaderBlock_Fragment | IContentData_HeadingElement_Fragment | IContentData_Hero_Fragment | IContentData_HeroBlock_Fragment | IContentData_Image_Fragment | IContentData_ImageElement_Fragment | IContentData_ImageMedia_Fragment | IContentData_LandingPage_Fragment | IContentData_LayoutSettingsBlock_Fragment | IContentData_LogoItemBlock_Fragment | IContentData_LogosBlock_Fragment | IContentData_MegaMenuGroupBlock_Fragment | IContentData_MenuNavigationBlock_Fragment | IContentData_NavItem_Fragment | IContentData_NavigationMenuBlock_Fragment | IContentData_OdpEmbedBlock_Fragment | IContentData_OfficeLocation_Fragment | IContentData_PageSeoSettings_Fragment | IContentData_ParagraphElement_Fragment | IContentData_PortfolioGridBlock_Fragment | IContentData_PortfolioItemBlock_Fragment | IContentData_ProductPage_Fragment | IContentData_ProfileBlock_Fragment | IContentData_QuoteBlock_Fragment | IContentData_RichTextElement_Fragment | IContentData_SEOExperience_Fragment | IContentData_ServiceItem_Fragment | IContentData_ServicesBlock_Fragment | IContentData_SocialLink_Fragment | IContentData_StartPage_Fragment | IContentData_StoryBlock_Fragment | IContentData_SysContentFolder_Fragment | IContentData_TestimonialElement_Fragment | IContentData_TestimonialItem_Fragment | IContentData_TestimonialItemBlock_Fragment | IContentData_TestimonialsBlock_Fragment | IContentData_TextBlock_Fragment | IContentData_Video_Fragment | IContentData_VideoElement_Fragment | IContentData_VideoMedia_Fragment | IContentData_WebsiteFooter_Fragment | IContentData__Component_Fragment | IContentData__Content_Fragment | IContentData__Experience_Fragment | IContentData__Folder_Fragment | IContentData__Image_Fragment | IContentData__Media_Fragment | IContentData__Page_Fragment | IContentData__Section_Fragment | IContentData__Video_Fragment;
 
 type IElementData_ArticleListElement_Fragment = { __typename?: 'ArticleListElement', _type: 'ArticleListElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11851,6 +15845,34 @@ type IElementData_ArticleListElement_Fragment = { __typename?: 'ArticleListEleme
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_ArticleListElement_Fragment' };
 
+type IElementData_AvailabilityBlock_Fragment = { __typename?: 'AvailabilityBlock', _type: 'AvailabilityBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_AvailabilityBlock_Fragment' };
+
+type IElementData_BannerBlock_Fragment = { __typename?: 'BannerBlock', _type: 'BannerBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_BannerBlock_Fragment' };
+
 type IElementData_BlankSection_Fragment = { __typename?: 'BlankSection', _type: 'BlankSection', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11864,20 +15886,6 @@ type IElementData_BlankSection_Fragment = { __typename?: 'BlankSection', _type: 
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_BlankSection_Fragment' };
-
-type IElementData_BlogListingBlock_Fragment = { __typename?: 'BlogListingBlock', _type: 'BlogListingBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_BlogListingBlock_Fragment' };
 
 type IElementData_ButtonBlock_Fragment = { __typename?: 'ButtonBlock', _type: 'ButtonBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11935,7 +15943,7 @@ type IElementData_CarouselBlock_Fragment = { __typename?: 'CarouselBlock', _type
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_CarouselBlock_Fragment' };
 
-type IElementData_ContentRecsBlock_Fragment = { __typename?: 'ContentRecsBlock', _type: 'ContentRecsBlock', _metadata?: (
+type IElementData_ContactBlock_Fragment = { __typename?: 'ContactBlock', _type: 'ContactBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
   ) | (
@@ -11947,7 +15955,7 @@ type IElementData_ContentRecsBlock_Fragment = { __typename?: 'ContentRecsBlock',
   ) | (
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_ContentRecsBlock_Fragment' };
+  ) | null } & { ' $fragmentName'?: 'IElementData_ContactBlock_Fragment' };
 
 type IElementData_ContentRecsElement_Fragment = { __typename?: 'ContentRecsElement', _type: 'ContentRecsElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11977,6 +15985,62 @@ type IElementData_ContinueReadingComponent_Fragment = { __typename?: 'ContinueRe
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_ContinueReadingComponent_Fragment' };
 
+type IElementData_Dictionary_Fragment = { __typename?: 'Dictionary', _type: 'Dictionary', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_Dictionary_Fragment' };
+
+type IElementData_DictionaryItem_Fragment = { __typename?: 'DictionaryItem', _type: 'DictionaryItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_DictionaryItem_Fragment' };
+
+type IElementData_FooterColumn_Fragment = { __typename?: 'FooterColumn', _type: 'FooterColumn', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_FooterColumn_Fragment' };
+
+type IElementData_HeaderBlock_Fragment = { __typename?: 'HeaderBlock', _type: 'HeaderBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_HeaderBlock_Fragment' };
+
 type IElementData_HeadingElement_Fragment = { __typename?: 'HeadingElement', _type: 'HeadingElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11990,6 +16054,20 @@ type IElementData_HeadingElement_Fragment = { __typename?: 'HeadingElement', _ty
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_HeadingElement_Fragment' };
+
+type IElementData_Hero_Fragment = { __typename?: 'Hero', _type: 'Hero', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_Hero_Fragment' };
 
 type IElementData_HeroBlock_Fragment = { __typename?: 'HeroBlock', _type: 'HeroBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -12005,34 +16083,6 @@ type IElementData_HeroBlock_Fragment = { __typename?: 'HeroBlock', _type: 'HeroB
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_HeroBlock_Fragment' };
 
-type IElementData_HomePageHeroBlock_Fragment = { __typename?: 'HomePageHeroBlock', _type: 'HomePageHeroBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_HomePageHeroBlock_Fragment' };
-
-type IElementData_HtmlBlock_Fragment = { __typename?: 'HtmlBlock', _type: 'HtmlBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_HtmlBlock_Fragment' };
-
 type IElementData_ImageElement_Fragment = { __typename?: 'ImageElement', _type: 'ImageElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12047,20 +16097,6 @@ type IElementData_ImageElement_Fragment = { __typename?: 'ImageElement', _type: 
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_ImageElement_Fragment' };
 
-type IElementData_LayoutContainerBlock_Fragment = { __typename?: 'LayoutContainerBlock', _type: 'LayoutContainerBlock', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_LayoutContainerBlock_Fragment' };
-
 type IElementData_LayoutSettingsBlock_Fragment = { __typename?: 'LayoutSettingsBlock', _type: 'LayoutSettingsBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12074,6 +16110,34 @@ type IElementData_LayoutSettingsBlock_Fragment = { __typename?: 'LayoutSettingsB
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_LayoutSettingsBlock_Fragment' };
+
+type IElementData_LogoItemBlock_Fragment = { __typename?: 'LogoItemBlock', _type: 'LogoItemBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_LogoItemBlock_Fragment' };
+
+type IElementData_LogosBlock_Fragment = { __typename?: 'LogosBlock', _type: 'LogosBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_LogosBlock_Fragment' };
 
 type IElementData_MegaMenuGroupBlock_Fragment = { __typename?: 'MegaMenuGroupBlock', _type: 'MegaMenuGroupBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -12103,6 +16167,34 @@ type IElementData_MenuNavigationBlock_Fragment = { __typename?: 'MenuNavigationB
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_MenuNavigationBlock_Fragment' };
 
+type IElementData_NavItem_Fragment = { __typename?: 'NavItem', _type: 'NavItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_NavItem_Fragment' };
+
+type IElementData_NavigationMenuBlock_Fragment = { __typename?: 'NavigationMenuBlock', _type: 'NavigationMenuBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_NavigationMenuBlock_Fragment' };
+
 type IElementData_OdpEmbedBlock_Fragment = { __typename?: 'OdpEmbedBlock', _type: 'OdpEmbedBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12117,7 +16209,7 @@ type IElementData_OdpEmbedBlock_Fragment = { __typename?: 'OdpEmbedBlock', _type
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_OdpEmbedBlock_Fragment' };
 
-type IElementData_OptiFormsChoiceElement_Fragment = { __typename?: 'OptiFormsChoiceElement', _type: 'OptiFormsChoiceElement', _metadata?: (
+type IElementData_OfficeLocation_Fragment = { __typename?: 'OfficeLocation', _type: 'OfficeLocation', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
   ) | (
@@ -12129,133 +16221,7 @@ type IElementData_OptiFormsChoiceElement_Fragment = { __typename?: 'OptiFormsCho
   ) | (
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsChoiceElement_Fragment' };
-
-type IElementData_OptiFormsContainerData_Fragment = { __typename?: 'OptiFormsContainerData', _type: 'OptiFormsContainerData', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsContainerData_Fragment' };
-
-type IElementData_OptiFormsNumberElement_Fragment = { __typename?: 'OptiFormsNumberElement', _type: 'OptiFormsNumberElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsNumberElement_Fragment' };
-
-type IElementData_OptiFormsRangeElement_Fragment = { __typename?: 'OptiFormsRangeElement', _type: 'OptiFormsRangeElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsRangeElement_Fragment' };
-
-type IElementData_OptiFormsResetElement_Fragment = { __typename?: 'OptiFormsResetElement', _type: 'OptiFormsResetElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsResetElement_Fragment' };
-
-type IElementData_OptiFormsSelectionElement_Fragment = { __typename?: 'OptiFormsSelectionElement', _type: 'OptiFormsSelectionElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsSelectionElement_Fragment' };
-
-type IElementData_OptiFormsSubmitElement_Fragment = { __typename?: 'OptiFormsSubmitElement', _type: 'OptiFormsSubmitElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsSubmitElement_Fragment' };
-
-type IElementData_OptiFormsTextareaElement_Fragment = { __typename?: 'OptiFormsTextareaElement', _type: 'OptiFormsTextareaElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsTextareaElement_Fragment' };
-
-type IElementData_OptiFormsTextboxElement_Fragment = { __typename?: 'OptiFormsTextboxElement', _type: 'OptiFormsTextboxElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsTextboxElement_Fragment' };
-
-type IElementData_OptiFormsUrlElement_Fragment = { __typename?: 'OptiFormsUrlElement', _type: 'OptiFormsUrlElement', _metadata?: (
-    { __typename?: 'ContentMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
-  ) | (
-    { __typename?: 'InstanceMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
-  ) | (
-    { __typename?: 'ItemMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
-  ) | (
-    { __typename?: 'MediaMetadata' }
-    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
-  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsUrlElement_Fragment' };
+  ) | null } & { ' $fragmentName'?: 'IElementData_OfficeLocation_Fragment' };
 
 type IElementData_PageSeoSettings_Fragment = { __typename?: 'PageSeoSettings', _type: 'PageSeoSettings', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -12285,6 +16251,48 @@ type IElementData_ParagraphElement_Fragment = { __typename?: 'ParagraphElement',
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_ParagraphElement_Fragment' };
 
+type IElementData_PortfolioGridBlock_Fragment = { __typename?: 'PortfolioGridBlock', _type: 'PortfolioGridBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_PortfolioGridBlock_Fragment' };
+
+type IElementData_PortfolioItemBlock_Fragment = { __typename?: 'PortfolioItemBlock', _type: 'PortfolioItemBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_PortfolioItemBlock_Fragment' };
+
+type IElementData_ProfileBlock_Fragment = { __typename?: 'ProfileBlock', _type: 'ProfileBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_ProfileBlock_Fragment' };
+
 type IElementData_QuoteBlock_Fragment = { __typename?: 'QuoteBlock', _type: 'QuoteBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12313,6 +16321,62 @@ type IElementData_RichTextElement_Fragment = { __typename?: 'RichTextElement', _
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_RichTextElement_Fragment' };
 
+type IElementData_ServiceItem_Fragment = { __typename?: 'ServiceItem', _type: 'ServiceItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_ServiceItem_Fragment' };
+
+type IElementData_ServicesBlock_Fragment = { __typename?: 'ServicesBlock', _type: 'ServicesBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_ServicesBlock_Fragment' };
+
+type IElementData_SocialLink_Fragment = { __typename?: 'SocialLink', _type: 'SocialLink', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_SocialLink_Fragment' };
+
+type IElementData_StoryBlock_Fragment = { __typename?: 'StoryBlock', _type: 'StoryBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_StoryBlock_Fragment' };
+
 type IElementData_TestimonialElement_Fragment = { __typename?: 'TestimonialElement', _type: 'TestimonialElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12326,6 +16390,48 @@ type IElementData_TestimonialElement_Fragment = { __typename?: 'TestimonialEleme
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_TestimonialElement_Fragment' };
+
+type IElementData_TestimonialItem_Fragment = { __typename?: 'TestimonialItem', _type: 'TestimonialItem', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_TestimonialItem_Fragment' };
+
+type IElementData_TestimonialItemBlock_Fragment = { __typename?: 'TestimonialItemBlock', _type: 'TestimonialItemBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_TestimonialItemBlock_Fragment' };
+
+type IElementData_TestimonialsBlock_Fragment = { __typename?: 'TestimonialsBlock', _type: 'TestimonialsBlock', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_TestimonialsBlock_Fragment' };
 
 type IElementData_TextBlock_Fragment = { __typename?: 'TextBlock', _type: 'TextBlock', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -12355,6 +16461,20 @@ type IElementData_VideoElement_Fragment = { __typename?: 'VideoElement', _type: 
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_VideoElement_Fragment' };
 
+type IElementData_WebsiteFooter_Fragment = { __typename?: 'WebsiteFooter', _type: 'WebsiteFooter', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_WebsiteFooter_Fragment' };
+
 type IElementData__Component_Fragment = { __typename?: '_Component', _type: '_Component', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12383,22 +16503,27 @@ type IElementData__Section_Fragment = { __typename?: '_Section', _type: '_Sectio
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData__Section_Fragment' };
 
-export type IElementDataFragment = IElementData_ArticleListElement_Fragment | IElementData_BlankSection_Fragment | IElementData_BlogListingBlock_Fragment | IElementData_ButtonBlock_Fragment | IElementData_CTAElement_Fragment | IElementData_CardBlock_Fragment | IElementData_CarouselBlock_Fragment | IElementData_ContentRecsBlock_Fragment | IElementData_ContentRecsElement_Fragment | IElementData_ContinueReadingComponent_Fragment | IElementData_HeadingElement_Fragment | IElementData_HeroBlock_Fragment | IElementData_HomePageHeroBlock_Fragment | IElementData_HtmlBlock_Fragment | IElementData_ImageElement_Fragment | IElementData_LayoutContainerBlock_Fragment | IElementData_LayoutSettingsBlock_Fragment | IElementData_MegaMenuGroupBlock_Fragment | IElementData_MenuNavigationBlock_Fragment | IElementData_OdpEmbedBlock_Fragment | IElementData_OptiFormsChoiceElement_Fragment | IElementData_OptiFormsContainerData_Fragment | IElementData_OptiFormsNumberElement_Fragment | IElementData_OptiFormsRangeElement_Fragment | IElementData_OptiFormsResetElement_Fragment | IElementData_OptiFormsSelectionElement_Fragment | IElementData_OptiFormsSubmitElement_Fragment | IElementData_OptiFormsTextareaElement_Fragment | IElementData_OptiFormsTextboxElement_Fragment | IElementData_OptiFormsUrlElement_Fragment | IElementData_PageSeoSettings_Fragment | IElementData_ParagraphElement_Fragment | IElementData_QuoteBlock_Fragment | IElementData_RichTextElement_Fragment | IElementData_TestimonialElement_Fragment | IElementData_TextBlock_Fragment | IElementData_VideoElement_Fragment | IElementData__Component_Fragment | IElementData__Section_Fragment;
+export type IElementDataFragment = IElementData_ArticleListElement_Fragment | IElementData_AvailabilityBlock_Fragment | IElementData_BannerBlock_Fragment | IElementData_BlankSection_Fragment | IElementData_ButtonBlock_Fragment | IElementData_CTAElement_Fragment | IElementData_CardBlock_Fragment | IElementData_CarouselBlock_Fragment | IElementData_ContactBlock_Fragment | IElementData_ContentRecsElement_Fragment | IElementData_ContinueReadingComponent_Fragment | IElementData_Dictionary_Fragment | IElementData_DictionaryItem_Fragment | IElementData_FooterColumn_Fragment | IElementData_HeaderBlock_Fragment | IElementData_HeadingElement_Fragment | IElementData_Hero_Fragment | IElementData_HeroBlock_Fragment | IElementData_ImageElement_Fragment | IElementData_LayoutSettingsBlock_Fragment | IElementData_LogoItemBlock_Fragment | IElementData_LogosBlock_Fragment | IElementData_MegaMenuGroupBlock_Fragment | IElementData_MenuNavigationBlock_Fragment | IElementData_NavItem_Fragment | IElementData_NavigationMenuBlock_Fragment | IElementData_OdpEmbedBlock_Fragment | IElementData_OfficeLocation_Fragment | IElementData_PageSeoSettings_Fragment | IElementData_ParagraphElement_Fragment | IElementData_PortfolioGridBlock_Fragment | IElementData_PortfolioItemBlock_Fragment | IElementData_ProfileBlock_Fragment | IElementData_QuoteBlock_Fragment | IElementData_RichTextElement_Fragment | IElementData_ServiceItem_Fragment | IElementData_ServicesBlock_Fragment | IElementData_SocialLink_Fragment | IElementData_StoryBlock_Fragment | IElementData_TestimonialElement_Fragment | IElementData_TestimonialItem_Fragment | IElementData_TestimonialItemBlock_Fragment | IElementData_TestimonialsBlock_Fragment | IElementData_TextBlock_Fragment | IElementData_VideoElement_Fragment | IElementData_WebsiteFooter_Fragment | IElementData__Component_Fragment | IElementData__Section_Fragment;
 
 type ElementData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
   & { ' $fragmentRefs'?: { 'IElementData_ArticleListElement_Fragment': IElementData_ArticleListElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_ArticleListElement_Fragment' };
 
+type ElementData_AvailabilityBlock_Fragment = (
+  { __typename?: 'AvailabilityBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_AvailabilityBlock_Fragment': IElementData_AvailabilityBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_AvailabilityBlock_Fragment' };
+
+type ElementData_BannerBlock_Fragment = (
+  { __typename?: 'BannerBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_BannerBlock_Fragment': IElementData_BannerBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_BannerBlock_Fragment' };
+
 type ElementData_BlankSection_Fragment = (
   { __typename?: 'BlankSection' }
   & { ' $fragmentRefs'?: { 'IElementData_BlankSection_Fragment': IElementData_BlankSection_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_BlankSection_Fragment' };
-
-type ElementData_BlogListingBlock_Fragment = (
-  { __typename?: 'BlogListingBlock' }
-  & { ' $fragmentRefs'?: { 'IElementData_BlogListingBlock_Fragment': IElementData_BlogListingBlock_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_BlogListingBlock_Fragment' };
 
 type ElementData_ButtonBlock_Fragment = (
   { __typename?: 'ButtonBlock' }
@@ -12420,10 +16545,10 @@ type ElementData_CarouselBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_CarouselBlock_Fragment': IElementData_CarouselBlock_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_CarouselBlock_Fragment' };
 
-type ElementData_ContentRecsBlock_Fragment = (
-  { __typename?: 'ContentRecsBlock' }
-  & { ' $fragmentRefs'?: { 'IElementData_ContentRecsBlock_Fragment': IElementData_ContentRecsBlock_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_ContentRecsBlock_Fragment' };
+type ElementData_ContactBlock_Fragment = (
+  { __typename?: 'ContactBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_ContactBlock_Fragment': IElementData_ContactBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_ContactBlock_Fragment' };
 
 type ElementData_ContentRecsElement_Fragment = (
   { __typename?: 'ContentRecsElement' }
@@ -12435,40 +16560,60 @@ type ElementData_ContinueReadingComponent_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_ContinueReadingComponent_Fragment': IElementData_ContinueReadingComponent_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_ContinueReadingComponent_Fragment' };
 
+type ElementData_Dictionary_Fragment = (
+  { __typename?: 'Dictionary' }
+  & { ' $fragmentRefs'?: { 'IElementData_Dictionary_Fragment': IElementData_Dictionary_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_Dictionary_Fragment' };
+
+type ElementData_DictionaryItem_Fragment = (
+  { __typename?: 'DictionaryItem' }
+  & { ' $fragmentRefs'?: { 'IElementData_DictionaryItem_Fragment': IElementData_DictionaryItem_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_DictionaryItem_Fragment' };
+
+type ElementData_FooterColumn_Fragment = (
+  { __typename?: 'FooterColumn' }
+  & { ' $fragmentRefs'?: { 'IElementData_FooterColumn_Fragment': IElementData_FooterColumn_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_FooterColumn_Fragment' };
+
+type ElementData_HeaderBlock_Fragment = (
+  { __typename?: 'HeaderBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_HeaderBlock_Fragment': IElementData_HeaderBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_HeaderBlock_Fragment' };
+
 type ElementData_HeadingElement_Fragment = (
   { __typename?: 'HeadingElement' }
   & { ' $fragmentRefs'?: { 'IElementData_HeadingElement_Fragment': IElementData_HeadingElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_HeadingElement_Fragment' };
+
+type ElementData_Hero_Fragment = (
+  { __typename?: 'Hero' }
+  & { ' $fragmentRefs'?: { 'IElementData_Hero_Fragment': IElementData_Hero_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_Hero_Fragment' };
 
 type ElementData_HeroBlock_Fragment = (
   { __typename?: 'HeroBlock' }
   & { ' $fragmentRefs'?: { 'IElementData_HeroBlock_Fragment': IElementData_HeroBlock_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_HeroBlock_Fragment' };
 
-type ElementData_HomePageHeroBlock_Fragment = (
-  { __typename?: 'HomePageHeroBlock' }
-  & { ' $fragmentRefs'?: { 'IElementData_HomePageHeroBlock_Fragment': IElementData_HomePageHeroBlock_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_HomePageHeroBlock_Fragment' };
-
-type ElementData_HtmlBlock_Fragment = (
-  { __typename?: 'HtmlBlock' }
-  & { ' $fragmentRefs'?: { 'IElementData_HtmlBlock_Fragment': IElementData_HtmlBlock_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_HtmlBlock_Fragment' };
-
 type ElementData_ImageElement_Fragment = (
   { __typename?: 'ImageElement' }
   & { ' $fragmentRefs'?: { 'IElementData_ImageElement_Fragment': IElementData_ImageElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_ImageElement_Fragment' };
 
-type ElementData_LayoutContainerBlock_Fragment = (
-  { __typename?: 'LayoutContainerBlock' }
-  & { ' $fragmentRefs'?: { 'IElementData_LayoutContainerBlock_Fragment': IElementData_LayoutContainerBlock_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_LayoutContainerBlock_Fragment' };
-
 type ElementData_LayoutSettingsBlock_Fragment = (
   { __typename?: 'LayoutSettingsBlock' }
   & { ' $fragmentRefs'?: { 'IElementData_LayoutSettingsBlock_Fragment': IElementData_LayoutSettingsBlock_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_LayoutSettingsBlock_Fragment' };
+
+type ElementData_LogoItemBlock_Fragment = (
+  { __typename?: 'LogoItemBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_LogoItemBlock_Fragment': IElementData_LogoItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_LogoItemBlock_Fragment' };
+
+type ElementData_LogosBlock_Fragment = (
+  { __typename?: 'LogosBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_LogosBlock_Fragment': IElementData_LogosBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_LogosBlock_Fragment' };
 
 type ElementData_MegaMenuGroupBlock_Fragment = (
   { __typename?: 'MegaMenuGroupBlock' }
@@ -12480,60 +16625,25 @@ type ElementData_MenuNavigationBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_MenuNavigationBlock_Fragment': IElementData_MenuNavigationBlock_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_MenuNavigationBlock_Fragment' };
 
+type ElementData_NavItem_Fragment = (
+  { __typename?: 'NavItem' }
+  & { ' $fragmentRefs'?: { 'IElementData_NavItem_Fragment': IElementData_NavItem_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_NavItem_Fragment' };
+
+type ElementData_NavigationMenuBlock_Fragment = (
+  { __typename?: 'NavigationMenuBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_NavigationMenuBlock_Fragment': IElementData_NavigationMenuBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_NavigationMenuBlock_Fragment' };
+
 type ElementData_OdpEmbedBlock_Fragment = (
   { __typename?: 'OdpEmbedBlock' }
   & { ' $fragmentRefs'?: { 'IElementData_OdpEmbedBlock_Fragment': IElementData_OdpEmbedBlock_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_OdpEmbedBlock_Fragment' };
 
-type ElementData_OptiFormsChoiceElement_Fragment = (
-  { __typename?: 'OptiFormsChoiceElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsChoiceElement_Fragment': IElementData_OptiFormsChoiceElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsChoiceElement_Fragment' };
-
-type ElementData_OptiFormsContainerData_Fragment = (
-  { __typename?: 'OptiFormsContainerData' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsContainerData_Fragment': IElementData_OptiFormsContainerData_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsContainerData_Fragment' };
-
-type ElementData_OptiFormsNumberElement_Fragment = (
-  { __typename?: 'OptiFormsNumberElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsNumberElement_Fragment': IElementData_OptiFormsNumberElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsNumberElement_Fragment' };
-
-type ElementData_OptiFormsRangeElement_Fragment = (
-  { __typename?: 'OptiFormsRangeElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsRangeElement_Fragment': IElementData_OptiFormsRangeElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsRangeElement_Fragment' };
-
-type ElementData_OptiFormsResetElement_Fragment = (
-  { __typename?: 'OptiFormsResetElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsResetElement_Fragment': IElementData_OptiFormsResetElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsResetElement_Fragment' };
-
-type ElementData_OptiFormsSelectionElement_Fragment = (
-  { __typename?: 'OptiFormsSelectionElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsSelectionElement_Fragment': IElementData_OptiFormsSelectionElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsSelectionElement_Fragment' };
-
-type ElementData_OptiFormsSubmitElement_Fragment = (
-  { __typename?: 'OptiFormsSubmitElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsSubmitElement_Fragment': IElementData_OptiFormsSubmitElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsSubmitElement_Fragment' };
-
-type ElementData_OptiFormsTextareaElement_Fragment = (
-  { __typename?: 'OptiFormsTextareaElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsTextareaElement_Fragment': IElementData_OptiFormsTextareaElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsTextareaElement_Fragment' };
-
-type ElementData_OptiFormsTextboxElement_Fragment = (
-  { __typename?: 'OptiFormsTextboxElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsTextboxElement_Fragment': IElementData_OptiFormsTextboxElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsTextboxElement_Fragment' };
-
-type ElementData_OptiFormsUrlElement_Fragment = (
-  { __typename?: 'OptiFormsUrlElement' }
-  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsUrlElement_Fragment': IElementData_OptiFormsUrlElement_Fragment } }
-) & { ' $fragmentName'?: 'ElementData_OptiFormsUrlElement_Fragment' };
+type ElementData_OfficeLocation_Fragment = (
+  { __typename?: 'OfficeLocation' }
+  & { ' $fragmentRefs'?: { 'IElementData_OfficeLocation_Fragment': IElementData_OfficeLocation_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_OfficeLocation_Fragment' };
 
 type ElementData_PageSeoSettings_Fragment = (
   { __typename?: 'PageSeoSettings' }
@@ -12545,6 +16655,21 @@ type ElementData_ParagraphElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_ParagraphElement_Fragment': IElementData_ParagraphElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_ParagraphElement_Fragment' };
 
+type ElementData_PortfolioGridBlock_Fragment = (
+  { __typename?: 'PortfolioGridBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_PortfolioGridBlock_Fragment': IElementData_PortfolioGridBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_PortfolioGridBlock_Fragment' };
+
+type ElementData_PortfolioItemBlock_Fragment = (
+  { __typename?: 'PortfolioItemBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_PortfolioItemBlock_Fragment': IElementData_PortfolioItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_PortfolioItemBlock_Fragment' };
+
+type ElementData_ProfileBlock_Fragment = (
+  { __typename?: 'ProfileBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_ProfileBlock_Fragment': IElementData_ProfileBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_ProfileBlock_Fragment' };
+
 type ElementData_QuoteBlock_Fragment = (
   { __typename?: 'QuoteBlock' }
   & { ' $fragmentRefs'?: { 'IElementData_QuoteBlock_Fragment': IElementData_QuoteBlock_Fragment } }
@@ -12555,10 +16680,45 @@ type ElementData_RichTextElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_RichTextElement_Fragment': IElementData_RichTextElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_RichTextElement_Fragment' };
 
+type ElementData_ServiceItem_Fragment = (
+  { __typename?: 'ServiceItem' }
+  & { ' $fragmentRefs'?: { 'IElementData_ServiceItem_Fragment': IElementData_ServiceItem_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_ServiceItem_Fragment' };
+
+type ElementData_ServicesBlock_Fragment = (
+  { __typename?: 'ServicesBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_ServicesBlock_Fragment': IElementData_ServicesBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_ServicesBlock_Fragment' };
+
+type ElementData_SocialLink_Fragment = (
+  { __typename?: 'SocialLink' }
+  & { ' $fragmentRefs'?: { 'IElementData_SocialLink_Fragment': IElementData_SocialLink_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_SocialLink_Fragment' };
+
+type ElementData_StoryBlock_Fragment = (
+  { __typename?: 'StoryBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_StoryBlock_Fragment': IElementData_StoryBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_StoryBlock_Fragment' };
+
 type ElementData_TestimonialElement_Fragment = (
   { __typename?: 'TestimonialElement' }
   & { ' $fragmentRefs'?: { 'IElementData_TestimonialElement_Fragment': IElementData_TestimonialElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_TestimonialElement_Fragment' };
+
+type ElementData_TestimonialItem_Fragment = (
+  { __typename?: 'TestimonialItem' }
+  & { ' $fragmentRefs'?: { 'IElementData_TestimonialItem_Fragment': IElementData_TestimonialItem_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_TestimonialItem_Fragment' };
+
+type ElementData_TestimonialItemBlock_Fragment = (
+  { __typename?: 'TestimonialItemBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_TestimonialItemBlock_Fragment': IElementData_TestimonialItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_TestimonialItemBlock_Fragment' };
+
+type ElementData_TestimonialsBlock_Fragment = (
+  { __typename?: 'TestimonialsBlock' }
+  & { ' $fragmentRefs'?: { 'IElementData_TestimonialsBlock_Fragment': IElementData_TestimonialsBlock_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_TestimonialsBlock_Fragment' };
 
 type ElementData_TextBlock_Fragment = (
   { __typename?: 'TextBlock' }
@@ -12570,6 +16730,11 @@ type ElementData_VideoElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_VideoElement_Fragment': IElementData_VideoElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_VideoElement_Fragment' };
 
+type ElementData_WebsiteFooter_Fragment = (
+  { __typename?: 'WebsiteFooter' }
+  & { ' $fragmentRefs'?: { 'IElementData_WebsiteFooter_Fragment': IElementData_WebsiteFooter_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_WebsiteFooter_Fragment' };
+
 type ElementData__Component_Fragment = (
   { __typename?: '_Component' }
   & { ' $fragmentRefs'?: { 'IElementData__Component_Fragment': IElementData__Component_Fragment } }
@@ -12580,22 +16745,27 @@ type ElementData__Section_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData__Section_Fragment': IElementData__Section_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData__Section_Fragment' };
 
-export type ElementDataFragment = ElementData_ArticleListElement_Fragment | ElementData_BlankSection_Fragment | ElementData_BlogListingBlock_Fragment | ElementData_ButtonBlock_Fragment | ElementData_CTAElement_Fragment | ElementData_CardBlock_Fragment | ElementData_CarouselBlock_Fragment | ElementData_ContentRecsBlock_Fragment | ElementData_ContentRecsElement_Fragment | ElementData_ContinueReadingComponent_Fragment | ElementData_HeadingElement_Fragment | ElementData_HeroBlock_Fragment | ElementData_HomePageHeroBlock_Fragment | ElementData_HtmlBlock_Fragment | ElementData_ImageElement_Fragment | ElementData_LayoutContainerBlock_Fragment | ElementData_LayoutSettingsBlock_Fragment | ElementData_MegaMenuGroupBlock_Fragment | ElementData_MenuNavigationBlock_Fragment | ElementData_OdpEmbedBlock_Fragment | ElementData_OptiFormsChoiceElement_Fragment | ElementData_OptiFormsContainerData_Fragment | ElementData_OptiFormsNumberElement_Fragment | ElementData_OptiFormsRangeElement_Fragment | ElementData_OptiFormsResetElement_Fragment | ElementData_OptiFormsSelectionElement_Fragment | ElementData_OptiFormsSubmitElement_Fragment | ElementData_OptiFormsTextareaElement_Fragment | ElementData_OptiFormsTextboxElement_Fragment | ElementData_OptiFormsUrlElement_Fragment | ElementData_PageSeoSettings_Fragment | ElementData_ParagraphElement_Fragment | ElementData_QuoteBlock_Fragment | ElementData_RichTextElement_Fragment | ElementData_TestimonialElement_Fragment | ElementData_TextBlock_Fragment | ElementData_VideoElement_Fragment | ElementData__Component_Fragment | ElementData__Section_Fragment;
+export type ElementDataFragment = ElementData_ArticleListElement_Fragment | ElementData_AvailabilityBlock_Fragment | ElementData_BannerBlock_Fragment | ElementData_BlankSection_Fragment | ElementData_ButtonBlock_Fragment | ElementData_CTAElement_Fragment | ElementData_CardBlock_Fragment | ElementData_CarouselBlock_Fragment | ElementData_ContactBlock_Fragment | ElementData_ContentRecsElement_Fragment | ElementData_ContinueReadingComponent_Fragment | ElementData_Dictionary_Fragment | ElementData_DictionaryItem_Fragment | ElementData_FooterColumn_Fragment | ElementData_HeaderBlock_Fragment | ElementData_HeadingElement_Fragment | ElementData_Hero_Fragment | ElementData_HeroBlock_Fragment | ElementData_ImageElement_Fragment | ElementData_LayoutSettingsBlock_Fragment | ElementData_LogoItemBlock_Fragment | ElementData_LogosBlock_Fragment | ElementData_MegaMenuGroupBlock_Fragment | ElementData_MenuNavigationBlock_Fragment | ElementData_NavItem_Fragment | ElementData_NavigationMenuBlock_Fragment | ElementData_OdpEmbedBlock_Fragment | ElementData_OfficeLocation_Fragment | ElementData_PageSeoSettings_Fragment | ElementData_ParagraphElement_Fragment | ElementData_PortfolioGridBlock_Fragment | ElementData_PortfolioItemBlock_Fragment | ElementData_ProfileBlock_Fragment | ElementData_QuoteBlock_Fragment | ElementData_RichTextElement_Fragment | ElementData_ServiceItem_Fragment | ElementData_ServicesBlock_Fragment | ElementData_SocialLink_Fragment | ElementData_StoryBlock_Fragment | ElementData_TestimonialElement_Fragment | ElementData_TestimonialItem_Fragment | ElementData_TestimonialItemBlock_Fragment | ElementData_TestimonialsBlock_Fragment | ElementData_TextBlock_Fragment | ElementData_VideoElement_Fragment | ElementData_WebsiteFooter_Fragment | ElementData__Component_Fragment | ElementData__Section_Fragment;
 
 type BlockData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
   & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_ArticleListElement_Fragment' };
 
+type BlockData_AvailabilityBlock_Fragment = (
+  { __typename?: 'AvailabilityBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_AvailabilityBlock_Fragment' };
+
+type BlockData_BannerBlock_Fragment = (
+  { __typename?: 'BannerBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_BannerBlock_Fragment' };
+
 type BlockData_BlankSection_Fragment = (
   { __typename?: 'BlankSection' }
   & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_BlankSection_Fragment' };
-
-type BlockData_BlogListingBlock_Fragment = (
-  { __typename?: 'BlogListingBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_BlogListingBlock_Fragment' };
 
 type BlockData_ButtonBlock_Fragment = (
   { __typename?: 'ButtonBlock' }
@@ -12617,10 +16787,10 @@ type BlockData_CarouselBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_CarouselBlock_Fragment' };
 
-type BlockData_ContentRecsBlock_Fragment = (
-  { __typename?: 'ContentRecsBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_ContentRecsBlock_Fragment' };
+type BlockData_ContactBlock_Fragment = (
+  { __typename?: 'ContactBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_ContactBlock_Fragment' };
 
 type BlockData_ContentRecsElement_Fragment = (
   { __typename?: 'ContentRecsElement' }
@@ -12632,40 +16802,60 @@ type BlockData_ContinueReadingComponent_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_ContinueReadingComponent_Fragment' };
 
+type BlockData_Dictionary_Fragment = (
+  { __typename?: 'Dictionary' }
+  & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_Dictionary_Fragment' };
+
+type BlockData_DictionaryItem_Fragment = (
+  { __typename?: 'DictionaryItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_DictionaryItem_Fragment' };
+
+type BlockData_FooterColumn_Fragment = (
+  { __typename?: 'FooterColumn' }
+  & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_FooterColumn_Fragment' };
+
+type BlockData_HeaderBlock_Fragment = (
+  { __typename?: 'HeaderBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_HeaderBlock_Fragment' };
+
 type BlockData_HeadingElement_Fragment = (
   { __typename?: 'HeadingElement' }
   & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_HeadingElement_Fragment' };
+
+type BlockData_Hero_Fragment = (
+  { __typename?: 'Hero' }
+  & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_Hero_Fragment' };
 
 type BlockData_HeroBlock_Fragment = (
   { __typename?: 'HeroBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_HeroBlock_Fragment' };
 
-type BlockData_HomePageHeroBlock_Fragment = (
-  { __typename?: 'HomePageHeroBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_HomePageHeroBlock_Fragment' };
-
-type BlockData_HtmlBlock_Fragment = (
-  { __typename?: 'HtmlBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_HtmlBlock_Fragment' };
-
 type BlockData_ImageElement_Fragment = (
   { __typename?: 'ImageElement' }
   & { ' $fragmentRefs'?: { 'IContentData_ImageElement_Fragment': IContentData_ImageElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_ImageElement_Fragment' };
 
-type BlockData_LayoutContainerBlock_Fragment = (
-  { __typename?: 'LayoutContainerBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_LayoutContainerBlock_Fragment' };
-
 type BlockData_LayoutSettingsBlock_Fragment = (
   { __typename?: 'LayoutSettingsBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_LayoutSettingsBlock_Fragment' };
+
+type BlockData_LogoItemBlock_Fragment = (
+  { __typename?: 'LogoItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_LogoItemBlock_Fragment' };
+
+type BlockData_LogosBlock_Fragment = (
+  { __typename?: 'LogosBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_LogosBlock_Fragment' };
 
 type BlockData_MegaMenuGroupBlock_Fragment = (
   { __typename?: 'MegaMenuGroupBlock' }
@@ -12677,60 +16867,25 @@ type BlockData_MenuNavigationBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_MenuNavigationBlock_Fragment' };
 
+type BlockData_NavItem_Fragment = (
+  { __typename?: 'NavItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_NavItem_Fragment' };
+
+type BlockData_NavigationMenuBlock_Fragment = (
+  { __typename?: 'NavigationMenuBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_NavigationMenuBlock_Fragment' };
+
 type BlockData_OdpEmbedBlock_Fragment = (
   { __typename?: 'OdpEmbedBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_OdpEmbedBlock_Fragment' };
 
-type BlockData_OptiFormsChoiceElement_Fragment = (
-  { __typename?: 'OptiFormsChoiceElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsChoiceElement_Fragment' };
-
-type BlockData_OptiFormsContainerData_Fragment = (
-  { __typename?: 'OptiFormsContainerData' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsContainerData_Fragment' };
-
-type BlockData_OptiFormsNumberElement_Fragment = (
-  { __typename?: 'OptiFormsNumberElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsNumberElement_Fragment' };
-
-type BlockData_OptiFormsRangeElement_Fragment = (
-  { __typename?: 'OptiFormsRangeElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsRangeElement_Fragment' };
-
-type BlockData_OptiFormsResetElement_Fragment = (
-  { __typename?: 'OptiFormsResetElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsResetElement_Fragment' };
-
-type BlockData_OptiFormsSelectionElement_Fragment = (
-  { __typename?: 'OptiFormsSelectionElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsSelectionElement_Fragment' };
-
-type BlockData_OptiFormsSubmitElement_Fragment = (
-  { __typename?: 'OptiFormsSubmitElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsSubmitElement_Fragment' };
-
-type BlockData_OptiFormsTextareaElement_Fragment = (
-  { __typename?: 'OptiFormsTextareaElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsTextareaElement_Fragment' };
-
-type BlockData_OptiFormsTextboxElement_Fragment = (
-  { __typename?: 'OptiFormsTextboxElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsTextboxElement_Fragment' };
-
-type BlockData_OptiFormsUrlElement_Fragment = (
-  { __typename?: 'OptiFormsUrlElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
-) & { ' $fragmentName'?: 'BlockData_OptiFormsUrlElement_Fragment' };
+type BlockData_OfficeLocation_Fragment = (
+  { __typename?: 'OfficeLocation' }
+  & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_OfficeLocation_Fragment' };
 
 type BlockData_PageSeoSettings_Fragment = (
   { __typename?: 'PageSeoSettings' }
@@ -12742,6 +16897,21 @@ type BlockData_ParagraphElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_ParagraphElement_Fragment' };
 
+type BlockData_PortfolioGridBlock_Fragment = (
+  { __typename?: 'PortfolioGridBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_PortfolioGridBlock_Fragment' };
+
+type BlockData_PortfolioItemBlock_Fragment = (
+  { __typename?: 'PortfolioItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_PortfolioItemBlock_Fragment' };
+
+type BlockData_ProfileBlock_Fragment = (
+  { __typename?: 'ProfileBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_ProfileBlock_Fragment' };
+
 type BlockData_QuoteBlock_Fragment = (
   { __typename?: 'QuoteBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
@@ -12752,10 +16922,45 @@ type BlockData_RichTextElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_RichTextElement_Fragment' };
 
+type BlockData_ServiceItem_Fragment = (
+  { __typename?: 'ServiceItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_ServiceItem_Fragment' };
+
+type BlockData_ServicesBlock_Fragment = (
+  { __typename?: 'ServicesBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_ServicesBlock_Fragment' };
+
+type BlockData_SocialLink_Fragment = (
+  { __typename?: 'SocialLink' }
+  & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_SocialLink_Fragment' };
+
+type BlockData_StoryBlock_Fragment = (
+  { __typename?: 'StoryBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_StoryBlock_Fragment' };
+
 type BlockData_TestimonialElement_Fragment = (
   { __typename?: 'TestimonialElement' }
   & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_TestimonialElement_Fragment' };
+
+type BlockData_TestimonialItem_Fragment = (
+  { __typename?: 'TestimonialItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_TestimonialItem_Fragment' };
+
+type BlockData_TestimonialItemBlock_Fragment = (
+  { __typename?: 'TestimonialItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_TestimonialItemBlock_Fragment' };
+
+type BlockData_TestimonialsBlock_Fragment = (
+  { __typename?: 'TestimonialsBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_TestimonialsBlock_Fragment' };
 
 type BlockData_TextBlock_Fragment = (
   { __typename?: 'TextBlock' }
@@ -12767,6 +16972,11 @@ type BlockData_VideoElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_VideoElement_Fragment': IContentData_VideoElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_VideoElement_Fragment' };
 
+type BlockData_WebsiteFooter_Fragment = (
+  { __typename?: 'WebsiteFooter' }
+  & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_WebsiteFooter_Fragment' };
+
 type BlockData__Component_Fragment = (
   { __typename?: '_Component' }
   & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment } }
@@ -12777,12 +16987,32 @@ type BlockData__Section_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Section_Fragment': IContentData__Section_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData__Section_Fragment' };
 
-export type BlockDataFragment = BlockData_ArticleListElement_Fragment | BlockData_BlankSection_Fragment | BlockData_BlogListingBlock_Fragment | BlockData_ButtonBlock_Fragment | BlockData_CTAElement_Fragment | BlockData_CardBlock_Fragment | BlockData_CarouselBlock_Fragment | BlockData_ContentRecsBlock_Fragment | BlockData_ContentRecsElement_Fragment | BlockData_ContinueReadingComponent_Fragment | BlockData_HeadingElement_Fragment | BlockData_HeroBlock_Fragment | BlockData_HomePageHeroBlock_Fragment | BlockData_HtmlBlock_Fragment | BlockData_ImageElement_Fragment | BlockData_LayoutContainerBlock_Fragment | BlockData_LayoutSettingsBlock_Fragment | BlockData_MegaMenuGroupBlock_Fragment | BlockData_MenuNavigationBlock_Fragment | BlockData_OdpEmbedBlock_Fragment | BlockData_OptiFormsChoiceElement_Fragment | BlockData_OptiFormsContainerData_Fragment | BlockData_OptiFormsNumberElement_Fragment | BlockData_OptiFormsRangeElement_Fragment | BlockData_OptiFormsResetElement_Fragment | BlockData_OptiFormsSelectionElement_Fragment | BlockData_OptiFormsSubmitElement_Fragment | BlockData_OptiFormsTextareaElement_Fragment | BlockData_OptiFormsTextboxElement_Fragment | BlockData_OptiFormsUrlElement_Fragment | BlockData_PageSeoSettings_Fragment | BlockData_ParagraphElement_Fragment | BlockData_QuoteBlock_Fragment | BlockData_RichTextElement_Fragment | BlockData_TestimonialElement_Fragment | BlockData_TextBlock_Fragment | BlockData_VideoElement_Fragment | BlockData__Component_Fragment | BlockData__Section_Fragment;
+export type BlockDataFragment = BlockData_ArticleListElement_Fragment | BlockData_AvailabilityBlock_Fragment | BlockData_BannerBlock_Fragment | BlockData_BlankSection_Fragment | BlockData_ButtonBlock_Fragment | BlockData_CTAElement_Fragment | BlockData_CardBlock_Fragment | BlockData_CarouselBlock_Fragment | BlockData_ContactBlock_Fragment | BlockData_ContentRecsElement_Fragment | BlockData_ContinueReadingComponent_Fragment | BlockData_Dictionary_Fragment | BlockData_DictionaryItem_Fragment | BlockData_FooterColumn_Fragment | BlockData_HeaderBlock_Fragment | BlockData_HeadingElement_Fragment | BlockData_Hero_Fragment | BlockData_HeroBlock_Fragment | BlockData_ImageElement_Fragment | BlockData_LayoutSettingsBlock_Fragment | BlockData_LogoItemBlock_Fragment | BlockData_LogosBlock_Fragment | BlockData_MegaMenuGroupBlock_Fragment | BlockData_MenuNavigationBlock_Fragment | BlockData_NavItem_Fragment | BlockData_NavigationMenuBlock_Fragment | BlockData_OdpEmbedBlock_Fragment | BlockData_OfficeLocation_Fragment | BlockData_PageSeoSettings_Fragment | BlockData_ParagraphElement_Fragment | BlockData_PortfolioGridBlock_Fragment | BlockData_PortfolioItemBlock_Fragment | BlockData_ProfileBlock_Fragment | BlockData_QuoteBlock_Fragment | BlockData_RichTextElement_Fragment | BlockData_ServiceItem_Fragment | BlockData_ServicesBlock_Fragment | BlockData_SocialLink_Fragment | BlockData_StoryBlock_Fragment | BlockData_TestimonialElement_Fragment | BlockData_TestimonialItem_Fragment | BlockData_TestimonialItemBlock_Fragment | BlockData_TestimonialsBlock_Fragment | BlockData_TextBlock_Fragment | BlockData_VideoElement_Fragment | BlockData_WebsiteFooter_Fragment | BlockData__Component_Fragment | BlockData__Section_Fragment;
+
+type PageData_ArticleGroupPage_Fragment = (
+  { __typename?: 'ArticleGroupPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ArticleGroupPage_Fragment' };
 
 type PageData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
   & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_ArticleListElement_Fragment' };
+
+type PageData_ArticlePage_Fragment = (
+  { __typename?: 'ArticlePage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ArticlePage_Fragment' };
+
+type PageData_AvailabilityBlock_Fragment = (
+  { __typename?: 'AvailabilityBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_AvailabilityBlock_Fragment' };
+
+type PageData_BannerBlock_Fragment = (
+  { __typename?: 'BannerBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_BannerBlock_Fragment' };
 
 type PageData_BlankExperience_Fragment = (
   { __typename?: 'BlankExperience' }
@@ -12793,11 +17023,6 @@ type PageData_BlankSection_Fragment = (
   { __typename?: 'BlankSection' }
   & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_BlankSection_Fragment' };
-
-type PageData_BlogListingBlock_Fragment = (
-  { __typename?: 'BlogListingBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
-) & { ' $fragmentName'?: 'PageData_BlogListingBlock_Fragment' };
 
 type PageData_BlogPostPage_Fragment = (
   { __typename?: 'BlogPostPage' }
@@ -12814,6 +17039,11 @@ type PageData_ButtonBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_ButtonBlock_Fragment' };
 
+type PageData_CMSPage_Fragment = (
+  { __typename?: 'CMSPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+) & { ' $fragmentName'?: 'PageData_CMSPage_Fragment' };
+
 type PageData_CTAElement_Fragment = (
   { __typename?: 'CTAElement' }
   & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
@@ -12829,10 +17059,10 @@ type PageData_CarouselBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_CarouselBlock_Fragment' };
 
-type PageData_ContentRecsBlock_Fragment = (
-  { __typename?: 'ContentRecsBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
-) & { ' $fragmentName'?: 'PageData_ContentRecsBlock_Fragment' };
+type PageData_ContactBlock_Fragment = (
+  { __typename?: 'ContactBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ContactBlock_Fragment' };
 
 type PageData_ContentRecsElement_Fragment = (
   { __typename?: 'ContentRecsElement' }
@@ -12844,30 +17074,70 @@ type PageData_ContinueReadingComponent_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_ContinueReadingComponent_Fragment' };
 
+type PageData_DefaultImage_Fragment = (
+  { __typename?: 'DefaultImage' }
+  & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+) & { ' $fragmentName'?: 'PageData_DefaultImage_Fragment' };
+
+type PageData_DefaultVideo_Fragment = (
+  { __typename?: 'DefaultVideo' }
+  & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+) & { ' $fragmentName'?: 'PageData_DefaultVideo_Fragment' };
+
+type PageData_Dictionary_Fragment = (
+  { __typename?: 'Dictionary' }
+  & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+) & { ' $fragmentName'?: 'PageData_Dictionary_Fragment' };
+
+type PageData_DictionaryItem_Fragment = (
+  { __typename?: 'DictionaryItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+) & { ' $fragmentName'?: 'PageData_DictionaryItem_Fragment' };
+
+type PageData_Footer_Fragment = (
+  { __typename?: 'Footer' }
+  & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+) & { ' $fragmentName'?: 'PageData_Footer_Fragment' };
+
+type PageData_FooterColumn_Fragment = (
+  { __typename?: 'FooterColumn' }
+  & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+) & { ' $fragmentName'?: 'PageData_FooterColumn_Fragment' };
+
 type PageData_GenericMedia_Fragment = (
   { __typename?: 'GenericMedia' }
   & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_GenericMedia_Fragment' };
+
+type PageData_GenericMedia123_Fragment = (
+  { __typename?: 'GenericMedia123' }
+  & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+) & { ' $fragmentName'?: 'PageData_GenericMedia123_Fragment' };
+
+type PageData_Header_Fragment = (
+  { __typename?: 'Header' }
+  & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+) & { ' $fragmentName'?: 'PageData_Header_Fragment' };
+
+type PageData_HeaderBlock_Fragment = (
+  { __typename?: 'HeaderBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_HeaderBlock_Fragment' };
 
 type PageData_HeadingElement_Fragment = (
   { __typename?: 'HeadingElement' }
   & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_HeadingElement_Fragment' };
 
+type PageData_Hero_Fragment = (
+  { __typename?: 'Hero' }
+  & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+) & { ' $fragmentName'?: 'PageData_Hero_Fragment' };
+
 type PageData_HeroBlock_Fragment = (
   { __typename?: 'HeroBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_HeroBlock_Fragment' };
-
-type PageData_HomePageHeroBlock_Fragment = (
-  { __typename?: 'HomePageHeroBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-) & { ' $fragmentName'?: 'PageData_HomePageHeroBlock_Fragment' };
-
-type PageData_HtmlBlock_Fragment = (
-  { __typename?: 'HtmlBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
-) & { ' $fragmentName'?: 'PageData_HtmlBlock_Fragment' };
 
 type PageData_Image_Fragment = (
   { __typename?: 'Image' }
@@ -12889,15 +17159,20 @@ type PageData_LandingPage_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_LandingPage_Fragment' };
 
-type PageData_LayoutContainerBlock_Fragment = (
-  { __typename?: 'LayoutContainerBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-) & { ' $fragmentName'?: 'PageData_LayoutContainerBlock_Fragment' };
-
 type PageData_LayoutSettingsBlock_Fragment = (
   { __typename?: 'LayoutSettingsBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_LayoutSettingsBlock_Fragment' };
+
+type PageData_LogoItemBlock_Fragment = (
+  { __typename?: 'LogoItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_LogoItemBlock_Fragment' };
+
+type PageData_LogosBlock_Fragment = (
+  { __typename?: 'LogosBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_LogosBlock_Fragment' };
 
 type PageData_MegaMenuGroupBlock_Fragment = (
   { __typename?: 'MegaMenuGroupBlock' }
@@ -12909,60 +17184,25 @@ type PageData_MenuNavigationBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_MenuNavigationBlock_Fragment' };
 
+type PageData_NavItem_Fragment = (
+  { __typename?: 'NavItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+) & { ' $fragmentName'?: 'PageData_NavItem_Fragment' };
+
+type PageData_NavigationMenuBlock_Fragment = (
+  { __typename?: 'NavigationMenuBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_NavigationMenuBlock_Fragment' };
+
 type PageData_OdpEmbedBlock_Fragment = (
   { __typename?: 'OdpEmbedBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_OdpEmbedBlock_Fragment' };
 
-type PageData_OptiFormsChoiceElement_Fragment = (
-  { __typename?: 'OptiFormsChoiceElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsChoiceElement_Fragment' };
-
-type PageData_OptiFormsContainerData_Fragment = (
-  { __typename?: 'OptiFormsContainerData' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsContainerData_Fragment' };
-
-type PageData_OptiFormsNumberElement_Fragment = (
-  { __typename?: 'OptiFormsNumberElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsNumberElement_Fragment' };
-
-type PageData_OptiFormsRangeElement_Fragment = (
-  { __typename?: 'OptiFormsRangeElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsRangeElement_Fragment' };
-
-type PageData_OptiFormsResetElement_Fragment = (
-  { __typename?: 'OptiFormsResetElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsResetElement_Fragment' };
-
-type PageData_OptiFormsSelectionElement_Fragment = (
-  { __typename?: 'OptiFormsSelectionElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsSelectionElement_Fragment' };
-
-type PageData_OptiFormsSubmitElement_Fragment = (
-  { __typename?: 'OptiFormsSubmitElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsSubmitElement_Fragment' };
-
-type PageData_OptiFormsTextareaElement_Fragment = (
-  { __typename?: 'OptiFormsTextareaElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsTextareaElement_Fragment' };
-
-type PageData_OptiFormsTextboxElement_Fragment = (
-  { __typename?: 'OptiFormsTextboxElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsTextboxElement_Fragment' };
-
-type PageData_OptiFormsUrlElement_Fragment = (
-  { __typename?: 'OptiFormsUrlElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
-) & { ' $fragmentName'?: 'PageData_OptiFormsUrlElement_Fragment' };
+type PageData_OfficeLocation_Fragment = (
+  { __typename?: 'OfficeLocation' }
+  & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
+) & { ' $fragmentName'?: 'PageData_OfficeLocation_Fragment' };
 
 type PageData_PageSeoSettings_Fragment = (
   { __typename?: 'PageSeoSettings' }
@@ -12974,6 +17214,26 @@ type PageData_ParagraphElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_ParagraphElement_Fragment' };
 
+type PageData_PortfolioGridBlock_Fragment = (
+  { __typename?: 'PortfolioGridBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_PortfolioGridBlock_Fragment' };
+
+type PageData_PortfolioItemBlock_Fragment = (
+  { __typename?: 'PortfolioItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_PortfolioItemBlock_Fragment' };
+
+type PageData_ProductPage_Fragment = (
+  { __typename?: 'ProductPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ProductPage_Fragment' };
+
+type PageData_ProfileBlock_Fragment = (
+  { __typename?: 'ProfileBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ProfileBlock_Fragment' };
+
 type PageData_QuoteBlock_Fragment = (
   { __typename?: 'QuoteBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
@@ -12984,15 +17244,35 @@ type PageData_RichTextElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_RichTextElement_Fragment' };
 
-type PageData_StandardPage_Fragment = (
-  { __typename?: 'StandardPage' }
-  & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
-) & { ' $fragmentName'?: 'PageData_StandardPage_Fragment' };
+type PageData_SEOExperience_Fragment = (
+  { __typename?: 'SEOExperience' }
+  & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+) & { ' $fragmentName'?: 'PageData_SEOExperience_Fragment' };
+
+type PageData_ServiceItem_Fragment = (
+  { __typename?: 'ServiceItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ServiceItem_Fragment' };
+
+type PageData_ServicesBlock_Fragment = (
+  { __typename?: 'ServicesBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_ServicesBlock_Fragment' };
+
+type PageData_SocialLink_Fragment = (
+  { __typename?: 'SocialLink' }
+  & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
+) & { ' $fragmentName'?: 'PageData_SocialLink_Fragment' };
 
 type PageData_StartPage_Fragment = (
   { __typename?: 'StartPage' }
   & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_StartPage_Fragment' };
+
+type PageData_StoryBlock_Fragment = (
+  { __typename?: 'StoryBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_StoryBlock_Fragment' };
 
 type PageData_SysContentFolder_Fragment = (
   { __typename?: 'SysContentFolder' }
@@ -13003,6 +17283,21 @@ type PageData_TestimonialElement_Fragment = (
   { __typename?: 'TestimonialElement' }
   & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_TestimonialElement_Fragment' };
+
+type PageData_TestimonialItem_Fragment = (
+  { __typename?: 'TestimonialItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+) & { ' $fragmentName'?: 'PageData_TestimonialItem_Fragment' };
+
+type PageData_TestimonialItemBlock_Fragment = (
+  { __typename?: 'TestimonialItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_TestimonialItemBlock_Fragment' };
+
+type PageData_TestimonialsBlock_Fragment = (
+  { __typename?: 'TestimonialsBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
+) & { ' $fragmentName'?: 'PageData_TestimonialsBlock_Fragment' };
 
 type PageData_TextBlock_Fragment = (
   { __typename?: 'TextBlock' }
@@ -13023,6 +17318,11 @@ type PageData_VideoMedia_Fragment = (
   { __typename?: 'VideoMedia' }
   & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_VideoMedia_Fragment' };
+
+type PageData_WebsiteFooter_Fragment = (
+  { __typename?: 'WebsiteFooter' }
+  & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
+) & { ' $fragmentName'?: 'PageData_WebsiteFooter_Fragment' };
 
 type PageData__Component_Fragment = (
   { __typename?: '_Component' }
@@ -13069,7 +17369,7 @@ type PageData__Video_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
 ) & { ' $fragmentName'?: 'PageData__Video_Fragment' };
 
-export type PageDataFragment = PageData_ArticleListElement_Fragment | PageData_BlankExperience_Fragment | PageData_BlankSection_Fragment | PageData_BlogListingBlock_Fragment | PageData_BlogPostPage_Fragment | PageData_BlogSectionExperience_Fragment | PageData_ButtonBlock_Fragment | PageData_CTAElement_Fragment | PageData_CardBlock_Fragment | PageData_CarouselBlock_Fragment | PageData_ContentRecsBlock_Fragment | PageData_ContentRecsElement_Fragment | PageData_ContinueReadingComponent_Fragment | PageData_GenericMedia_Fragment | PageData_HeadingElement_Fragment | PageData_HeroBlock_Fragment | PageData_HomePageHeroBlock_Fragment | PageData_HtmlBlock_Fragment | PageData_Image_Fragment | PageData_ImageElement_Fragment | PageData_ImageMedia_Fragment | PageData_LandingPage_Fragment | PageData_LayoutContainerBlock_Fragment | PageData_LayoutSettingsBlock_Fragment | PageData_MegaMenuGroupBlock_Fragment | PageData_MenuNavigationBlock_Fragment | PageData_OdpEmbedBlock_Fragment | PageData_OptiFormsChoiceElement_Fragment | PageData_OptiFormsContainerData_Fragment | PageData_OptiFormsNumberElement_Fragment | PageData_OptiFormsRangeElement_Fragment | PageData_OptiFormsResetElement_Fragment | PageData_OptiFormsSelectionElement_Fragment | PageData_OptiFormsSubmitElement_Fragment | PageData_OptiFormsTextareaElement_Fragment | PageData_OptiFormsTextboxElement_Fragment | PageData_OptiFormsUrlElement_Fragment | PageData_PageSeoSettings_Fragment | PageData_ParagraphElement_Fragment | PageData_QuoteBlock_Fragment | PageData_RichTextElement_Fragment | PageData_StandardPage_Fragment | PageData_StartPage_Fragment | PageData_SysContentFolder_Fragment | PageData_TestimonialElement_Fragment | PageData_TextBlock_Fragment | PageData_Video_Fragment | PageData_VideoElement_Fragment | PageData_VideoMedia_Fragment | PageData__Component_Fragment | PageData__Content_Fragment | PageData__Experience_Fragment | PageData__Folder_Fragment | PageData__Image_Fragment | PageData__Media_Fragment | PageData__Page_Fragment | PageData__Section_Fragment | PageData__Video_Fragment;
+export type PageDataFragment = PageData_ArticleGroupPage_Fragment | PageData_ArticleListElement_Fragment | PageData_ArticlePage_Fragment | PageData_AvailabilityBlock_Fragment | PageData_BannerBlock_Fragment | PageData_BlankExperience_Fragment | PageData_BlankSection_Fragment | PageData_BlogPostPage_Fragment | PageData_BlogSectionExperience_Fragment | PageData_ButtonBlock_Fragment | PageData_CMSPage_Fragment | PageData_CTAElement_Fragment | PageData_CardBlock_Fragment | PageData_CarouselBlock_Fragment | PageData_ContactBlock_Fragment | PageData_ContentRecsElement_Fragment | PageData_ContinueReadingComponent_Fragment | PageData_DefaultImage_Fragment | PageData_DefaultVideo_Fragment | PageData_Dictionary_Fragment | PageData_DictionaryItem_Fragment | PageData_Footer_Fragment | PageData_FooterColumn_Fragment | PageData_GenericMedia_Fragment | PageData_GenericMedia123_Fragment | PageData_Header_Fragment | PageData_HeaderBlock_Fragment | PageData_HeadingElement_Fragment | PageData_Hero_Fragment | PageData_HeroBlock_Fragment | PageData_Image_Fragment | PageData_ImageElement_Fragment | PageData_ImageMedia_Fragment | PageData_LandingPage_Fragment | PageData_LayoutSettingsBlock_Fragment | PageData_LogoItemBlock_Fragment | PageData_LogosBlock_Fragment | PageData_MegaMenuGroupBlock_Fragment | PageData_MenuNavigationBlock_Fragment | PageData_NavItem_Fragment | PageData_NavigationMenuBlock_Fragment | PageData_OdpEmbedBlock_Fragment | PageData_OfficeLocation_Fragment | PageData_PageSeoSettings_Fragment | PageData_ParagraphElement_Fragment | PageData_PortfolioGridBlock_Fragment | PageData_PortfolioItemBlock_Fragment | PageData_ProductPage_Fragment | PageData_ProfileBlock_Fragment | PageData_QuoteBlock_Fragment | PageData_RichTextElement_Fragment | PageData_SEOExperience_Fragment | PageData_ServiceItem_Fragment | PageData_ServicesBlock_Fragment | PageData_SocialLink_Fragment | PageData_StartPage_Fragment | PageData_StoryBlock_Fragment | PageData_SysContentFolder_Fragment | PageData_TestimonialElement_Fragment | PageData_TestimonialItem_Fragment | PageData_TestimonialItemBlock_Fragment | PageData_TestimonialsBlock_Fragment | PageData_TextBlock_Fragment | PageData_Video_Fragment | PageData_VideoElement_Fragment | PageData_VideoMedia_Fragment | PageData_WebsiteFooter_Fragment | PageData__Component_Fragment | PageData__Content_Fragment | PageData__Experience_Fragment | PageData__Folder_Fragment | PageData__Image_Fragment | PageData__Media_Fragment | PageData__Page_Fragment | PageData__Section_Fragment | PageData__Video_Fragment;
 
 export type LinkDataFragment = { __typename?: 'ContentUrl', type?: string | null, base?: string | null, default?: string | null } & { ' $fragmentName'?: 'LinkDataFragment' };
 
@@ -13100,10 +17400,30 @@ type IContentInfo_MediaMetadata_Fragment = { __typename?: 'MediaMetadata', key?:
 
 export type IContentInfoFragment = IContentInfo_ContentMetadata_Fragment | IContentInfo_InstanceMetadata_Fragment | IContentInfo_ItemMetadata_Fragment | IContentInfo_MediaMetadata_Fragment;
 
+type IContentListItem_ArticleGroupPage_Fragment = (
+  { __typename?: 'ArticleGroupPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ArticleGroupPage_Fragment' };
+
 type IContentListItem_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
   & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_ArticleListElement_Fragment' };
+
+type IContentListItem_ArticlePage_Fragment = (
+  { __typename?: 'ArticlePage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ArticlePage_Fragment' };
+
+type IContentListItem_AvailabilityBlock_Fragment = (
+  { __typename?: 'AvailabilityBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_AvailabilityBlock_Fragment' };
+
+type IContentListItem_BannerBlock_Fragment = (
+  { __typename?: 'BannerBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_BannerBlock_Fragment' };
 
 type IContentListItem_BlankExperience_Fragment = (
   { __typename?: 'BlankExperience' }
@@ -13114,11 +17434,6 @@ type IContentListItem_BlankSection_Fragment = (
   { __typename?: 'BlankSection' }
   & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_BlankSection_Fragment' };
-
-type IContentListItem_BlogListingBlock_Fragment = (
-  { __typename?: 'BlogListingBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_BlogListingBlock_Fragment' };
 
 type IContentListItem_BlogPostPage_Fragment = (
   { __typename?: 'BlogPostPage' }
@@ -13135,6 +17450,11 @@ type IContentListItem_ButtonBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_ButtonBlock_Fragment' };
 
+type IContentListItem_CMSPage_Fragment = (
+  { __typename?: 'CMSPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_CMSPage_Fragment' };
+
 type IContentListItem_CTAElement_Fragment = (
   { __typename?: 'CTAElement' }
   & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment } }
@@ -13150,10 +17470,10 @@ type IContentListItem_CarouselBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_CarouselBlock_Fragment' };
 
-type IContentListItem_ContentRecsBlock_Fragment = (
-  { __typename?: 'ContentRecsBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_ContentRecsBlock_Fragment' };
+type IContentListItem_ContactBlock_Fragment = (
+  { __typename?: 'ContactBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ContactBlock_Fragment' };
 
 type IContentListItem_ContentRecsElement_Fragment = (
   { __typename?: 'ContentRecsElement' }
@@ -13165,30 +17485,70 @@ type IContentListItem_ContinueReadingComponent_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_ContinueReadingComponent_Fragment' };
 
+type IContentListItem_DefaultImage_Fragment = (
+  { __typename?: 'DefaultImage' }
+  & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_DefaultImage_Fragment' };
+
+type IContentListItem_DefaultVideo_Fragment = (
+  { __typename?: 'DefaultVideo' }
+  & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_DefaultVideo_Fragment' };
+
+type IContentListItem_Dictionary_Fragment = (
+  { __typename?: 'Dictionary' }
+  & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_Dictionary_Fragment' };
+
+type IContentListItem_DictionaryItem_Fragment = (
+  { __typename?: 'DictionaryItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_DictionaryItem_Fragment' };
+
+type IContentListItem_Footer_Fragment = (
+  { __typename?: 'Footer' }
+  & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_Footer_Fragment' };
+
+type IContentListItem_FooterColumn_Fragment = (
+  { __typename?: 'FooterColumn' }
+  & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_FooterColumn_Fragment' };
+
 type IContentListItem_GenericMedia_Fragment = (
   { __typename?: 'GenericMedia' }
   & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_GenericMedia_Fragment' };
+
+type IContentListItem_GenericMedia123_Fragment = (
+  { __typename?: 'GenericMedia123' }
+  & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_GenericMedia123_Fragment' };
+
+type IContentListItem_Header_Fragment = (
+  { __typename?: 'Header' }
+  & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_Header_Fragment' };
+
+type IContentListItem_HeaderBlock_Fragment = (
+  { __typename?: 'HeaderBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_HeaderBlock_Fragment' };
 
 type IContentListItem_HeadingElement_Fragment = (
   { __typename?: 'HeadingElement' }
   & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_HeadingElement_Fragment' };
 
+type IContentListItem_Hero_Fragment = (
+  { __typename?: 'Hero' }
+  & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_Hero_Fragment' };
+
 type IContentListItem_HeroBlock_Fragment = (
   { __typename?: 'HeroBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_HeroBlock_Fragment' };
-
-type IContentListItem_HomePageHeroBlock_Fragment = (
-  { __typename?: 'HomePageHeroBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_HomePageHeroBlock_Fragment' };
-
-type IContentListItem_HtmlBlock_Fragment = (
-  { __typename?: 'HtmlBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_HtmlBlock_Fragment' };
 
 type IContentListItem_Image_Fragment = (
   { __typename?: 'Image' }
@@ -13210,15 +17570,20 @@ type IContentListItem_LandingPage_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_LandingPage_Fragment' };
 
-type IContentListItem_LayoutContainerBlock_Fragment = (
-  { __typename?: 'LayoutContainerBlock' }
-  & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_LayoutContainerBlock_Fragment' };
-
 type IContentListItem_LayoutSettingsBlock_Fragment = (
   { __typename?: 'LayoutSettingsBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_LayoutSettingsBlock_Fragment' };
+
+type IContentListItem_LogoItemBlock_Fragment = (
+  { __typename?: 'LogoItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_LogoItemBlock_Fragment' };
+
+type IContentListItem_LogosBlock_Fragment = (
+  { __typename?: 'LogosBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_LogosBlock_Fragment' };
 
 type IContentListItem_MegaMenuGroupBlock_Fragment = (
   { __typename?: 'MegaMenuGroupBlock' }
@@ -13230,60 +17595,25 @@ type IContentListItem_MenuNavigationBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_MenuNavigationBlock_Fragment' };
 
+type IContentListItem_NavItem_Fragment = (
+  { __typename?: 'NavItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_NavItem_Fragment' };
+
+type IContentListItem_NavigationMenuBlock_Fragment = (
+  { __typename?: 'NavigationMenuBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_NavigationMenuBlock_Fragment' };
+
 type IContentListItem_OdpEmbedBlock_Fragment = (
   { __typename?: 'OdpEmbedBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_OdpEmbedBlock_Fragment' };
 
-type IContentListItem_OptiFormsChoiceElement_Fragment = (
-  { __typename?: 'OptiFormsChoiceElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsChoiceElement_Fragment' };
-
-type IContentListItem_OptiFormsContainerData_Fragment = (
-  { __typename?: 'OptiFormsContainerData' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsContainerData_Fragment' };
-
-type IContentListItem_OptiFormsNumberElement_Fragment = (
-  { __typename?: 'OptiFormsNumberElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsNumberElement_Fragment' };
-
-type IContentListItem_OptiFormsRangeElement_Fragment = (
-  { __typename?: 'OptiFormsRangeElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsRangeElement_Fragment' };
-
-type IContentListItem_OptiFormsResetElement_Fragment = (
-  { __typename?: 'OptiFormsResetElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsResetElement_Fragment' };
-
-type IContentListItem_OptiFormsSelectionElement_Fragment = (
-  { __typename?: 'OptiFormsSelectionElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsSelectionElement_Fragment' };
-
-type IContentListItem_OptiFormsSubmitElement_Fragment = (
-  { __typename?: 'OptiFormsSubmitElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsSubmitElement_Fragment' };
-
-type IContentListItem_OptiFormsTextareaElement_Fragment = (
-  { __typename?: 'OptiFormsTextareaElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsTextareaElement_Fragment' };
-
-type IContentListItem_OptiFormsTextboxElement_Fragment = (
-  { __typename?: 'OptiFormsTextboxElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsTextboxElement_Fragment' };
-
-type IContentListItem_OptiFormsUrlElement_Fragment = (
-  { __typename?: 'OptiFormsUrlElement' }
-  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_OptiFormsUrlElement_Fragment' };
+type IContentListItem_OfficeLocation_Fragment = (
+  { __typename?: 'OfficeLocation' }
+  & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_OfficeLocation_Fragment' };
 
 type IContentListItem_PageSeoSettings_Fragment = (
   { __typename?: 'PageSeoSettings' }
@@ -13295,6 +17625,26 @@ type IContentListItem_ParagraphElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_ParagraphElement_Fragment' };
 
+type IContentListItem_PortfolioGridBlock_Fragment = (
+  { __typename?: 'PortfolioGridBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_PortfolioGridBlock_Fragment' };
+
+type IContentListItem_PortfolioItemBlock_Fragment = (
+  { __typename?: 'PortfolioItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_PortfolioItemBlock_Fragment' };
+
+type IContentListItem_ProductPage_Fragment = (
+  { __typename?: 'ProductPage' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ProductPage_Fragment' };
+
+type IContentListItem_ProfileBlock_Fragment = (
+  { __typename?: 'ProfileBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ProfileBlock_Fragment' };
+
 type IContentListItem_QuoteBlock_Fragment = (
   { __typename?: 'QuoteBlock' }
   & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment } }
@@ -13305,15 +17655,35 @@ type IContentListItem_RichTextElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_RichTextElement_Fragment' };
 
-type IContentListItem_StandardPage_Fragment = (
-  { __typename?: 'StandardPage' }
-  & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment } }
-) & { ' $fragmentName'?: 'IContentListItem_StandardPage_Fragment' };
+type IContentListItem_SEOExperience_Fragment = (
+  { __typename?: 'SEOExperience' }
+  & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_SEOExperience_Fragment' };
+
+type IContentListItem_ServiceItem_Fragment = (
+  { __typename?: 'ServiceItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ServiceItem_Fragment' };
+
+type IContentListItem_ServicesBlock_Fragment = (
+  { __typename?: 'ServicesBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_ServicesBlock_Fragment' };
+
+type IContentListItem_SocialLink_Fragment = (
+  { __typename?: 'SocialLink' }
+  & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_SocialLink_Fragment' };
 
 type IContentListItem_StartPage_Fragment = (
   { __typename?: 'StartPage' }
   & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_StartPage_Fragment' };
+
+type IContentListItem_StoryBlock_Fragment = (
+  { __typename?: 'StoryBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_StoryBlock_Fragment' };
 
 type IContentListItem_SysContentFolder_Fragment = (
   { __typename?: 'SysContentFolder' }
@@ -13324,6 +17694,21 @@ type IContentListItem_TestimonialElement_Fragment = (
   { __typename?: 'TestimonialElement' }
   & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_TestimonialElement_Fragment' };
+
+type IContentListItem_TestimonialItem_Fragment = (
+  { __typename?: 'TestimonialItem' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_TestimonialItem_Fragment' };
+
+type IContentListItem_TestimonialItemBlock_Fragment = (
+  { __typename?: 'TestimonialItemBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_TestimonialItemBlock_Fragment' };
+
+type IContentListItem_TestimonialsBlock_Fragment = (
+  { __typename?: 'TestimonialsBlock' }
+  & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_TestimonialsBlock_Fragment' };
 
 type IContentListItem_TextBlock_Fragment = (
   { __typename?: 'TextBlock' }
@@ -13344,6 +17729,11 @@ type IContentListItem_VideoMedia_Fragment = (
   { __typename?: 'VideoMedia' }
   & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_VideoMedia_Fragment' };
+
+type IContentListItem_WebsiteFooter_Fragment = (
+  { __typename?: 'WebsiteFooter' }
+  & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_WebsiteFooter_Fragment' };
 
 type IContentListItem__Component_Fragment = (
   { __typename?: '_Component' }
@@ -13390,7 +17780,7 @@ type IContentListItem__Video_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem__Video_Fragment' };
 
-export type IContentListItemFragment = IContentListItem_ArticleListElement_Fragment | IContentListItem_BlankExperience_Fragment | IContentListItem_BlankSection_Fragment | IContentListItem_BlogListingBlock_Fragment | IContentListItem_BlogPostPage_Fragment | IContentListItem_BlogSectionExperience_Fragment | IContentListItem_ButtonBlock_Fragment | IContentListItem_CTAElement_Fragment | IContentListItem_CardBlock_Fragment | IContentListItem_CarouselBlock_Fragment | IContentListItem_ContentRecsBlock_Fragment | IContentListItem_ContentRecsElement_Fragment | IContentListItem_ContinueReadingComponent_Fragment | IContentListItem_GenericMedia_Fragment | IContentListItem_HeadingElement_Fragment | IContentListItem_HeroBlock_Fragment | IContentListItem_HomePageHeroBlock_Fragment | IContentListItem_HtmlBlock_Fragment | IContentListItem_Image_Fragment | IContentListItem_ImageElement_Fragment | IContentListItem_ImageMedia_Fragment | IContentListItem_LandingPage_Fragment | IContentListItem_LayoutContainerBlock_Fragment | IContentListItem_LayoutSettingsBlock_Fragment | IContentListItem_MegaMenuGroupBlock_Fragment | IContentListItem_MenuNavigationBlock_Fragment | IContentListItem_OdpEmbedBlock_Fragment | IContentListItem_OptiFormsChoiceElement_Fragment | IContentListItem_OptiFormsContainerData_Fragment | IContentListItem_OptiFormsNumberElement_Fragment | IContentListItem_OptiFormsRangeElement_Fragment | IContentListItem_OptiFormsResetElement_Fragment | IContentListItem_OptiFormsSelectionElement_Fragment | IContentListItem_OptiFormsSubmitElement_Fragment | IContentListItem_OptiFormsTextareaElement_Fragment | IContentListItem_OptiFormsTextboxElement_Fragment | IContentListItem_OptiFormsUrlElement_Fragment | IContentListItem_PageSeoSettings_Fragment | IContentListItem_ParagraphElement_Fragment | IContentListItem_QuoteBlock_Fragment | IContentListItem_RichTextElement_Fragment | IContentListItem_StandardPage_Fragment | IContentListItem_StartPage_Fragment | IContentListItem_SysContentFolder_Fragment | IContentListItem_TestimonialElement_Fragment | IContentListItem_TextBlock_Fragment | IContentListItem_Video_Fragment | IContentListItem_VideoElement_Fragment | IContentListItem_VideoMedia_Fragment | IContentListItem__Component_Fragment | IContentListItem__Content_Fragment | IContentListItem__Experience_Fragment | IContentListItem__Folder_Fragment | IContentListItem__Image_Fragment | IContentListItem__Media_Fragment | IContentListItem__Page_Fragment | IContentListItem__Section_Fragment | IContentListItem__Video_Fragment;
+export type IContentListItemFragment = IContentListItem_ArticleGroupPage_Fragment | IContentListItem_ArticleListElement_Fragment | IContentListItem_ArticlePage_Fragment | IContentListItem_AvailabilityBlock_Fragment | IContentListItem_BannerBlock_Fragment | IContentListItem_BlankExperience_Fragment | IContentListItem_BlankSection_Fragment | IContentListItem_BlogPostPage_Fragment | IContentListItem_BlogSectionExperience_Fragment | IContentListItem_ButtonBlock_Fragment | IContentListItem_CMSPage_Fragment | IContentListItem_CTAElement_Fragment | IContentListItem_CardBlock_Fragment | IContentListItem_CarouselBlock_Fragment | IContentListItem_ContactBlock_Fragment | IContentListItem_ContentRecsElement_Fragment | IContentListItem_ContinueReadingComponent_Fragment | IContentListItem_DefaultImage_Fragment | IContentListItem_DefaultVideo_Fragment | IContentListItem_Dictionary_Fragment | IContentListItem_DictionaryItem_Fragment | IContentListItem_Footer_Fragment | IContentListItem_FooterColumn_Fragment | IContentListItem_GenericMedia_Fragment | IContentListItem_GenericMedia123_Fragment | IContentListItem_Header_Fragment | IContentListItem_HeaderBlock_Fragment | IContentListItem_HeadingElement_Fragment | IContentListItem_Hero_Fragment | IContentListItem_HeroBlock_Fragment | IContentListItem_Image_Fragment | IContentListItem_ImageElement_Fragment | IContentListItem_ImageMedia_Fragment | IContentListItem_LandingPage_Fragment | IContentListItem_LayoutSettingsBlock_Fragment | IContentListItem_LogoItemBlock_Fragment | IContentListItem_LogosBlock_Fragment | IContentListItem_MegaMenuGroupBlock_Fragment | IContentListItem_MenuNavigationBlock_Fragment | IContentListItem_NavItem_Fragment | IContentListItem_NavigationMenuBlock_Fragment | IContentListItem_OdpEmbedBlock_Fragment | IContentListItem_OfficeLocation_Fragment | IContentListItem_PageSeoSettings_Fragment | IContentListItem_ParagraphElement_Fragment | IContentListItem_PortfolioGridBlock_Fragment | IContentListItem_PortfolioItemBlock_Fragment | IContentListItem_ProductPage_Fragment | IContentListItem_ProfileBlock_Fragment | IContentListItem_QuoteBlock_Fragment | IContentListItem_RichTextElement_Fragment | IContentListItem_SEOExperience_Fragment | IContentListItem_ServiceItem_Fragment | IContentListItem_ServicesBlock_Fragment | IContentListItem_SocialLink_Fragment | IContentListItem_StartPage_Fragment | IContentListItem_StoryBlock_Fragment | IContentListItem_SysContentFolder_Fragment | IContentListItem_TestimonialElement_Fragment | IContentListItem_TestimonialItem_Fragment | IContentListItem_TestimonialItemBlock_Fragment | IContentListItem_TestimonialsBlock_Fragment | IContentListItem_TextBlock_Fragment | IContentListItem_Video_Fragment | IContentListItem_VideoElement_Fragment | IContentListItem_VideoMedia_Fragment | IContentListItem_WebsiteFooter_Fragment | IContentListItem__Component_Fragment | IContentListItem__Content_Fragment | IContentListItem__Experience_Fragment | IContentListItem__Folder_Fragment | IContentListItem__Image_Fragment | IContentListItem__Media_Fragment | IContentListItem__Page_Fragment | IContentListItem__Section_Fragment | IContentListItem__Video_Fragment;
 
 type ExperienceData_BlankExperience_Fragment = { __typename?: 'BlankExperience', composition?: (
     { __typename?: 'CompositionStructureNode', nodes?: Array<(
@@ -13492,6 +17882,56 @@ type ExperienceData_BlogSectionExperience_Fragment = { __typename?: 'BlogSection
     & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
   ) | null } & { ' $fragmentName'?: 'ExperienceData_BlogSectionExperience_Fragment' };
 
+type ExperienceData_SEOExperience_Fragment = { __typename?: 'SEOExperience', composition?: (
+    { __typename?: 'CompositionStructureNode', nodes?: Array<(
+      { __typename?: 'CompositionComponentNode' }
+      & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionComponentNode_Fragment': CompositionNodeData_CompositionComponentNode_Fragment;'CompositionComponentNodeDataFragment': CompositionComponentNodeDataFragment } }
+    ) | (
+      { __typename?: 'CompositionNode' }
+      & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionNode_Fragment': CompositionNodeData_CompositionNode_Fragment } }
+    ) | (
+      { __typename?: 'CompositionStructureNode', nodes?: Array<(
+        { __typename?: 'CompositionComponentNode' }
+        & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionComponentNode_Fragment': CompositionNodeData_CompositionComponentNode_Fragment } }
+      ) | (
+        { __typename?: 'CompositionNode' }
+        & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionNode_Fragment': CompositionNodeData_CompositionNode_Fragment } }
+      ) | (
+        { __typename?: 'CompositionStructureNode', nodes?: Array<(
+          { __typename?: 'CompositionComponentNode' }
+          & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionComponentNode_Fragment': CompositionNodeData_CompositionComponentNode_Fragment } }
+        ) | (
+          { __typename?: 'CompositionNode' }
+          & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionNode_Fragment': CompositionNodeData_CompositionNode_Fragment } }
+        ) | (
+          { __typename?: 'CompositionStructureNode', nodes?: Array<(
+            { __typename?: 'CompositionComponentNode' }
+            & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionComponentNode_Fragment': CompositionNodeData_CompositionComponentNode_Fragment;'CompositionComponentNodeDataFragment': CompositionComponentNodeDataFragment } }
+          ) | (
+            { __typename?: 'CompositionNode' }
+            & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionNode_Fragment': CompositionNodeData_CompositionNode_Fragment } }
+          ) | (
+            { __typename?: 'CompositionStructureNode', nodes?: Array<(
+              { __typename?: 'CompositionComponentNode' }
+              & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionComponentNode_Fragment': CompositionNodeData_CompositionComponentNode_Fragment;'CompositionComponentNodeDataFragment': CompositionComponentNodeDataFragment } }
+            ) | (
+              { __typename?: 'CompositionNode' }
+              & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionNode_Fragment': CompositionNodeData_CompositionNode_Fragment } }
+            ) | (
+              { __typename?: 'CompositionStructureNode' }
+              & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
+            ) | null> | null }
+            & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
+          ) | null> | null }
+          & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
+        ) | null> | null }
+        & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
+      ) | null> | null }
+      & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
+    ) | null> | null }
+    & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'ExperienceData_SEOExperience_Fragment' };
+
 type ExperienceData__Experience_Fragment = { __typename?: '_Experience', composition?: (
     { __typename?: 'CompositionStructureNode', nodes?: Array<(
       { __typename?: 'CompositionComponentNode' }
@@ -13542,7 +17982,7 @@ type ExperienceData__Experience_Fragment = { __typename?: '_Experience', composi
     & { ' $fragmentRefs'?: { 'CompositionNodeData_CompositionStructureNode_Fragment': CompositionNodeData_CompositionStructureNode_Fragment } }
   ) | null } & { ' $fragmentName'?: 'ExperienceData__Experience_Fragment' };
 
-export type ExperienceDataFragment = ExperienceData_BlankExperience_Fragment | ExperienceData_BlogSectionExperience_Fragment | ExperienceData__Experience_Fragment;
+export type ExperienceDataFragment = ExperienceData_BlankExperience_Fragment | ExperienceData_BlogSectionExperience_Fragment | ExperienceData_SEOExperience_Fragment | ExperienceData__Experience_Fragment;
 
 type CompositionNodeData_CompositionComponentNode_Fragment = { __typename?: 'CompositionComponentNode', type?: string | null, key?: string | null, name?: string | null, layoutType?: string | null, template?: string | null, settings?: Array<{ __typename?: 'CompositionDisplaySetting', key?: string | null, value?: string | null } | null> | null } & { ' $fragmentName'?: 'CompositionNodeData_CompositionComponentNode_Fragment' };
 
@@ -13556,11 +17996,14 @@ export type CompositionComponentNodeDataFragment = { __typename?: 'CompositionCo
     { __typename?: 'ArticleListElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'ElementData_ArticleListElement_Fragment': ElementData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
   ) | (
+    { __typename?: 'AvailabilityBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment;'ElementData_AvailabilityBlock_Fragment': ElementData_AvailabilityBlock_Fragment } }
+  ) | (
+    { __typename?: 'BannerBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment;'ElementData_BannerBlock_Fragment': ElementData_BannerBlock_Fragment } }
+  ) | (
     { __typename?: 'BlankSection' }
     & { ' $fragmentRefs'?: { 'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'ElementData_BlankSection_Fragment': ElementData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-  ) | (
-    { __typename?: 'BlogListingBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment;'ElementData_BlogListingBlock_Fragment': ElementData_BlogListingBlock_Fragment } }
   ) | (
     { __typename?: 'ButtonBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'ElementData_ButtonBlock_Fragment': ElementData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
@@ -13574,8 +18017,8 @@ export type CompositionComponentNodeDataFragment = { __typename?: 'CompositionCo
     { __typename?: 'CarouselBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'ElementData_CarouselBlock_Fragment': ElementData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
   ) | (
-    { __typename?: 'ContentRecsBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment;'ElementData_ContentRecsBlock_Fragment': ElementData_ContentRecsBlock_Fragment } }
+    { __typename?: 'ContactBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment;'ElementData_ContactBlock_Fragment': ElementData_ContactBlock_Fragment } }
   ) | (
     { __typename?: 'ContentRecsElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'ElementData_ContentRecsElement_Fragment': ElementData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
@@ -13583,26 +18026,38 @@ export type CompositionComponentNodeDataFragment = { __typename?: 'CompositionCo
     { __typename?: 'ContinueReadingComponent' }
     & { ' $fragmentRefs'?: { 'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'ElementData_ContinueReadingComponent_Fragment': ElementData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
   ) | (
+    { __typename?: 'Dictionary' }
+    & { ' $fragmentRefs'?: { 'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment;'ElementData_Dictionary_Fragment': ElementData_Dictionary_Fragment } }
+  ) | (
+    { __typename?: 'DictionaryItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment;'ElementData_DictionaryItem_Fragment': ElementData_DictionaryItem_Fragment } }
+  ) | (
+    { __typename?: 'FooterColumn' }
+    & { ' $fragmentRefs'?: { 'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment;'ElementData_FooterColumn_Fragment': ElementData_FooterColumn_Fragment } }
+  ) | (
+    { __typename?: 'HeaderBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment;'ElementData_HeaderBlock_Fragment': ElementData_HeaderBlock_Fragment } }
+  ) | (
     { __typename?: 'HeadingElement' }
     & { ' $fragmentRefs'?: { 'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'ElementData_HeadingElement_Fragment': ElementData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
+  ) | (
+    { __typename?: 'Hero' }
+    & { ' $fragmentRefs'?: { 'BlockData_Hero_Fragment': BlockData_Hero_Fragment;'ElementData_Hero_Fragment': ElementData_Hero_Fragment } }
   ) | (
     { __typename?: 'HeroBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'ElementData_HeroBlock_Fragment': ElementData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
   ) | (
-    { __typename?: 'HomePageHeroBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment;'ElementData_HomePageHeroBlock_Fragment': ElementData_HomePageHeroBlock_Fragment } }
-  ) | (
-    { __typename?: 'HtmlBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment;'ElementData_HtmlBlock_Fragment': ElementData_HtmlBlock_Fragment } }
-  ) | (
     { __typename?: 'ImageElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ImageElement_Fragment': BlockData_ImageElement_Fragment;'ElementData_ImageElement_Fragment': ElementData_ImageElement_Fragment;'ImageElementDataFragment': ImageElementDataFragment } }
   ) | (
-    { __typename?: 'LayoutContainerBlock' }
-    & { ' $fragmentRefs'?: { 'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment;'ElementData_LayoutContainerBlock_Fragment': ElementData_LayoutContainerBlock_Fragment } }
-  ) | (
     { __typename?: 'LayoutSettingsBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'ElementData_LayoutSettingsBlock_Fragment': ElementData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+  ) | (
+    { __typename?: 'LogoItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment;'ElementData_LogoItemBlock_Fragment': ElementData_LogoItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'LogosBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment;'ElementData_LogosBlock_Fragment': ElementData_LogosBlock_Fragment } }
   ) | (
     { __typename?: 'MegaMenuGroupBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'ElementData_MegaMenuGroupBlock_Fragment': ElementData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -13610,38 +18065,17 @@ export type CompositionComponentNodeDataFragment = { __typename?: 'CompositionCo
     { __typename?: 'MenuNavigationBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'ElementData_MenuNavigationBlock_Fragment': ElementData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
   ) | (
+    { __typename?: 'NavItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment;'ElementData_NavItem_Fragment': ElementData_NavItem_Fragment } }
+  ) | (
+    { __typename?: 'NavigationMenuBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment;'ElementData_NavigationMenuBlock_Fragment': ElementData_NavigationMenuBlock_Fragment } }
+  ) | (
     { __typename?: 'OdpEmbedBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'ElementData_OdpEmbedBlock_Fragment': ElementData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
   ) | (
-    { __typename?: 'OptiFormsChoiceElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment;'ElementData_OptiFormsChoiceElement_Fragment': ElementData_OptiFormsChoiceElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsContainerData' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment;'ElementData_OptiFormsContainerData_Fragment': ElementData_OptiFormsContainerData_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsNumberElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment;'ElementData_OptiFormsNumberElement_Fragment': ElementData_OptiFormsNumberElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsRangeElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment;'ElementData_OptiFormsRangeElement_Fragment': ElementData_OptiFormsRangeElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsResetElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment;'ElementData_OptiFormsResetElement_Fragment': ElementData_OptiFormsResetElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSelectionElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment;'ElementData_OptiFormsSelectionElement_Fragment': ElementData_OptiFormsSelectionElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsSubmitElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment;'ElementData_OptiFormsSubmitElement_Fragment': ElementData_OptiFormsSubmitElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextareaElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment;'ElementData_OptiFormsTextareaElement_Fragment': ElementData_OptiFormsTextareaElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsTextboxElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment;'ElementData_OptiFormsTextboxElement_Fragment': ElementData_OptiFormsTextboxElement_Fragment } }
-  ) | (
-    { __typename?: 'OptiFormsUrlElement' }
-    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment;'ElementData_OptiFormsUrlElement_Fragment': ElementData_OptiFormsUrlElement_Fragment } }
+    { __typename?: 'OfficeLocation' }
+    & { ' $fragmentRefs'?: { 'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment;'ElementData_OfficeLocation_Fragment': ElementData_OfficeLocation_Fragment } }
   ) | (
     { __typename?: 'PageSeoSettings' }
     & { ' $fragmentRefs'?: { 'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'ElementData_PageSeoSettings_Fragment': ElementData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -13649,20 +18083,53 @@ export type CompositionComponentNodeDataFragment = { __typename?: 'CompositionCo
     { __typename?: 'ParagraphElement' }
     & { ' $fragmentRefs'?: { 'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'ElementData_ParagraphElement_Fragment': ElementData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
   ) | (
+    { __typename?: 'PortfolioGridBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment;'ElementData_PortfolioGridBlock_Fragment': ElementData_PortfolioGridBlock_Fragment } }
+  ) | (
+    { __typename?: 'PortfolioItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment;'ElementData_PortfolioItemBlock_Fragment': ElementData_PortfolioItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'ProfileBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment;'ElementData_ProfileBlock_Fragment': ElementData_ProfileBlock_Fragment } }
+  ) | (
     { __typename?: 'QuoteBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'ElementData_QuoteBlock_Fragment': ElementData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
   ) | (
     { __typename?: 'RichTextElement' }
     & { ' $fragmentRefs'?: { 'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'ElementData_RichTextElement_Fragment': ElementData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
   ) | (
+    { __typename?: 'ServiceItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment;'ElementData_ServiceItem_Fragment': ElementData_ServiceItem_Fragment } }
+  ) | (
+    { __typename?: 'ServicesBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment;'ElementData_ServicesBlock_Fragment': ElementData_ServicesBlock_Fragment } }
+  ) | (
+    { __typename?: 'SocialLink' }
+    & { ' $fragmentRefs'?: { 'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment;'ElementData_SocialLink_Fragment': ElementData_SocialLink_Fragment } }
+  ) | (
+    { __typename?: 'StoryBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment;'ElementData_StoryBlock_Fragment': ElementData_StoryBlock_Fragment } }
+  ) | (
     { __typename?: 'TestimonialElement' }
     & { ' $fragmentRefs'?: { 'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'ElementData_TestimonialElement_Fragment': ElementData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+  ) | (
+    { __typename?: 'TestimonialItem' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment;'ElementData_TestimonialItem_Fragment': ElementData_TestimonialItem_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialItemBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment;'ElementData_TestimonialItemBlock_Fragment': ElementData_TestimonialItemBlock_Fragment } }
+  ) | (
+    { __typename?: 'TestimonialsBlock' }
+    & { ' $fragmentRefs'?: { 'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment;'ElementData_TestimonialsBlock_Fragment': ElementData_TestimonialsBlock_Fragment } }
   ) | (
     { __typename?: 'TextBlock' }
     & { ' $fragmentRefs'?: { 'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'ElementData_TextBlock_Fragment': ElementData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
   ) | (
     { __typename?: 'VideoElement' }
     & { ' $fragmentRefs'?: { 'BlockData_VideoElement_Fragment': BlockData_VideoElement_Fragment;'ElementData_VideoElement_Fragment': ElementData_VideoElement_Fragment;'VideoElementDataFragment': VideoElementDataFragment } }
+  ) | (
+    { __typename?: 'WebsiteFooter' }
+    & { ' $fragmentRefs'?: { 'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment;'ElementData_WebsiteFooter_Fragment': ElementData_WebsiteFooter_Fragment } }
   ) | (
     { __typename?: '_Component' }
     & { ' $fragmentRefs'?: { 'BlockData__Component_Fragment': BlockData__Component_Fragment;'ElementData__Component_Fragment': ElementData__Component_Fragment } }
@@ -13687,17 +18154,26 @@ export type getContentByIdQueryVariables = Exact<{
 
 
 export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename?: '_ContentOutput', total?: number | null, items?: (
+      { __typename?: 'ArticleGroupPage' }
+      & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment;'PageData_ArticleGroupPage_Fragment': PageData_ArticleGroupPage_Fragment } }
+    ) | (
       { __typename?: 'ArticleListElement' }
       & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment;'BlockData_ArticleListElement_Fragment': BlockData_ArticleListElement_Fragment;'PageData_ArticleListElement_Fragment': PageData_ArticleListElement_Fragment;'ArticleListElementDataFragment': ArticleListElementDataFragment } }
+    ) | (
+      { __typename?: 'ArticlePage' }
+      & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment;'PageData_ArticlePage_Fragment': PageData_ArticlePage_Fragment } }
+    ) | (
+      { __typename?: 'AvailabilityBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment;'BlockData_AvailabilityBlock_Fragment': BlockData_AvailabilityBlock_Fragment;'PageData_AvailabilityBlock_Fragment': PageData_AvailabilityBlock_Fragment } }
+    ) | (
+      { __typename?: 'BannerBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment;'BlockData_BannerBlock_Fragment': BlockData_BannerBlock_Fragment;'PageData_BannerBlock_Fragment': PageData_BannerBlock_Fragment } }
     ) | (
       { __typename?: 'BlankExperience' }
       & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment;'PageData_BlankExperience_Fragment': PageData_BlankExperience_Fragment;'BlankExperienceDataFragment': BlankExperienceDataFragment } }
     ) | (
       { __typename?: 'BlankSection' }
       & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment;'BlockData_BlankSection_Fragment': BlockData_BlankSection_Fragment;'PageData_BlankSection_Fragment': PageData_BlankSection_Fragment;'BlankSectionDataFragment': BlankSectionDataFragment } }
-    ) | (
-      { __typename?: 'BlogListingBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment;'BlockData_BlogListingBlock_Fragment': BlockData_BlogListingBlock_Fragment;'PageData_BlogListingBlock_Fragment': PageData_BlogListingBlock_Fragment } }
     ) | (
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment;'PageData_BlogPostPage_Fragment': PageData_BlogPostPage_Fragment;'BlogPostPageDataFragment': BlogPostPageDataFragment } }
@@ -13708,6 +18184,9 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;'PageData_ButtonBlock_Fragment': PageData_ButtonBlock_Fragment;'ButtonBlockDataFragment': ButtonBlockDataFragment } }
     ) | (
+      { __typename?: 'CMSPage' }
+      & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment;'PageData_CMSPage_Fragment': PageData_CMSPage_Fragment } }
+    ) | (
       { __typename?: 'CTAElement' }
       & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment;'BlockData_CTAElement_Fragment': BlockData_CTAElement_Fragment;'PageData_CTAElement_Fragment': PageData_CTAElement_Fragment;'CTAElementDataFragment': CTAElementDataFragment } }
     ) | (
@@ -13717,8 +18196,8 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'CarouselBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment;'BlockData_CarouselBlock_Fragment': BlockData_CarouselBlock_Fragment;'PageData_CarouselBlock_Fragment': PageData_CarouselBlock_Fragment;'CarouselBlockDataFragment': CarouselBlockDataFragment } }
     ) | (
-      { __typename?: 'ContentRecsBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment;'BlockData_ContentRecsBlock_Fragment': BlockData_ContentRecsBlock_Fragment;'PageData_ContentRecsBlock_Fragment': PageData_ContentRecsBlock_Fragment } }
+      { __typename?: 'ContactBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment;'BlockData_ContactBlock_Fragment': BlockData_ContactBlock_Fragment;'PageData_ContactBlock_Fragment': PageData_ContactBlock_Fragment } }
     ) | (
       { __typename?: 'ContentRecsElement' }
       & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment;'BlockData_ContentRecsElement_Fragment': BlockData_ContentRecsElement_Fragment;'PageData_ContentRecsElement_Fragment': PageData_ContentRecsElement_Fragment;'ContentRecsElementDataFragment': ContentRecsElementDataFragment } }
@@ -13726,20 +18205,44 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'ContinueReadingComponent' }
       & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment;'BlockData_ContinueReadingComponent_Fragment': BlockData_ContinueReadingComponent_Fragment;'PageData_ContinueReadingComponent_Fragment': PageData_ContinueReadingComponent_Fragment;'ContinueReadingComponentDataFragment': ContinueReadingComponentDataFragment } }
     ) | (
+      { __typename?: 'DefaultImage' }
+      & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment;'PageData_DefaultImage_Fragment': PageData_DefaultImage_Fragment } }
+    ) | (
+      { __typename?: 'DefaultVideo' }
+      & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment;'PageData_DefaultVideo_Fragment': PageData_DefaultVideo_Fragment } }
+    ) | (
+      { __typename?: 'Dictionary' }
+      & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment;'BlockData_Dictionary_Fragment': BlockData_Dictionary_Fragment;'PageData_Dictionary_Fragment': PageData_Dictionary_Fragment } }
+    ) | (
+      { __typename?: 'DictionaryItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment;'BlockData_DictionaryItem_Fragment': BlockData_DictionaryItem_Fragment;'PageData_DictionaryItem_Fragment': PageData_DictionaryItem_Fragment } }
+    ) | (
+      { __typename?: 'Footer' }
+      & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment;'PageData_Footer_Fragment': PageData_Footer_Fragment } }
+    ) | (
+      { __typename?: 'FooterColumn' }
+      & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment;'BlockData_FooterColumn_Fragment': BlockData_FooterColumn_Fragment;'PageData_FooterColumn_Fragment': PageData_FooterColumn_Fragment } }
+    ) | (
       { __typename?: 'GenericMedia' }
       & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment;'PageData_GenericMedia_Fragment': PageData_GenericMedia_Fragment } }
+    ) | (
+      { __typename?: 'GenericMedia123' }
+      & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment;'PageData_GenericMedia123_Fragment': PageData_GenericMedia123_Fragment } }
+    ) | (
+      { __typename?: 'Header' }
+      & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment;'PageData_Header_Fragment': PageData_Header_Fragment } }
+    ) | (
+      { __typename?: 'HeaderBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment;'BlockData_HeaderBlock_Fragment': BlockData_HeaderBlock_Fragment;'PageData_HeaderBlock_Fragment': PageData_HeaderBlock_Fragment } }
     ) | (
       { __typename?: 'HeadingElement' }
       & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment;'BlockData_HeadingElement_Fragment': BlockData_HeadingElement_Fragment;'PageData_HeadingElement_Fragment': PageData_HeadingElement_Fragment;'HeadingElementDataFragment': HeadingElementDataFragment } }
     ) | (
+      { __typename?: 'Hero' }
+      & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment;'BlockData_Hero_Fragment': BlockData_Hero_Fragment;'PageData_Hero_Fragment': PageData_Hero_Fragment } }
+    ) | (
       { __typename?: 'HeroBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment;'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;'PageData_HeroBlock_Fragment': PageData_HeroBlock_Fragment;'HeroBlockDataFragment': HeroBlockDataFragment } }
-    ) | (
-      { __typename?: 'HomePageHeroBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment;'BlockData_HomePageHeroBlock_Fragment': BlockData_HomePageHeroBlock_Fragment;'PageData_HomePageHeroBlock_Fragment': PageData_HomePageHeroBlock_Fragment } }
-    ) | (
-      { __typename?: 'HtmlBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment;'BlockData_HtmlBlock_Fragment': BlockData_HtmlBlock_Fragment;'PageData_HtmlBlock_Fragment': PageData_HtmlBlock_Fragment } }
     ) | (
       { __typename?: 'Image' }
       & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment;'PageData_Image_Fragment': PageData_Image_Fragment } }
@@ -13753,11 +18256,14 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'LandingPage' }
       & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment;'PageData_LandingPage_Fragment': PageData_LandingPage_Fragment;'LandingPageDataFragment': LandingPageDataFragment } }
     ) | (
-      { __typename?: 'LayoutContainerBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment;'BlockData_LayoutContainerBlock_Fragment': BlockData_LayoutContainerBlock_Fragment;'PageData_LayoutContainerBlock_Fragment': PageData_LayoutContainerBlock_Fragment } }
-    ) | (
       { __typename?: 'LayoutSettingsBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment;'BlockData_LayoutSettingsBlock_Fragment': BlockData_LayoutSettingsBlock_Fragment;'PageData_LayoutSettingsBlock_Fragment': PageData_LayoutSettingsBlock_Fragment;'LayoutSettingsBlockDataFragment': LayoutSettingsBlockDataFragment } }
+    ) | (
+      { __typename?: 'LogoItemBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment;'BlockData_LogoItemBlock_Fragment': BlockData_LogoItemBlock_Fragment;'PageData_LogoItemBlock_Fragment': PageData_LogoItemBlock_Fragment } }
+    ) | (
+      { __typename?: 'LogosBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment;'BlockData_LogosBlock_Fragment': BlockData_LogosBlock_Fragment;'PageData_LogosBlock_Fragment': PageData_LogosBlock_Fragment } }
     ) | (
       { __typename?: 'MegaMenuGroupBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment;'BlockData_MegaMenuGroupBlock_Fragment': BlockData_MegaMenuGroupBlock_Fragment;'PageData_MegaMenuGroupBlock_Fragment': PageData_MegaMenuGroupBlock_Fragment;'MegaMenuGroupBlockDataFragment': MegaMenuGroupBlockDataFragment } }
@@ -13765,38 +18271,17 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'MenuNavigationBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment;'BlockData_MenuNavigationBlock_Fragment': BlockData_MenuNavigationBlock_Fragment;'PageData_MenuNavigationBlock_Fragment': PageData_MenuNavigationBlock_Fragment;'MenuNavigationBlockDataFragment': MenuNavigationBlockDataFragment } }
     ) | (
+      { __typename?: 'NavItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment;'BlockData_NavItem_Fragment': BlockData_NavItem_Fragment;'PageData_NavItem_Fragment': PageData_NavItem_Fragment } }
+    ) | (
+      { __typename?: 'NavigationMenuBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment;'BlockData_NavigationMenuBlock_Fragment': BlockData_NavigationMenuBlock_Fragment;'PageData_NavigationMenuBlock_Fragment': PageData_NavigationMenuBlock_Fragment } }
+    ) | (
       { __typename?: 'OdpEmbedBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment;'BlockData_OdpEmbedBlock_Fragment': BlockData_OdpEmbedBlock_Fragment;'PageData_OdpEmbedBlock_Fragment': PageData_OdpEmbedBlock_Fragment;'OdpEmbedBlockDataFragment': OdpEmbedBlockDataFragment } }
     ) | (
-      { __typename?: 'OptiFormsChoiceElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment;'PageData_OptiFormsChoiceElement_Fragment': PageData_OptiFormsChoiceElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsContainerData' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment;'PageData_OptiFormsContainerData_Fragment': PageData_OptiFormsContainerData_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsNumberElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment;'PageData_OptiFormsNumberElement_Fragment': PageData_OptiFormsNumberElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsRangeElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment;'BlockData_OptiFormsRangeElement_Fragment': BlockData_OptiFormsRangeElement_Fragment;'PageData_OptiFormsRangeElement_Fragment': PageData_OptiFormsRangeElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsResetElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment;'BlockData_OptiFormsResetElement_Fragment': BlockData_OptiFormsResetElement_Fragment;'PageData_OptiFormsResetElement_Fragment': PageData_OptiFormsResetElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsSelectionElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment;'BlockData_OptiFormsSelectionElement_Fragment': BlockData_OptiFormsSelectionElement_Fragment;'PageData_OptiFormsSelectionElement_Fragment': PageData_OptiFormsSelectionElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsSubmitElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment;'BlockData_OptiFormsSubmitElement_Fragment': BlockData_OptiFormsSubmitElement_Fragment;'PageData_OptiFormsSubmitElement_Fragment': PageData_OptiFormsSubmitElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsTextareaElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment;'BlockData_OptiFormsTextareaElement_Fragment': BlockData_OptiFormsTextareaElement_Fragment;'PageData_OptiFormsTextareaElement_Fragment': PageData_OptiFormsTextareaElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsTextboxElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment;'BlockData_OptiFormsTextboxElement_Fragment': BlockData_OptiFormsTextboxElement_Fragment;'PageData_OptiFormsTextboxElement_Fragment': PageData_OptiFormsTextboxElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsUrlElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment;'BlockData_OptiFormsUrlElement_Fragment': BlockData_OptiFormsUrlElement_Fragment;'PageData_OptiFormsUrlElement_Fragment': PageData_OptiFormsUrlElement_Fragment } }
+      { __typename?: 'OfficeLocation' }
+      & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment;'BlockData_OfficeLocation_Fragment': BlockData_OfficeLocation_Fragment;'PageData_OfficeLocation_Fragment': PageData_OfficeLocation_Fragment } }
     ) | (
       { __typename?: 'PageSeoSettings' }
       & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment;'BlockData_PageSeoSettings_Fragment': BlockData_PageSeoSettings_Fragment;'PageData_PageSeoSettings_Fragment': PageData_PageSeoSettings_Fragment;'PageSeoSettingsDataFragment': PageSeoSettingsDataFragment } }
@@ -13804,23 +18289,56 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'ParagraphElement' }
       & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment;'BlockData_ParagraphElement_Fragment': BlockData_ParagraphElement_Fragment;'PageData_ParagraphElement_Fragment': PageData_ParagraphElement_Fragment;'ParagraphElementDataFragment': ParagraphElementDataFragment } }
     ) | (
+      { __typename?: 'PortfolioGridBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment;'BlockData_PortfolioGridBlock_Fragment': BlockData_PortfolioGridBlock_Fragment;'PageData_PortfolioGridBlock_Fragment': PageData_PortfolioGridBlock_Fragment } }
+    ) | (
+      { __typename?: 'PortfolioItemBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment;'BlockData_PortfolioItemBlock_Fragment': BlockData_PortfolioItemBlock_Fragment;'PageData_PortfolioItemBlock_Fragment': PageData_PortfolioItemBlock_Fragment } }
+    ) | (
+      { __typename?: 'ProductPage' }
+      & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment;'PageData_ProductPage_Fragment': PageData_ProductPage_Fragment } }
+    ) | (
+      { __typename?: 'ProfileBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment;'BlockData_ProfileBlock_Fragment': BlockData_ProfileBlock_Fragment;'PageData_ProfileBlock_Fragment': PageData_ProfileBlock_Fragment } }
+    ) | (
       { __typename?: 'QuoteBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment;'BlockData_QuoteBlock_Fragment': BlockData_QuoteBlock_Fragment;'PageData_QuoteBlock_Fragment': PageData_QuoteBlock_Fragment;'QuoteBlockDataFragment': QuoteBlockDataFragment } }
     ) | (
       { __typename?: 'RichTextElement' }
       & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment;'BlockData_RichTextElement_Fragment': BlockData_RichTextElement_Fragment;'PageData_RichTextElement_Fragment': PageData_RichTextElement_Fragment;'RichTextElementDataFragment': RichTextElementDataFragment } }
     ) | (
-      { __typename?: 'StandardPage' }
-      & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment;'PageData_StandardPage_Fragment': PageData_StandardPage_Fragment } }
+      { __typename?: 'SEOExperience' }
+      & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment;'PageData_SEOExperience_Fragment': PageData_SEOExperience_Fragment } }
+    ) | (
+      { __typename?: 'ServiceItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment;'BlockData_ServiceItem_Fragment': BlockData_ServiceItem_Fragment;'PageData_ServiceItem_Fragment': PageData_ServiceItem_Fragment } }
+    ) | (
+      { __typename?: 'ServicesBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment;'BlockData_ServicesBlock_Fragment': BlockData_ServicesBlock_Fragment;'PageData_ServicesBlock_Fragment': PageData_ServicesBlock_Fragment } }
+    ) | (
+      { __typename?: 'SocialLink' }
+      & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment;'BlockData_SocialLink_Fragment': BlockData_SocialLink_Fragment;'PageData_SocialLink_Fragment': PageData_SocialLink_Fragment } }
     ) | (
       { __typename?: 'StartPage' }
       & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment;'PageData_StartPage_Fragment': PageData_StartPage_Fragment } }
+    ) | (
+      { __typename?: 'StoryBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment;'BlockData_StoryBlock_Fragment': BlockData_StoryBlock_Fragment;'PageData_StoryBlock_Fragment': PageData_StoryBlock_Fragment } }
     ) | (
       { __typename?: 'SysContentFolder' }
       & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment;'PageData_SysContentFolder_Fragment': PageData_SysContentFolder_Fragment } }
     ) | (
       { __typename?: 'TestimonialElement' }
       & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment;'BlockData_TestimonialElement_Fragment': BlockData_TestimonialElement_Fragment;'PageData_TestimonialElement_Fragment': PageData_TestimonialElement_Fragment;'TestimonialElementDataFragment': TestimonialElementDataFragment } }
+    ) | (
+      { __typename?: 'TestimonialItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment;'BlockData_TestimonialItem_Fragment': BlockData_TestimonialItem_Fragment;'PageData_TestimonialItem_Fragment': PageData_TestimonialItem_Fragment } }
+    ) | (
+      { __typename?: 'TestimonialItemBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment;'BlockData_TestimonialItemBlock_Fragment': BlockData_TestimonialItemBlock_Fragment;'PageData_TestimonialItemBlock_Fragment': PageData_TestimonialItemBlock_Fragment } }
+    ) | (
+      { __typename?: 'TestimonialsBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment;'BlockData_TestimonialsBlock_Fragment': BlockData_TestimonialsBlock_Fragment;'PageData_TestimonialsBlock_Fragment': PageData_TestimonialsBlock_Fragment } }
     ) | (
       { __typename?: 'TextBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment;'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;'PageData_TextBlock_Fragment': PageData_TextBlock_Fragment;'TextBlockDataFragment': TextBlockDataFragment } }
@@ -13833,6 +18351,9 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
     ) | (
       { __typename?: 'VideoMedia' }
       & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment;'PageData_VideoMedia_Fragment': PageData_VideoMedia_Fragment } }
+    ) | (
+      { __typename?: 'WebsiteFooter' }
+      & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment;'BlockData_WebsiteFooter_Fragment': BlockData_WebsiteFooter_Fragment;'PageData_WebsiteFooter_Fragment': PageData_WebsiteFooter_Fragment } }
     ) | (
       { __typename?: '_Component' }
       & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment;'BlockData__Component_Fragment': BlockData__Component_Fragment;'PageData__Component_Fragment': PageData__Component_Fragment } }
@@ -13871,17 +18392,26 @@ export type getContentByPathQueryVariables = Exact<{
 
 
 export type getContentByPathQuery = { __typename?: 'Query', content?: { __typename?: '_ContentOutput', total?: number | null, items?: (
+      { __typename?: 'ArticleGroupPage' }
+      & { ' $fragmentRefs'?: { 'IContentData_ArticleGroupPage_Fragment': IContentData_ArticleGroupPage_Fragment;'PageData_ArticleGroupPage_Fragment': PageData_ArticleGroupPage_Fragment } }
+    ) | (
       { __typename?: 'ArticleListElement' }
       & { ' $fragmentRefs'?: { 'IContentData_ArticleListElement_Fragment': IContentData_ArticleListElement_Fragment;'PageData_ArticleListElement_Fragment': PageData_ArticleListElement_Fragment } }
+    ) | (
+      { __typename?: 'ArticlePage' }
+      & { ' $fragmentRefs'?: { 'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment;'PageData_ArticlePage_Fragment': PageData_ArticlePage_Fragment } }
+    ) | (
+      { __typename?: 'AvailabilityBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_AvailabilityBlock_Fragment': IContentData_AvailabilityBlock_Fragment;'PageData_AvailabilityBlock_Fragment': PageData_AvailabilityBlock_Fragment } }
+    ) | (
+      { __typename?: 'BannerBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_BannerBlock_Fragment': IContentData_BannerBlock_Fragment;'PageData_BannerBlock_Fragment': PageData_BannerBlock_Fragment } }
     ) | (
       { __typename?: 'BlankExperience' }
       & { ' $fragmentRefs'?: { 'IContentData_BlankExperience_Fragment': IContentData_BlankExperience_Fragment;'PageData_BlankExperience_Fragment': PageData_BlankExperience_Fragment;'BlankExperienceDataFragment': BlankExperienceDataFragment } }
     ) | (
       { __typename?: 'BlankSection' }
       & { ' $fragmentRefs'?: { 'IContentData_BlankSection_Fragment': IContentData_BlankSection_Fragment;'PageData_BlankSection_Fragment': PageData_BlankSection_Fragment } }
-    ) | (
-      { __typename?: 'BlogListingBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_BlogListingBlock_Fragment': IContentData_BlogListingBlock_Fragment;'PageData_BlogListingBlock_Fragment': PageData_BlogListingBlock_Fragment } }
     ) | (
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment;'PageData_BlogPostPage_Fragment': PageData_BlogPostPage_Fragment;'BlogPostPageDataFragment': BlogPostPageDataFragment } }
@@ -13892,6 +18422,9 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;'PageData_ButtonBlock_Fragment': PageData_ButtonBlock_Fragment } }
     ) | (
+      { __typename?: 'CMSPage' }
+      & { ' $fragmentRefs'?: { 'IContentData_CMSPage_Fragment': IContentData_CMSPage_Fragment;'PageData_CMSPage_Fragment': PageData_CMSPage_Fragment } }
+    ) | (
       { __typename?: 'CTAElement' }
       & { ' $fragmentRefs'?: { 'IContentData_CTAElement_Fragment': IContentData_CTAElement_Fragment;'PageData_CTAElement_Fragment': PageData_CTAElement_Fragment } }
     ) | (
@@ -13901,8 +18434,8 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'CarouselBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_CarouselBlock_Fragment': IContentData_CarouselBlock_Fragment;'PageData_CarouselBlock_Fragment': PageData_CarouselBlock_Fragment } }
     ) | (
-      { __typename?: 'ContentRecsBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_ContentRecsBlock_Fragment': IContentData_ContentRecsBlock_Fragment;'PageData_ContentRecsBlock_Fragment': PageData_ContentRecsBlock_Fragment } }
+      { __typename?: 'ContactBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_ContactBlock_Fragment': IContentData_ContactBlock_Fragment;'PageData_ContactBlock_Fragment': PageData_ContactBlock_Fragment } }
     ) | (
       { __typename?: 'ContentRecsElement' }
       & { ' $fragmentRefs'?: { 'IContentData_ContentRecsElement_Fragment': IContentData_ContentRecsElement_Fragment;'PageData_ContentRecsElement_Fragment': PageData_ContentRecsElement_Fragment } }
@@ -13910,20 +18443,44 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'ContinueReadingComponent' }
       & { ' $fragmentRefs'?: { 'IContentData_ContinueReadingComponent_Fragment': IContentData_ContinueReadingComponent_Fragment;'PageData_ContinueReadingComponent_Fragment': PageData_ContinueReadingComponent_Fragment } }
     ) | (
+      { __typename?: 'DefaultImage' }
+      & { ' $fragmentRefs'?: { 'IContentData_DefaultImage_Fragment': IContentData_DefaultImage_Fragment;'PageData_DefaultImage_Fragment': PageData_DefaultImage_Fragment } }
+    ) | (
+      { __typename?: 'DefaultVideo' }
+      & { ' $fragmentRefs'?: { 'IContentData_DefaultVideo_Fragment': IContentData_DefaultVideo_Fragment;'PageData_DefaultVideo_Fragment': PageData_DefaultVideo_Fragment } }
+    ) | (
+      { __typename?: 'Dictionary' }
+      & { ' $fragmentRefs'?: { 'IContentData_Dictionary_Fragment': IContentData_Dictionary_Fragment;'PageData_Dictionary_Fragment': PageData_Dictionary_Fragment } }
+    ) | (
+      { __typename?: 'DictionaryItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_DictionaryItem_Fragment': IContentData_DictionaryItem_Fragment;'PageData_DictionaryItem_Fragment': PageData_DictionaryItem_Fragment } }
+    ) | (
+      { __typename?: 'Footer' }
+      & { ' $fragmentRefs'?: { 'IContentData_Footer_Fragment': IContentData_Footer_Fragment;'PageData_Footer_Fragment': PageData_Footer_Fragment } }
+    ) | (
+      { __typename?: 'FooterColumn' }
+      & { ' $fragmentRefs'?: { 'IContentData_FooterColumn_Fragment': IContentData_FooterColumn_Fragment;'PageData_FooterColumn_Fragment': PageData_FooterColumn_Fragment } }
+    ) | (
       { __typename?: 'GenericMedia' }
       & { ' $fragmentRefs'?: { 'IContentData_GenericMedia_Fragment': IContentData_GenericMedia_Fragment;'PageData_GenericMedia_Fragment': PageData_GenericMedia_Fragment } }
+    ) | (
+      { __typename?: 'GenericMedia123' }
+      & { ' $fragmentRefs'?: { 'IContentData_GenericMedia123_Fragment': IContentData_GenericMedia123_Fragment;'PageData_GenericMedia123_Fragment': PageData_GenericMedia123_Fragment } }
+    ) | (
+      { __typename?: 'Header' }
+      & { ' $fragmentRefs'?: { 'IContentData_Header_Fragment': IContentData_Header_Fragment;'PageData_Header_Fragment': PageData_Header_Fragment } }
+    ) | (
+      { __typename?: 'HeaderBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_HeaderBlock_Fragment': IContentData_HeaderBlock_Fragment;'PageData_HeaderBlock_Fragment': PageData_HeaderBlock_Fragment } }
     ) | (
       { __typename?: 'HeadingElement' }
       & { ' $fragmentRefs'?: { 'IContentData_HeadingElement_Fragment': IContentData_HeadingElement_Fragment;'PageData_HeadingElement_Fragment': PageData_HeadingElement_Fragment } }
     ) | (
+      { __typename?: 'Hero' }
+      & { ' $fragmentRefs'?: { 'IContentData_Hero_Fragment': IContentData_Hero_Fragment;'PageData_Hero_Fragment': PageData_Hero_Fragment } }
+    ) | (
       { __typename?: 'HeroBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment;'PageData_HeroBlock_Fragment': PageData_HeroBlock_Fragment } }
-    ) | (
-      { __typename?: 'HomePageHeroBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_HomePageHeroBlock_Fragment': IContentData_HomePageHeroBlock_Fragment;'PageData_HomePageHeroBlock_Fragment': PageData_HomePageHeroBlock_Fragment } }
-    ) | (
-      { __typename?: 'HtmlBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_HtmlBlock_Fragment': IContentData_HtmlBlock_Fragment;'PageData_HtmlBlock_Fragment': PageData_HtmlBlock_Fragment } }
     ) | (
       { __typename?: 'Image' }
       & { ' $fragmentRefs'?: { 'IContentData_Image_Fragment': IContentData_Image_Fragment;'PageData_Image_Fragment': PageData_Image_Fragment } }
@@ -13937,11 +18494,14 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'LandingPage' }
       & { ' $fragmentRefs'?: { 'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment;'PageData_LandingPage_Fragment': PageData_LandingPage_Fragment;'LandingPageDataFragment': LandingPageDataFragment } }
     ) | (
-      { __typename?: 'LayoutContainerBlock' }
-      & { ' $fragmentRefs'?: { 'IContentData_LayoutContainerBlock_Fragment': IContentData_LayoutContainerBlock_Fragment;'PageData_LayoutContainerBlock_Fragment': PageData_LayoutContainerBlock_Fragment } }
-    ) | (
       { __typename?: 'LayoutSettingsBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_LayoutSettingsBlock_Fragment': IContentData_LayoutSettingsBlock_Fragment;'PageData_LayoutSettingsBlock_Fragment': PageData_LayoutSettingsBlock_Fragment } }
+    ) | (
+      { __typename?: 'LogoItemBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_LogoItemBlock_Fragment': IContentData_LogoItemBlock_Fragment;'PageData_LogoItemBlock_Fragment': PageData_LogoItemBlock_Fragment } }
+    ) | (
+      { __typename?: 'LogosBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_LogosBlock_Fragment': IContentData_LogosBlock_Fragment;'PageData_LogosBlock_Fragment': PageData_LogosBlock_Fragment } }
     ) | (
       { __typename?: 'MegaMenuGroupBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_MegaMenuGroupBlock_Fragment': IContentData_MegaMenuGroupBlock_Fragment;'PageData_MegaMenuGroupBlock_Fragment': PageData_MegaMenuGroupBlock_Fragment } }
@@ -13949,38 +18509,17 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'MenuNavigationBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_MenuNavigationBlock_Fragment': IContentData_MenuNavigationBlock_Fragment;'PageData_MenuNavigationBlock_Fragment': PageData_MenuNavigationBlock_Fragment } }
     ) | (
+      { __typename?: 'NavItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_NavItem_Fragment': IContentData_NavItem_Fragment;'PageData_NavItem_Fragment': PageData_NavItem_Fragment } }
+    ) | (
+      { __typename?: 'NavigationMenuBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_NavigationMenuBlock_Fragment': IContentData_NavigationMenuBlock_Fragment;'PageData_NavigationMenuBlock_Fragment': PageData_NavigationMenuBlock_Fragment } }
+    ) | (
       { __typename?: 'OdpEmbedBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_OdpEmbedBlock_Fragment': IContentData_OdpEmbedBlock_Fragment;'PageData_OdpEmbedBlock_Fragment': PageData_OdpEmbedBlock_Fragment } }
     ) | (
-      { __typename?: 'OptiFormsChoiceElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment;'PageData_OptiFormsChoiceElement_Fragment': PageData_OptiFormsChoiceElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsContainerData' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment;'PageData_OptiFormsContainerData_Fragment': PageData_OptiFormsContainerData_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsNumberElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment;'PageData_OptiFormsNumberElement_Fragment': PageData_OptiFormsNumberElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsRangeElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsRangeElement_Fragment': IContentData_OptiFormsRangeElement_Fragment;'PageData_OptiFormsRangeElement_Fragment': PageData_OptiFormsRangeElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsResetElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsResetElement_Fragment': IContentData_OptiFormsResetElement_Fragment;'PageData_OptiFormsResetElement_Fragment': PageData_OptiFormsResetElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsSelectionElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSelectionElement_Fragment': IContentData_OptiFormsSelectionElement_Fragment;'PageData_OptiFormsSelectionElement_Fragment': PageData_OptiFormsSelectionElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsSubmitElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsSubmitElement_Fragment': IContentData_OptiFormsSubmitElement_Fragment;'PageData_OptiFormsSubmitElement_Fragment': PageData_OptiFormsSubmitElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsTextareaElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextareaElement_Fragment': IContentData_OptiFormsTextareaElement_Fragment;'PageData_OptiFormsTextareaElement_Fragment': PageData_OptiFormsTextareaElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsTextboxElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsTextboxElement_Fragment': IContentData_OptiFormsTextboxElement_Fragment;'PageData_OptiFormsTextboxElement_Fragment': PageData_OptiFormsTextboxElement_Fragment } }
-    ) | (
-      { __typename?: 'OptiFormsUrlElement' }
-      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsUrlElement_Fragment': IContentData_OptiFormsUrlElement_Fragment;'PageData_OptiFormsUrlElement_Fragment': PageData_OptiFormsUrlElement_Fragment } }
+      { __typename?: 'OfficeLocation' }
+      & { ' $fragmentRefs'?: { 'IContentData_OfficeLocation_Fragment': IContentData_OfficeLocation_Fragment;'PageData_OfficeLocation_Fragment': PageData_OfficeLocation_Fragment } }
     ) | (
       { __typename?: 'PageSeoSettings' }
       & { ' $fragmentRefs'?: { 'IContentData_PageSeoSettings_Fragment': IContentData_PageSeoSettings_Fragment;'PageData_PageSeoSettings_Fragment': PageData_PageSeoSettings_Fragment } }
@@ -13988,23 +18527,56 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'ParagraphElement' }
       & { ' $fragmentRefs'?: { 'IContentData_ParagraphElement_Fragment': IContentData_ParagraphElement_Fragment;'PageData_ParagraphElement_Fragment': PageData_ParagraphElement_Fragment } }
     ) | (
+      { __typename?: 'PortfolioGridBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_PortfolioGridBlock_Fragment': IContentData_PortfolioGridBlock_Fragment;'PageData_PortfolioGridBlock_Fragment': PageData_PortfolioGridBlock_Fragment } }
+    ) | (
+      { __typename?: 'PortfolioItemBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_PortfolioItemBlock_Fragment': IContentData_PortfolioItemBlock_Fragment;'PageData_PortfolioItemBlock_Fragment': PageData_PortfolioItemBlock_Fragment } }
+    ) | (
+      { __typename?: 'ProductPage' }
+      & { ' $fragmentRefs'?: { 'IContentData_ProductPage_Fragment': IContentData_ProductPage_Fragment;'PageData_ProductPage_Fragment': PageData_ProductPage_Fragment } }
+    ) | (
+      { __typename?: 'ProfileBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_ProfileBlock_Fragment': IContentData_ProfileBlock_Fragment;'PageData_ProfileBlock_Fragment': PageData_ProfileBlock_Fragment } }
+    ) | (
       { __typename?: 'QuoteBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_QuoteBlock_Fragment': IContentData_QuoteBlock_Fragment;'PageData_QuoteBlock_Fragment': PageData_QuoteBlock_Fragment } }
     ) | (
       { __typename?: 'RichTextElement' }
       & { ' $fragmentRefs'?: { 'IContentData_RichTextElement_Fragment': IContentData_RichTextElement_Fragment;'PageData_RichTextElement_Fragment': PageData_RichTextElement_Fragment } }
     ) | (
-      { __typename?: 'StandardPage' }
-      & { ' $fragmentRefs'?: { 'IContentData_StandardPage_Fragment': IContentData_StandardPage_Fragment;'PageData_StandardPage_Fragment': PageData_StandardPage_Fragment } }
+      { __typename?: 'SEOExperience' }
+      & { ' $fragmentRefs'?: { 'IContentData_SEOExperience_Fragment': IContentData_SEOExperience_Fragment;'PageData_SEOExperience_Fragment': PageData_SEOExperience_Fragment } }
+    ) | (
+      { __typename?: 'ServiceItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_ServiceItem_Fragment': IContentData_ServiceItem_Fragment;'PageData_ServiceItem_Fragment': PageData_ServiceItem_Fragment } }
+    ) | (
+      { __typename?: 'ServicesBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_ServicesBlock_Fragment': IContentData_ServicesBlock_Fragment;'PageData_ServicesBlock_Fragment': PageData_ServicesBlock_Fragment } }
+    ) | (
+      { __typename?: 'SocialLink' }
+      & { ' $fragmentRefs'?: { 'IContentData_SocialLink_Fragment': IContentData_SocialLink_Fragment;'PageData_SocialLink_Fragment': PageData_SocialLink_Fragment } }
     ) | (
       { __typename?: 'StartPage' }
       & { ' $fragmentRefs'?: { 'IContentData_StartPage_Fragment': IContentData_StartPage_Fragment;'PageData_StartPage_Fragment': PageData_StartPage_Fragment } }
+    ) | (
+      { __typename?: 'StoryBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_StoryBlock_Fragment': IContentData_StoryBlock_Fragment;'PageData_StoryBlock_Fragment': PageData_StoryBlock_Fragment } }
     ) | (
       { __typename?: 'SysContentFolder' }
       & { ' $fragmentRefs'?: { 'IContentData_SysContentFolder_Fragment': IContentData_SysContentFolder_Fragment;'PageData_SysContentFolder_Fragment': PageData_SysContentFolder_Fragment } }
     ) | (
       { __typename?: 'TestimonialElement' }
       & { ' $fragmentRefs'?: { 'IContentData_TestimonialElement_Fragment': IContentData_TestimonialElement_Fragment;'PageData_TestimonialElement_Fragment': PageData_TestimonialElement_Fragment } }
+    ) | (
+      { __typename?: 'TestimonialItem' }
+      & { ' $fragmentRefs'?: { 'IContentData_TestimonialItem_Fragment': IContentData_TestimonialItem_Fragment;'PageData_TestimonialItem_Fragment': PageData_TestimonialItem_Fragment } }
+    ) | (
+      { __typename?: 'TestimonialItemBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_TestimonialItemBlock_Fragment': IContentData_TestimonialItemBlock_Fragment;'PageData_TestimonialItemBlock_Fragment': PageData_TestimonialItemBlock_Fragment } }
+    ) | (
+      { __typename?: 'TestimonialsBlock' }
+      & { ' $fragmentRefs'?: { 'IContentData_TestimonialsBlock_Fragment': IContentData_TestimonialsBlock_Fragment;'PageData_TestimonialsBlock_Fragment': PageData_TestimonialsBlock_Fragment } }
     ) | (
       { __typename?: 'TextBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment;'PageData_TextBlock_Fragment': PageData_TextBlock_Fragment } }
@@ -14017,6 +18589,9 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
     ) | (
       { __typename?: 'VideoMedia' }
       & { ' $fragmentRefs'?: { 'IContentData_VideoMedia_Fragment': IContentData_VideoMedia_Fragment;'PageData_VideoMedia_Fragment': PageData_VideoMedia_Fragment } }
+    ) | (
+      { __typename?: 'WebsiteFooter' }
+      & { ' $fragmentRefs'?: { 'IContentData_WebsiteFooter_Fragment': IContentData_WebsiteFooter_Fragment;'PageData_WebsiteFooter_Fragment': PageData_WebsiteFooter_Fragment } }
     ) | (
       { __typename?: '_Component' }
       & { ' $fragmentRefs'?: { 'IContentData__Component_Fragment': IContentData__Component_Fragment;'PageData__Component_Fragment': PageData__Component_Fragment } }
@@ -14055,7 +18630,7 @@ export type getContentTypeQueryVariables = Exact<{
 }>;
 
 
-export type getContentTypeQuery = { __typename?: 'Query', content?: { __typename?: '_ContentOutput', total?: number | null, items?: { __typename?: 'ArticleListElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogListingBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogPostPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogSectionExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ButtonBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CTAElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CardBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CarouselBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContinueReadingComponent', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'GenericMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeadingElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HomePageHeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HtmlBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LandingPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutContainerBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutSettingsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MegaMenuGroupBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MenuNavigationBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OdpEmbedBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsChoiceElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsContainerData', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsNumberElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsRangeElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsResetElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsSelectionElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsSubmitElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsTextareaElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsTextboxElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsUrlElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'PageSeoSettings', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ParagraphElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'QuoteBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'RichTextElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StandardPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StartPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'SysContentFolder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TextBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Component', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Content', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Experience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Folder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Media', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Page', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Section', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | null } | null };
+export type getContentTypeQuery = { __typename?: 'Query', content?: { __typename?: '_ContentOutput', total?: number | null, items?: { __typename?: 'ArticleGroupPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ArticleListElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ArticlePage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'AvailabilityBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BannerBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogPostPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogSectionExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ButtonBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CMSPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CTAElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CardBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CarouselBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContactBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContinueReadingComponent', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'DefaultImage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'DefaultVideo', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Dictionary', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'DictionaryItem', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Footer', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'FooterColumn', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'GenericMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'GenericMedia123', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Header', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeaderBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeadingElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Hero', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LandingPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutSettingsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LogoItemBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LogosBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MegaMenuGroupBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MenuNavigationBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'NavItem', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'NavigationMenuBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OdpEmbedBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OfficeLocation', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'PageSeoSettings', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ParagraphElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'PortfolioGridBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'PortfolioItemBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ProductPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ProfileBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'QuoteBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'RichTextElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'SEOExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ServiceItem', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ServicesBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'SocialLink', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StartPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StoryBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'SysContentFolder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialItem', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialItemBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TextBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'WebsiteFooter', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Component', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Content', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Experience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Folder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Media', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Page', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Section', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | null } | null };
 
 export const LinkDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}}]} as unknown as DocumentNode<LinkDataFragment, unknown>;
 export const ReferenceDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}}]} as unknown as DocumentNode<ReferenceDataFragment, unknown>;

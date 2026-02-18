@@ -10,6 +10,8 @@ import ParagraphElementComponent from "./ParagraphElement";
 import PageSeoSettingsComponent from "./PageSeoSettings";
 import OdpEmbedBlockComponent from "./OdpEmbedBlock";
 import MenuNavigationBlockComponent from "./MenuNavigationBlock";
+import MenuNavigationBlockFooterComponent from "./MenuNavigationBlock/footer";
+import MenuNavigationBlockMenuComponent from "./MenuNavigationBlock/menu";
 import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
 import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
 import LayoutSettingsBlockComponent from "./LayoutSettingsBlock";
@@ -21,6 +23,7 @@ import ContentRecsElementComponent from "./ContentRecsElement";
 import CarouselBlockComponent from "./CarouselBlock";
 import CTAElementComponent from "./CTAElement";
 import ButtonBlockComponent from "./ButtonBlock";
+import ButtonBlockMobileComponent from "./ButtonBlock/mobile";
 import ArticleListElementComponent from "./ArticleListElement";
 import ArticleListElementLoader from "./ArticleListElement/loading";
 import ComponentPageFactory from "./Page";
@@ -67,12 +70,24 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: MenuNavigationBlockComponent 
     },
     { 
-        type: "MegaMenuGroupBlock/mobile", 
-        component: MegaMenuGroupBlockMobileComponent 
+        type: "MenuNavigationBlock/footer", 
+        component: MenuNavigationBlockFooterComponent 
     },
+    { 
+        type: "MenuNavigationBlock/menu", 
+        component: MenuNavigationBlockMenuComponent 
+    },
+    // { 
+    //     type: "MegaMenuGroupBlock/mobile", 
+    //     component: MegaMenuGroupBlockMobileComponent 
+    // },
     { 
         type: "MegaMenuGroupBlock", 
         component: MegaMenuGroupBlockComponent 
+    },
+    {
+        type: "MegaMenuGroupBlock/mobile",
+        component: MegaMenuGroupBlockMobileComponent
     },
     { 
         type: "LayoutSettingsBlock", 
@@ -111,11 +126,15 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: ButtonBlockComponent 
     },
     { 
+        type: "ButtonBlock/mobile", 
+        component: ButtonBlockMobileComponent 
+    },
+    { 
         type: "ArticleListElement", 
         component: ArticleListElementComponent,
         useSuspense: true,
         loader: ArticleListElementLoader
-    },
+    },    
     ...ComponentPageFactory
 ];
 
